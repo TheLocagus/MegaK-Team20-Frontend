@@ -1,14 +1,15 @@
 import React from 'react';
 
 import './App.scss';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
-const App = () => {
+export const App = () => {
 
   return (
-    <div className="App">
-
-    </div>
+      <BrowserRouter>
+        <Routes>
+          {/*<Route path={'/'} element={<CandidatesListPage/>}/>*/}
+        </Routes>
+      </BrowserRouter>
   );
 }
-
-export default App;
