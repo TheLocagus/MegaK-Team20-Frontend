@@ -4,19 +4,16 @@ import './CandidatePage.scss';
 
 //strona profilu kandydata
 
-interface Props {
-    children: React.ReactNode;
-    customClass?: string;
-}
 
-const CandidatePage: React.FC<Props> = ({ children, customClass }) => {
+
+const CandidatePage: React.FC = () => {
     
     const content: React.ReactNode = <>
        profil kandydata
     </>
 
     return (
-        <main className={customClass}>
+        <main>
             <GenericSection children={content} />
         </main>
     )
