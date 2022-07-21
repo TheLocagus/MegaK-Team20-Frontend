@@ -1,2 +1,6 @@
-@import '../variables.sass';
-@import '../mixins.sass';
+@import '../../../_variables.scss';
+@import '../../../_mixins.scss';
+
+.btn {
+    padding: 0.66rem 0.61rem;
+}
