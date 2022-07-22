@@ -1,4 +1,7 @@
+import Header from '../Header/Header';
+import Navigation from '../Navigation/Navigation';
 import GenericSection from '../common/GenericSection/GenericSection';
+import CandidateCard from '../common/CandidateCard/CandidateCard';
 
 import './CandidatesListPage.scss';
 
@@ -15,10 +18,27 @@ const CandidatesListPage: React.FC = () => {
         lista kandydatów
     </>
 
+    const filters: React.ReactNode = <>
+        <div className='userlist-header__searchform'>
+            <input placeholder='Szukaj'></input>
+            <button>Filtrowanie</button>
+        </div>
+    </>
+
+
     return (
-        <main>
-            <GenericSection children={content} />
-        </main>
+        <>
+            <Header />
+            <main className='userlist'>
+                <GenericSection children={<Navigation /> } customClass='navigation' />
+                <GenericSection children={filters} customClass='filters'/>
+                <GenericSection children={<CandidateCard />} customClass='userList__list'/>
+                <GenericSection children={<CandidateCard />} customClass='userList__list'/>
+                <GenericSection children={<CandidateCard />} customClass='userList__list'/>
+                <GenericSection children={<CandidateCard />} customClass='userList__list'/>
+            </main>
+        </>
+        
     )
 }
 

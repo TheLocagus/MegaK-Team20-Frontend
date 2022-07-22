@@ -3,4 +3,17 @@
 
 .btn {
     padding: 0.66rem 0.61rem;
+    border: none;
+}
+
+.arrow-btn {
+    display: inline-flex;
+    align-items: center;
+    min-width: 170px;
+    background-color: transparent;
+    color: $color-white;
+    p {
+        margin-left: 24px;
+        font-size: .6rem;
+    }
 }

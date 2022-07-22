@@ -1,0 +1,53 @@
+@import '../../../_variables.scss';
+@import '../../../_mixins.scss';
+
+
+.opener button {
+    background-color: $color-red;
+    border: 1px solid #572329;
+    color: $color-white;
+    margin: 14px 0;
+    padding: .5rem;
+}
+
+table {
+    width: 100%;
+    border: collapse;
+    border: none;
+    border-spacing: 0;
+
+    thead {
+        color:#bcbcbc;
+        font-size: .7rem;
+        td {
+            font-size: .75rem;
+        }
+    }
+
+    tbody {
+        color: $color-white;
+        font-size: .8rem;
+        td {
+            font-weight: bold;
+            span {
+                font-weight: normal;
+                padding: .4rem;
+            }
+        }
+        td, span {
+            font-size: .94rem;
+        }
+    }
+
+    tr, thead, tbody {
+        border: none;
+    }
+    
+    td {
+        padding: .5rem 14px;
+        background-color: #222324;
+        border: 0 solid #252627;
+        border-width: 0 1px;
+        vertical-align: top;
+    }
+}

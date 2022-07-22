@@ -23,7 +23,6 @@
         align-items: center;
         justify-content: center;
         background-color: $color-red;
-        border: none;
         color: $color-white;
         margin: 1rem auto;
     }
@@ -34,12 +33,11 @@
         font-size: 16px;
     }
     &__login,
-    &__register {
+    &__forgotten-password {
         display: flex;
         flex-direction: column;
-        padding: 1rem;
-        p a {
-            font-weight: 900;
+        a {
+            font-size: .9rem;
         }
     }
 }
@@ -57,7 +55,7 @@
             box-sizing: border-box;
         }
         &__button {
-            margin: 0;
+            margin: 8px 0 0;
             margin-left: auto;
         }
         &__div {
@@ -73,9 +71,10 @@
         &__login p {
             margin: 1rem 0;
         }
-        &__register {
+        &__forgotten-password {
             display: flex;
             justify-content: flex-end;
+            padding: 1rem;
         }
     }
 }

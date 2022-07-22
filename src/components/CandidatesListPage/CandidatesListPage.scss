@@ -1,2 +1,61 @@
 @import '../../variables.scss';
 @import '../../mixins.scss';
+
+.userlist {
+    .filters, &__list {
+        background-color: $color-dark-grey;
+        padding: 0 20px 14px;
+    }
+    .navigation {
+        background-color: $color-dark-grey;
+        justify-content: flex-start;
+    }
+}
+
+.userList__list {
+    background-color: $color-dark-grey;
+    padding: 0 20px;
+    .listElement {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        background-color: $color-dark-grey;
+        border: 1px solid #252627;
+        padding: 0 20px;
+        p {
+            font-size: 1.13rem;
+        }
+    }
+}
+.userList__list:not(:last-child) li {
+    background-color: $color-grey;
+    padding-bottom: 16px;
+}
+
+.userlist-header__searchform {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid $color-grey;
+    width: 100%;
+    padding: 14px 0;
+    input, button {
+        background-color: $color-grey;
+        padding: .5rem;
+    }
+    input {
+        border: 0;
+        width: 20rem;
+        height: 38px;
+    }
+    button {
+        border: none;
+        color: $color-white; 
+    }
+}
+
+.userlist-header__list li {
+    color: #f4f4f4;
+    margin: 0 14px;
+    border-bottom: 14px solid $color-grey;
+}

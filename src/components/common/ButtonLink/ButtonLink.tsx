@@ -8,16 +8,17 @@ interface Props {
     label?: string;
     type?: string;
     target?: string;
+    icon?: string;
     onClick?: () => void;
 }
 
 
-const ButtonLink: React.FC<Props> = ({customClass, label, type, target, onClick}) => {
+const ButtonLink: React.FC<Props> = ({ customClass, label, type, target, icon, onClick }) => {
 
 
     return (
         type === 'button' || type === 'submit' ? 
-            <button className={`btn ${customClass}`} type={type} onClick={onClick}>{label}</button> : 
+            <button className={`btn ${customClass}`} type={type} onClick={onClick}>{label}{icon && <p>{icon}</p>}</button> : 
             <NavLink to={target || '/'} >{label}</NavLink>
     )
 }

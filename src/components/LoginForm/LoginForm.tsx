@@ -34,14 +34,9 @@ const LoginForm: React.FC<Props> = () => {
             <div className='form-login__div'>
                 <div className='form-login__login'>            
                     <ButtonLink customClass='form-login__button' type='submit' label='Zaloguj się'/>
-                    <p>
-                        <ButtonLink target='#' label='Zapomniałeś hasła?'/>
-                    </p>
                 </div>
-                <div className='form-login__register'>
-                    <p>Nie masz konta?
-                        <ButtonLink target='#' label=' Zarejestruj się'/>
-                    </p>
+                <div className='form-login__forgotten-password'>
+                    <ButtonLink target='#' label='Zapomniałeś hasła?'/>
                 </div>
            </div>
         </form>
