@@ -5,4 +5,7 @@ section {
     min-height: 100vh;
     background-color: $color-deep-grey;
     color: $color-white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

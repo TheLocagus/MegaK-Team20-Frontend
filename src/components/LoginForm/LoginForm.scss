@@ -34,12 +34,14 @@
         font-size: 16px;
     }
     &__login,
-    &__register {
+    &__forgotten-password {
         display: flex;
         flex-direction: column;
-        padding: 1rem;
-        p a {
+        p {
+            text-align: center;
+            a {
             font-weight: 900;
+            }
         }
     }
 }
@@ -47,17 +49,12 @@
 @media (min-width: 600px) {
 
     .form-login {
-        position: absolute; 
-        width: 350px; 
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
         &__input {
             width: 350px;
             box-sizing: border-box;
         }
         &__button {
-            margin: 0;
+            margin: 8px 0 0;
             margin-left: auto;
         }
         &__div {
@@ -73,9 +70,10 @@
         &__login p {
             margin: 1rem 0;
         }
-        &__register {
+        &__forgotten-password {
             display: flex;
             justify-content: flex-end;
+            padding: 1rem;
         }
     }
 }
