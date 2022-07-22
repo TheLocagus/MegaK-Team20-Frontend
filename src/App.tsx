@@ -15,12 +15,13 @@ export const App = () => {
 
   return (
       <BrowserRouter>
-      <Header />
         <Routes>
           <Route path='/' element={<LoginPage/>}/>
-          <Route path='hr-panel' element={<Panel/>}>
-              <Route path={'candidates'} element={<CandidatesListPage/>}/>
-              <Route path={'meetings'} element={<CandidatesListPage/>}/>
+          <Route path='/hr-panel' element={<Panel/>}>
+              <Route path={'candidates'} element={<CandidatePage/>}>
+                  <Route path={'list'} element={<CandidatesListPage/>}/>
+                  <Route path={'meetings'} element={<CandidatesListPage/>}/>
+              </Route>
               <Route path={':userId'} element={<CandidatePage/>}/>
               {/*<Route path={'profile'} element={<Profile/>}/>*/}
           </Route>

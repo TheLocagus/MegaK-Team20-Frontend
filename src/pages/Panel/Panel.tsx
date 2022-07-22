@@ -1,14 +1,15 @@
 import React from 'react';
 import {Outlet} from "react-router-dom";
 import './Panel.scss'
+import Header from "../../components/Header/Header";
 
-export const Panel = () => {
+export const Panel: React.FC = () => {
     return (
-        <div>
-
+        <main>
+            <Header/>
 
             <Outlet/>
-        </div>
+        </main>
     );
 };
 

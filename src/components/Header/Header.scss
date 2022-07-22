@@ -1,2 +1,41 @@
 @import '../../variables.scss';
 @import '../../mixins.scss';
+
+.header-admin{
+  background-color: #1e1e1f;
+  height: 60px;
+  top: 0;
+  width: 100%;
+
+  &__nav{
+    display:flex;
+    justify-content: space-between;
+    max-width: 1430px;
+    margin: 0 auto;
+    height: 100%;
+
+    img.logo{
+      height: 60px;
+    }
+  }
+
+  &__usermenu{
+    display:flex;
+    width: 260px;
+    align-items: center;
+    justify-content: space-around;
+    margin:0 1rem;
+    color: #f7f7f7;
+
+    .arrow-down{
+      width:1rem;
+      color: #9e9e9e;
+      font-size: .8rem;
+      font-weight: bold;
+    }
+    img.avatar {
+      width:34px;
+      height:34px;
+    }
+  }
+}
