@@ -1,22 +1,22 @@
 import GenericSection from '../common/GenericSection/GenericSection';
 
-import './CandidatesListPage.css';
+import './CandidatesListPage.scss';
 
 //strona z listą kandydatów 
 
-interface Props {
-    children: React.ReactNode;
-    customClass?: string;
-}
+// interface Props {
+//     children: React.ReactNode;
+//     customClass?: string;
+// }
 
-const CandidatesListPage: React.FC<Props> = ({ children, customClass }) => {
+const CandidatesListPage: React.FC = () => {
     
     const content: React.ReactNode = <>
         lista kandydatów
     </>
 
     return (
-        <main className={customClass}>
+        <main>
             <GenericSection children={content} />
         </main>
     )

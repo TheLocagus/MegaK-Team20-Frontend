@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-size: 16px;
+  font-family: 'Catamaran';
 }
 
 body {
@@ -11,7 +12,7 @@ body {
 }
 
 main {
-  min-height: calc(100vh - 134px);
+  min-height: 100vh ;
 }
 
 h1 {
@@ -36,6 +37,7 @@ li {
 
 a {
   text-decoration: none;
+  color: var(--color-white);
 }
 
 label {

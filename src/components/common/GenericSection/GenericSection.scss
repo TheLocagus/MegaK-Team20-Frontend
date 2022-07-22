@@ -1,2 +1,8 @@
-@import '../variables.sass';
-@import '../mixins.sass';
+@import '../../../variables.scss';
+@import '../../../mixins.scss';
+
+section {
+    min-height: 100vh;
+    background-color: $color-deep-grey;
+    color: $color-white;
+}

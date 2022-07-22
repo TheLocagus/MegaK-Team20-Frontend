@@ -1,23 +1,17 @@
 import GenericSection from '../common/GenericSection/GenericSection';
+import LoginForm from '../LoginForm/LoginForm';
 
-import './LoginPage.css';
+import './LoginPage.scss';
 
 //strona logowania
 
-interface Props {
-    children: React.ReactNode;
-    customClass?: string;
-}
 
-const LoginPage: React.FC<Props> = ({ children, customClass }) => {
+const LoginPage: React.FC = () => {
     
-    const content: React.ReactNode = <>
-        <p>jakiś content strony</p>
-    </>
 
     return (
-        <main className={customClass}>
-            <GenericSection children={content} />
+        <main>
+            <GenericSection children={<LoginForm />} />
         </main>
     )
 }
