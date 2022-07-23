@@ -1,7 +1,7 @@
 import GenericSection from '../common/GenericSection/GenericSection';
 
 import './CandidatePage.scss';
-import {NavLink} from "react-router-dom";
+import {NavLink, Outlet} from "react-router-dom";
 
 //strona profilu kandydata
 
@@ -35,6 +35,8 @@ const CandidatePage: React.FC = () => {
     return (
         <main className={'candidates'}>
             <GenericSection children={content} />
+            
+            <Outlet/>
         </main>
     )
 }
