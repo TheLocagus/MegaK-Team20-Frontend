@@ -1,5 +1,7 @@
-import GenericSection from '../common/GenericSection/GenericSection';
-import LoginForm from '../LoginForm/LoginForm';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import GenericSection from 'components/common/GenericSection/GenericSection';
+import LoginForm from 'components/LoginForm/LoginForm';
 
 import './LoginPage.scss';
 
@@ -7,8 +9,15 @@ import './LoginPage.scss';
 
 
 const LoginPage: React.FC = () => {
+    const navigate = useNavigate();
     
+    useEffect(() => {
+        setTimeout(() => {
+            navigate('/hr-panel', { replace: true })
+        }, 5000)
+    },[])
 
+    
     return (
         <main>
             <GenericSection children={<LoginForm />} />

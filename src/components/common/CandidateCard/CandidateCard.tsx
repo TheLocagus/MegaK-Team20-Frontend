@@ -1,4 +1,10 @@
+import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import ButtonLink from 'components/common/ButtonLink/ButtonLink';
+import Icon from 'components/Icon/Icon';
+
 import './CandidateCard.scss';
+
 
 // element listy kandydatów na liście 'dostępni kursanci' i 'do rozmowy'
 // a także (w zależności od miejsca renderowania) pełna karta kandydata - dla slajdu 6
@@ -9,15 +15,41 @@ interface Props {
 
 
 const CandidateCard: React.FC<Props> = () => {
+    const [cartState, setCartState] = useState(false);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const candidates = searchParams.get('candidates');
+
+    const openCardHandler = () => {
+        setCartState(!cartState)
+    }
 
 
     return (
-        <li>
+        <li className={cartState ? 'open' : ''}>
             <div className='listElement'>
-                <p>Jan K.</p>
-                <div className='opener'>
-                    <button>Zarezerwuj rozmowę</button>
-                    <span className='arrow'>⌄</span>
+                {candidates === 'meetings' &&
+                    <div>
+                        <span>Rezerwacja do</span>
+                        <span>11.07.2022 r.</span>
+                    </div>
+                }
+                    <div>
+                    {candidates === 'meetings' &&
+                        <img src='images/avatar.jpg'></img>
+                    }
+                        <p>Jan K.</p>
+                    </div>
+                <div>
+                    {candidates === 'meetings' ? 
+                        <>
+                            <ButtonLink customClass='opener' label='Pokaż CV'/>
+                            <ButtonLink customClass='opener' label='Brak zainteresowania'/>
+                            <ButtonLink customClass='opener' label='Zatrudniony'/>
+                        </> 
+                        :
+                            <ButtonLink customClass='opener' label='Zarezerwuj rozmowę'/>
+                    }
+                    <ButtonLink type='button' customClass={`opener-btn ${cartState ? 'open' : ''}`} icon={<Icon.ArrowUp />} onClick={openCardHandler} />
                 </div>
             </div>
             <table>

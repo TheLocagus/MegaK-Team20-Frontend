@@ -1,4 +1,4 @@
-import ButtonLink from '../common/ButtonLink/ButtonLink';
+import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 
 import './LoginForm.scss';
 

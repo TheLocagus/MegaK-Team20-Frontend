@@ -1,27 +1,36 @@
-import Header from '../Header/Header';
-import Navigation from '../Navigation/Navigation';
-import GenericSection from '../common/GenericSection/GenericSection';
-import CandidateCard from '../common/CandidateCard/CandidateCard';
+import { useSearchParams } from 'react-router-dom';
+import Header from 'components/Header/Header';
+import Navigation from 'components/Navigation/Navigation';
+import GenericSection from 'components/common/GenericSection/GenericSection';
+import CandidateCard from 'components/common/CandidateCard/CandidateCard';
+import ButtonLink from 'components/common/ButtonLink/ButtonLink';
+import Icon from 'components/Icon/Icon';
 
 import './CandidatesListPage.scss';
+import { useEffect, useState } from 'react';
 
 //strona z listą kandydatów 
 
-// interface Props {
-//     children: React.ReactNode;
-//     customClass?: string;
-// }
 
 const CandidatesListPage: React.FC = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const candidates = searchParams.get('candidates');
+
+    useEffect(() => {
+        setSearchParams({candidates: 'available'})
+    }, [])
     
-    const content: React.ReactNode = <>
-        lista kandydatów
-    </>
+    // const content: React.ReactNode = <>
+    //     lista kandydatów
+    // </>
 
     const filters: React.ReactNode = <>
         <div className='userlist-header__searchform'>
-            <input placeholder='Szukaj'></input>
-            <button>Filtrowanie</button>
+            <div>
+                <Icon.Search />
+                <input placeholder='Szukaj'></input>
+            </div>
+            <ButtonLink type='button' label='Filtrowanie'/>
         </div>
     </>
 

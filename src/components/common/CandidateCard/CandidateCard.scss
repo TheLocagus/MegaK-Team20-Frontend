@@ -2,11 +2,37 @@
 @import '../../../_mixins.scss';
 
 
-.opener button {
+li {
+    max-height: 70px;
+    transition: max-height .3s ease-out;
+    overflow: hidden;
+    &.open {
+        max-height: 500px;
+        transition: max-height .3s ease-in;
+    }
+    .listElement {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 70px;
+        background-color: $color-dark-grey;
+        border: 1px solid #252627;
+        padding: 0 20px;
+        p {
+            font-size: 1.13rem;
+        }
+        div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }    
+}
+
+.opener {
     background-color: $color-red;
     border: 1px solid #572329;
     color: $color-white;
-    margin: 14px 0;
     padding: .5rem;
 }
 

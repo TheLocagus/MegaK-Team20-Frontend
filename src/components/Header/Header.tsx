@@ -17,7 +17,8 @@ const Header: React.FC<Props> = () => {
                 <a href='index.html'><div className='logo'></div></a>
                 <div className='header-admin__usermenu'>
                     <div className='avatar'></div>
-                    <ButtonLink type='button' label='Mateusz Kowalski' customClass='arrow-btn' icon='▼'/>
+                    <ButtonLink type='button' label='Mateusz Kowalski' customClass='arrow-btn' />
+                    {/* icon='▼' */}
                 </div>
             </nav>
         </header>

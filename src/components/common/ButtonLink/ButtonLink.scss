@@ -17,3 +17,38 @@
         font-size: .6rem;
     }
 }
+
+.searchform-btn {
+    background-color: $color-grey;
+    padding: .5rem;
+    border: none;
+    color: $color-white; 
+}
+
+.opener-btn {
+    background-color: #292a2b;
+    svg {
+        transform: rotate(180deg);
+        transition: .2s ease-in-out;
+    }
+    &.open svg {
+        transform: rotate(0deg);
+    }
+}
+
+.menu-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 200px;
+    height: 100%;
+    font-size: 1.13rem;
+    color: $color-white;
+    background-color: transparent;
+    border-bottom: 2px solid transparent;
+    text-align: center;
+    &.active {
+        border-bottom: 2px solid $color-red;
+        font-weight: bold;
+    } 
+}

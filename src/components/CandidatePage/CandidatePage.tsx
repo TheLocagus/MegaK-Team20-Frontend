@@ -1,7 +1,8 @@
-import GenericSection from '../common/GenericSection/GenericSection';
+import { NavLink, Outlet } from 'react-router-dom';
+import Navigation from 'components/Navigation/Navigation';
+import GenericSection from 'components/common/GenericSection/GenericSection';
 
 import './CandidatePage.scss';
-import {NavLink, Outlet} from "react-router-dom";
 
 //strona profilu kandydata
 
