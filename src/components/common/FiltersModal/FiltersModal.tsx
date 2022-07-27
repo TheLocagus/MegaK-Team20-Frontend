@@ -4,15 +4,19 @@ import './FiltersModal.scss';
 
 
 interface Props {
-
+    onClick: () => void;
 }
 
 
-const FiltersModal: React.FC<Props> = () => {
+const FiltersModal: React.FC<Props> = ({ onClick }) => {
 
 
     return (
-        <div></div>
+        <div className='filters-modal'>
+            <div>
+                <button onClick={onClick}>Anuluj</button>
+            </div>
+        </div>
     )
 }
 

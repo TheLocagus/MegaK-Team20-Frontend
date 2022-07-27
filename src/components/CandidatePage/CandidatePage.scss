@@ -1,10 +1,9 @@
-@import '../../variables.scss';
-@import '../../mixins.scss';
+@import '_variables';
+@import '_mixins.scss';
 
 .candidates {
   max-width: 1430px;
   margin: 0 auto;
-
 
   nav{
     height: 72px;

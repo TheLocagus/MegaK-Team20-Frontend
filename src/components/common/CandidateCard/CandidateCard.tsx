@@ -5,7 +5,6 @@ import Icon from 'components/Icon/Icon';
 
 import './CandidateCard.scss';
 
-
 // element listy kandydatów na liście 'dostępni kursanci' i 'do rozmowy'
 // a także (w zależności od miejsca renderowania) pełna karta kandydata - dla slajdu 6
 
@@ -28,18 +27,18 @@ const CandidateCard: React.FC<Props> = () => {
         <li className={cartState ? 'open' : ''}>
             <div className='listElement'>
                 {candidates === 'meetings' &&
-                    <div>
-                        <span>Rezerwacja do</span>
-                        <span>11.07.2022 r.</span>
+                    <div className='reservation-info'>
+                        <span className='reservation-info__label'>Rezerwacja do</span>
+                        <span className='reservation-info__date'>11.07.2022 r.</span>
                     </div>
                 }
-                    <div>
+                    <div className='candidate-info'>
                     {candidates === 'meetings' &&
-                        <img src='images/avatar.jpg'></img>
+                        <Icon.AvatarDef />
                     }
                         <p>Jan K.</p>
                     </div>
-                <div>
+                <div className='group-btns'>
                     {candidates === 'meetings' ? 
                         <>
                             <ButtonLink customClass='opener' label='Pokaż CV'/>

@@ -1,2 +1,18 @@
-@import '../../variables.scss';
-@import '../../mixins.scss';
+@import '_variables';
+@import '_mixins.scss';
+
+.filters-modal {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: rgba(10, 10, 10, .5);
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50vh;
+    }
+}

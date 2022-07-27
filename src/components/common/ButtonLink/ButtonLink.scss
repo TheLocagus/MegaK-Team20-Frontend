@@ -1,5 +1,5 @@
-@import '../../../_variables.scss';
-@import '../../../_mixins.scss';
+@import '_variables';
+@import '_mixins.scss';
 
 .btn {
     padding: 0.66rem 0.61rem;
@@ -25,6 +25,13 @@
     color: $color-white; 
 }
 
+.opener {
+    background-color: $color-red;
+    border: 1px solid #572329;
+    color: $color-white;
+    padding: .5rem;
+}
+
 .opener-btn {
     background-color: #292a2b;
     svg {
@@ -33,6 +40,14 @@
     }
     &.open svg {
         transform: rotate(0deg);
+    }
+}
+
+.group-btns {
+    margin-right: 0;
+    margin-left: auto;
+    .opener:not(:last-of-type) {
+        margin-right: 28px;
     }
 }
 

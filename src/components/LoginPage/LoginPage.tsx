@@ -13,7 +13,7 @@ const LoginPage: React.FC = () => {
     
     useEffect(() => {
         setTimeout(() => {
-            navigate('/hr-panel', { replace: true })
+            navigate('/recruiter', { replace: true })
         }, 5000)
     },[])
 
