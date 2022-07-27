@@ -1,2 +1,26 @@
-@import '../../variables.scss';
-@import '../../mixins.scss';
+@import '_variables';
+@import '_mixins.scss';
+
+.candidates {
+  max-width: 1430px;
+  margin: 0 auto;
+
+  nav{
+    height: 72px;
+    display: flex;
+
+    a{
+      display: flex;
+      align-items: center;
+      color: $color-grey-text;
+      height: 72px;
+      padding: 0 34px;
+      font: normal normal medium 18px/30px Catamaran;
+    }
+  }
+
+  .active_link{
+    border-bottom: 3px solid $color-red;
+    color: $color-white;
+  }
+}

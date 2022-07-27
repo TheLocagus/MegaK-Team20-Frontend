@@ -1,6 +1,69 @@
-@import '../../../_variables.scss';
-@import '../../../_mixins.scss';
+@import '_variables';
+@import '_mixins.scss';
 
 .btn {
     padding: 0.66rem 0.61rem;
+    border: none;
+}
+
+.arrow-btn {
+    display: inline-flex;
+    align-items: center;
+    min-width: 170px;
+    background-color: transparent;
+    color: $color-white;
+    p {
+        margin-left: 24px;
+        font-size: .6rem;
+    }
+}
+
+.searchform-btn {
+    background-color: $color-grey;
+    padding: .5rem;
+    border: none;
+    color: $color-white; 
+}
+
+.opener {
+    background-color: $color-red;
+    border: 1px solid #572329;
+    color: $color-white;
+    padding: .5rem;
+}
+
+.opener-btn {
+    background-color: #292a2b;
+    svg {
+        transform: rotate(180deg);
+        transition: .2s ease-in-out;
+    }
+    &.open svg {
+        transform: rotate(0deg);
+    }
+}
+
+.group-btns {
+    margin-right: 0;
+    margin-left: auto;
+    .opener:not(:last-of-type) {
+        margin-right: 28px;
+    }
+}
+
+.menu-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 200px;
+    height: 100%;
+    font-size: 1.13rem;
+    color: $color-white;
+    background-color: transparent;
+    border-bottom: 2px solid transparent;
+    text-align: center;
+    &.active {
+        border-bottom: 2px solid $color-red;
+        font-weight: bold;
+    } 
 }

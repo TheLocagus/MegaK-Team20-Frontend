@@ -1,9 +1,9 @@
-@import '../../../variables.scss';
-@import '../../../mixins.scss';
+@import '_variables';
+@import '_mixins.scss';
 
 section {
-    min-height: 100vh;
-    background-color: $color-deep-grey;
+    max-width: 1430px;
+    margin: 0 auto;
     color: $color-white;
     display: flex;
     justify-content: center;

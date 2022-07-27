@@ -1,2 +1,44 @@
-@import '../../variables.scss';
-@import '../../mixins.scss';
+@import '_variables';
+@import '_mixins.scss';
+
+.header-admin {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1e1e1f;
+    min-height: 80px;
+    width: 100%;
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1430px;
+        margin: 0 auto;
+        width: 100%;
+        a {
+            height: 80px;
+            overflow: hidden;  
+        }
+        
+        .logo {
+            min-width: 86px;
+            min-height: 86px;
+            margin-top: 10px;
+            background-image: url('../../images/logo-mk.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    }
+    &__usermenu {
+        display: flex;
+        align-items: center;
+        .avatar {
+            width: 34px;
+            height: 34px;
+            background-image: url('../../../public/images/avatar.jpg');
+            margin-right: 6px;
+        }
+    }
+}

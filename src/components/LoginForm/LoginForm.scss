@@ -1,5 +1,5 @@
-@import '../../variables.scss';
-@import '../../mixins.scss';
+@import '_variables';
+@import '_mixins.scss';
 
 .form-login {
     display:flex;
@@ -23,7 +23,6 @@
         align-items: center;
         justify-content: center;
         background-color: $color-red;
-        border: none;
         color: $color-white;
         margin: 1rem auto;
     }
@@ -37,6 +36,9 @@
     &__forgotten-password {
         display: flex;
         flex-direction: column;
+        a {
+            font-size: .9rem;
+        }
         p {
             text-align: center;
             a {

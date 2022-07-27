@@ -1,4 +1,4 @@
-import ButtonLink from '../common/ButtonLink/ButtonLink';
+import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 
 import './LoginForm.scss';
 
@@ -32,13 +32,11 @@ const LoginForm: React.FC<Props> = () => {
             </label>
             
             <div className='form-login__div'>
-                <div className='form-login__login'>            
-                    <ButtonLink customClass='form-login__button' type='submit' label='Zaloguj się'/> 
+                <div className='form-login__login'>
+                    <ButtonLink customClass='form-login__button' type='submit' label='Zaloguj się'/>
                 </div>
                 <div className='form-login__forgotten-password'>
-                    <p>
-                        <ButtonLink target='#' label='Zapomniałeś hasła?'/>
-                    </p>
+                    <ButtonLink target='#' label='Zapomniałeś hasła?'/>
                 </div>
            </div>
         </form>
