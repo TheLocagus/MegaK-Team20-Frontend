@@ -1,15 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from './components/Header/Header';
 import LoginPage from './components/LoginPage/LoginPage';
+import { Panel } from './pages/Panel/Panel';
 import CandidatesListPage from './components/CandidatesListPage/CandidatesListPage';
 import CandidatePage from './components/CandidatePage/CandidatePage';
-import { Panel } from './pages/Panel/Panel';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import Footer from './components/Footer/Footer';
 
 import './App.scss';
-
-
 
 
 export const App = () => {
