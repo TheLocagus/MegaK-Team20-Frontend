@@ -12,12 +12,16 @@
 }
     </style>
     <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
 </head>
 <body>
-
-    <!-- WARNING strongly unfinished yet -->
-    <div class="container filter">
-    <a href="index.html">index</a>
+   
+    <div class="container">
+        <a href="index.html">index</a>
+        <button id="modal_open">open modal</button>
+    
+    <!-- MODAL HERE -->
+    <div class="filter" id="modal">  
     <header class="filter__header">
         <h2>Filtrowanie</h2>
         <button class="filter__header-button">Wyczyść wszystkie</button>
@@ -76,7 +80,7 @@
 
         <h3>Oczekiwane wynagrodzenie miesięczne netto</h3>
         <div class="filter__main-selector">
-Od <input value="np. 1000 zł"> Do <input value="np. 10000 zł">
+Od <input type="text" value="np. 1000 zł"> Do <input value="np. 10000 zł">
         </div>
 
         <h3>Zgoda na odbycie bezpłatnych praktyk / stażu na początek</h3>
@@ -100,9 +104,11 @@ Od <input value="np. 1000 zł"> Do <input value="np. 10000 zł">
 
         <div class="submit">
 <input class="button-cancel" type="reset" value="Anuluj">
-<input class="button-submit" type="submit" value="Pokaż wyniki">
+<input class="button-submit" type="submit" value="Pokaż wyniki" id="modal_close">
         </div>
     </form>
+    <div class=filter-bar>&#x2758;</div>
+<div class=filter-triangle>&#x25BC;</div>
     </main>
     </div>
 </body>
