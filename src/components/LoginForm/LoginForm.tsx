@@ -1,5 +1,7 @@
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 
+import { labels } from 'utils/labels'
+
 import './LoginForm.scss';
 
 // homepage - okno logowania
@@ -19,7 +21,7 @@ const LoginForm: React.FC<Props> = () => {
                 <input className='form-login__input'
                     type='text'
                     id='email'
-                    placeholder='E-mail'>
+                    placeholder={labels.login.email}>
                 </input>  
             </label>
                           
@@ -27,16 +29,16 @@ const LoginForm: React.FC<Props> = () => {
                 <input className='form-login__input'
                     type='text'
                     id='password'
-                    placeholder='Hasło'>
+                    placeholder={labels.login.password}>
                 </input>
             </label>
             
             <div className='form-login__div'>
                 <div className='form-login__login'>
-                    <ButtonLink customClass='form-login__button' type='submit' label='Zaloguj się'/>
+                    <ButtonLink customClass='form-login__button' type='submit' label={labels.buttons.login}/>
                 </div>
                 <div className='form-login__forgotten-password'>
-                    <ButtonLink target='#' label='Zapomniałeś hasła?'/>
+                    <ButtonLink target='#' label={labels.login.forgottenPassword}/>
                 </div>
            </div>
         </form>

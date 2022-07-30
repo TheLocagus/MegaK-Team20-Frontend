@@ -3,6 +3,8 @@ import { useSearchParams } from 'react-router-dom';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import Icon from 'components/Icon/Icon';
 
+import { labels } from 'utils/labels'
+
 import './CandidateCard.scss';
 
 // element listy kandydatów na liście 'dostępni kursanci' i 'do rozmowy'
@@ -28,7 +30,7 @@ const CandidateCard: React.FC<Props> = () => {
             <div className='listElement'>
                 {candidates === 'meetings' &&
                     <div className='reservation-info'>
-                        <span className='reservation-info__label'>Rezerwacja do</span>
+                        <span className='reservation-info__label'>{labels.recruiter.reservation}</span>
                         <span className='reservation-info__date'>11.07.2022 r.</span>
                     </div>
                 }
@@ -41,9 +43,9 @@ const CandidateCard: React.FC<Props> = () => {
                 <div className='group-btns'>
                     {candidates === 'meetings' ? 
                         <>
-                            <ButtonLink customClass='opener' label='Pokaż CV'/>
-                            <ButtonLink customClass='opener' label='Brak zainteresowania'/>
-                            <ButtonLink customClass='opener' label='Zatrudniony'/>
+                            <ButtonLink customClass='opener' label={labels.buttons.showCV} />
+                            <ButtonLink customClass='opener' label={labels.buttons.notInterested} />
+                            <ButtonLink customClass='opener' label={labels.buttons.hired} />
                         </> 
                         :
                             <ButtonLink customClass='opener' label='Zarezerwuj rozmowę'/>
@@ -54,16 +56,16 @@ const CandidateCard: React.FC<Props> = () => {
             <table>
                 <thead>
                     <tr>
-                        <td>Ocena przejścia kursu</td>
-                        <td>Ocena aktywności i zaangażowania na kursie</td>
-                        <td>Ocena kodu w projekcie własnym</td>
-                        <td>Ocena pracy w zespole w Scrum</td>
-                        <td>Preferowane miejsce pracy</td>
-                        <td>Docelowe miasto, gdzie chce pracować kandydat</td>
-                        <td>Oczekiwany typ kontraktu</td>
-                        <td>Oczekiwane wynagrodzenie netto</td>
-                        <td>Zgoda na odbycie bezpłatnych praktyk/stażu na początek</td>
-                        <td>Komercyjne doświadczenie w programowaniu</td>
+                        <td>{labels.options.courseRate}</td>
+                        <td>{labels.options.activityRate}</td>
+                        <td>{labels.options.codeRate}</td>
+                        <td>{labels.options.teamWorkRate}</td>
+                        <td>{labels.options.workPlace.label}</td>
+                        <td>{labels.options.city}</td>
+                        <td>{labels.options.contractType.label}</td>
+                        <td>{labels.options.salary.label}</td>
+                        <td>{labels.options.internship}</td>
+                        <td>{labels.options.experience}</td>
                     </tr>
                 </thead>
                 <tbody>
