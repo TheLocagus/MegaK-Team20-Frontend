@@ -15,6 +15,8 @@ module.exports = {
             showCV: 'Pokaż CV',
             notInterested: 'Brak zainteresowania',
             hired: 'Zatrudniony',
+            account: 'Konto',
+            logout: 'Wyloguj',
         },
         recruiter: {
             menu: {
