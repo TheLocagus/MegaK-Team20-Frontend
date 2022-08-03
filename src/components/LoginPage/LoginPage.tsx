@@ -20,7 +20,7 @@ const LoginPage: React.FC = () => {
     
     return (
         <main>
-            <GenericSection children={<LoginForm />} />
+            <GenericSection customClass='login-page' children={<LoginForm />} />
         </main>
     )
 }

@@ -2,8 +2,9 @@
 @import '_mixins.scss';
 
 .form-login {
-    display:flex;
+    display: flex;
     flex-direction: column;
+    justify-content: center;
     &__logo {
         margin: 0 auto
     }

@@ -17,7 +17,7 @@
         max-width: 1430px;
         margin: 0 auto;
         width: 100%;
-        a {
+        > a {
             height: 80px;
             overflow: hidden;  
         }
@@ -33,12 +33,55 @@
     }
     &__usermenu {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        .avatar {
-            width: 34px;
-            height: 34px;
-            background-image: url('../../../public/images/avatar.jpg');
-            margin-right: 6px;
+        position: relative;
+        padding: 0 16px;
+        max-height: 40px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: max-height .3s ease-out;
+        &.open {
+            max-height: 100px;
+            overflow: unset;
+        }
+        div {
+            display: flex;
+            align-items: center;
+            .avatar {
+                width: 34px;
+                height: 34px;
+                margin-right: 6px;
+            }
+            span {
+                color: $color-white;
+                margin-left: 12px;
+                margin-right: 24px;
+                font-size: 1.12rem;
+            }
+            .arrow-down {
+                color: $color-light-grey;
+                font-size: .8rem;
+            }
+
+        }
+        &-list {
+            position: absolute;
+            bottom: -96px;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            background-color: #1e1e1f;
+            padding: 16px 16px 0;
+
+            a {
+                display: flex;
+                align-items: center;
+                color: $color-white;
+                width: 100%;
+                min-height: 40px;
+            }
         }
     }
 }

@@ -8,6 +8,8 @@ import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import Icon from 'components/Icon/Icon';
 import FiltersModal from 'components/common/FiltersModal/FiltersModal';
 
+import { labels } from 'utils/labels'
+
 import './CandidatesListPage.scss';
 
 //strona z listą kandydatów 
@@ -34,9 +36,9 @@ const CandidatesListPage: React.FC = () => {
         <div className='userlist-header__searchform'>
             <div>
                 <Icon.Search />
-                <input placeholder='Szukaj'></input>
+                <input placeholder={labels.filters.inputPlaceholder}></input>
             </div>
-            <ButtonLink type='button' label='Filtrowanie' onClick={modalHandler}/>
+            <ButtonLink type='button' label={labels.filters.header} onClick={modalHandler}/>
         </div>
     </>
 
