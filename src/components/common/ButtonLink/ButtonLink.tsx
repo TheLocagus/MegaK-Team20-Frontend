@@ -9,20 +9,29 @@ interface Props {
     type?: string;
     target?: string;
     icon?: React.SVGProps<SVGSVGElement>;
+    img?: string;
+    name?: string;
     onClick?: () => void;
 }
 
 
-const ButtonLink: React.FC<Props> = ({ customClass, label, type, target, icon, onClick }) => {
+const ButtonLink: React.FC<Props> = ({ customClass, label, type, target, icon, img, name, onClick }) => {
 
 
     return (
         type === 'button' || type === 'submit' ? 
-            <button className={`btn ${customClass}`} type={type} onClick={onClick}>
-                <>{label}{icon}</>
+            <button className={`btn ${customClass || ''}`} type={type} name={name} onClick={onClick}>
+                <>
+                    {label}
+                    {icon}
+                    {img && <span>{img}</span>}
+                </>
             </button> : 
-            <NavLink to={target || '/'} className={customClass}>
-                <>{label}{icon}</>
+            <NavLink to={target || '/'} className={customClass || ''}>
+                <>
+                    {label}
+                    {icon}
+                </>
             </NavLink>
     )
 }

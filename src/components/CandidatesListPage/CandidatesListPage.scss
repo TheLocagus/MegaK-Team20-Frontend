@@ -2,6 +2,7 @@
 @import '_mixins.scss';
 
 .userlist {
+    padding-top: 26px;
     .filters, &__list {
         background-color: $color-dark-grey;
         padding: 0 20px 14px;

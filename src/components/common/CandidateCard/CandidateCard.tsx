@@ -64,7 +64,7 @@ const CandidateCard: React.FC<Props> = () => {
                         <td>{labels.options.city}</td>
                         <td>{labels.options.contractType.label}</td>
                         <td>{labels.options.salary.label}</td>
-                        <td>{labels.options.internship}</td>
+                        <td>{labels.options.internship.label}</td>
                         <td>{labels.options.experience}</td>
                     </tr>
                 </thead>

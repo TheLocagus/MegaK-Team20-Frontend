@@ -24,8 +24,9 @@ const Header: React.FC<Props> = () => {
                     onMouseEnter={() => setMenuDropdownState(true)}
                     onMouseLeave={() => setMenuDropdownState(false)}>
                     <div>
-                        <div className='avatar'></div>
+                        <img className='avatar' src={require('../../images/avatar.jpg')} alt='' />
                         <span>Mateusz Kowalski</span>
+                        <div className="arrow-down">▼</div>
                     </div>
                     <div className='header-admin__usermenu-list'>
                         <ButtonLink label={labels.buttons.account} />

@@ -53,7 +53,11 @@ module.exports = {
                 from: 'Od',
                 to: 'Do',
             },
-            internship: 'Zgoda na odbycie bezpłatnych praktyk / stażu na początek',
+            internship: {
+                label: 'Zgoda na odbycie bezpłatnych praktyk / stażu na początek',
+                yes: 'Tak',
+                no: 'Nie'
+            },
             experience: 'Ilość miesięcy doświadczenia komercyjnego kandydata w programowaniu',
         },
     }
