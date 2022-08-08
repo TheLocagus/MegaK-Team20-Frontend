@@ -3,7 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "types": [
-        "../MegaK-Team20-Frontend/types"
+        "../Backend/MegaK-Team20-Backend/src/types"
       ]
     }
   }

@@ -1,0 +1,94 @@
+.student-register-form_error {
+  text-align: center;
+  font-size: 30px;
+  color: red;
+  margin-top: 50px;
+}
+
+.student-register-form{
+  display: flex;
+  flex-direction: column;
+  color: white;
+  margin-top: 30px;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+
+    input {
+      margin-left: 5px;
+      padding: 10px 10px;
+    }
+  }
+}
+
+.passwords {
+  display: flex;
+  justify-content: center;
+}
+
+.student-register-form__personal-fields {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  label {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.student-register-form__githubUsername {
+  display: flex;
+  flex-direction: column;
+}
+
+.student-register-form__urls {
+  display: flex;
+  justify-content: center;
+}
+
+.typeWorkAndContract{
+ display: flex;
+  justify-content: center;
+}
+
+.salaryAndExp {
+  display: flex;
+  justify-content: center;
+}
+
+.educationWorkExperienceCourses {
+  display: flex;
+  justify-content: center;
+}
+
+.student-register-form__canTakeApprenticeship {
+  height: 200px;
+  width: 400px;
+  .student-register-form__canTakeApprenticeship__agree, .student-register-form__canTakeApprenticeship__disagree {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .yes-label-internship, .no-label-internship {
+      flex-direction: row;
+    }
+  }
+}
+
+.internship-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submitStudentRegisterForm {
+  height: 50px;
+  width: 150px;
+  background-color: #aaa;
+  border: none;
+  margin: 20px auto;
+
+}
