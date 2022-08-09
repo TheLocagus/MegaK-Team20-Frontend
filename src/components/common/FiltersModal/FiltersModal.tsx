@@ -16,10 +16,10 @@ interface Props {
 
 const FiltersModal: React.FC<Props> = ({ onClick }) => {
     const [filterData, setFilterData] = useState({
-        courseRate: '',
-        activityRate: '',
-        codeRate: '',
-        teamWorkRate: '',
+        courseRate: [],
+        activityRate: [],
+        codeRate: [],
+        teamWorkRate: [],
         workPlace: '',
         contractType: '',
         salary: '',
@@ -29,10 +29,10 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
 
     const resetFilterDataHandler = () => {
         setFilterData({
-            courseRate: '',
-            activityRate: '',
-            codeRate: '',
-            teamWorkRate: '',
+            courseRate: [],
+            activityRate: [],
+            codeRate: [],
+            teamWorkRate: [],
             workPlace: '',
             contractType: '',
             salary: '',
@@ -41,12 +41,16 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
         })
     }
 
-    const dataFilterHandler = (e: React.MouseEvent<HTMLInputElement>) =>
+    const dataFilterHandler = (key: string, value: any) => {
+        const keyP = key as string;
+        const keyState = filterData[keyP as keyof typeof filterData]
+        console.log(keyState)
         setFilterData(dataItem => ({
             ...dataItem,
-            [e.currentTarget.name]: e.currentTarget.value
+            // [key]: [...keyState, value]
+            [key]: value
         })
-    );
+    )};
 
     const timeSelectHandler = (e: React.ChangeEvent<HTMLSelectElement>) => 
         setFilterData(dataItem => ({
@@ -69,7 +73,7 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
         onClick()
     };
 
-    console.log(filterData)
+    // console.log(filterData)
 
 
     return (
@@ -87,32 +91,39 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
                     <legend>{labels.options.courseRate}</legend>
                     <Rating
                         customClass='filter__main-selector buttons'
-                        setFilterData={setFilterData}
-                        name='courseRate' />
+                        onClick={dataFilterHandler}
+                        name='courseRate'
+                        filterData={filterData} />
                 </fieldset>
 
                 <fieldset>
                     <legend>{labels.options.activityRate}</legend>
                     <Rating
                         customClass='filter__main-selector buttons'
-                        setFilterData={setFilterData}
-                        name='activityRate' />
+                        onClick={dataFilterHandler}
+                        name='activityRate'
+                        filterData={filterData} 
+                        />
                 </fieldset>
 
                 <fieldset>
                     <legend>{labels.options.codeRate}</legend>
                     <Rating
                         customClass='filter__main-selector buttons'
-                        setFilterData={setFilterData}
-                        name='codeRate' />
+                        onClick={dataFilterHandler}
+                        name='codeRate'
+                        filterData={filterData} 
+                        />
                 </fieldset>
 
                 <fieldset>
                     <legend>{labels.options.teamWorkRate}</legend>
                     <Rating
                         customClass='filter__main-selector buttons'
-                        setFilterData={setFilterData}
-                        name='teamWorkRate'/>
+                        onClick={dataFilterHandler}
+                        name='teamWorkRate'
+                        filterData={filterData} 
+                        />
                 </fieldset>
 
                 <fieldset>
@@ -123,13 +134,13 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
                             className='filters-btn'
                             name='workPlace'
                             value={labels.options.workPlace.remote}
-                            onClick={dataFilterHandler} />
+                            onClick={e => dataFilterHandler(e.currentTarget.name, e.currentTarget.value)} />
                         <input
                             type='button'
                             className='filters-btn'
                             name='workPlace'
                             value={labels.options.workPlace.office}
-                            onClick={dataFilterHandler} />
+                            onClick={e => dataFilterHandler(e.currentTarget.name, e.currentTarget.value)} />
                     </div>
                 </fieldset>
 
@@ -141,25 +152,25 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
                             className='filters-btn'
                             name='contractType'
                             value={labels.options.contractType.permContract}
-                            onClick={dataFilterHandler} />
+                            onClick={e => dataFilterHandler(e.currentTarget.name, e.currentTarget.value)} />
                         <input
                             type='button'
                             className='filters-btn'
                             name='contractType'
                             value={labels.options.contractType.b2b}
-                            onClick={dataFilterHandler} />
+                            onClick={e => dataFilterHandler(e.currentTarget.name, e.currentTarget.value)} />
                         <input
                             type='button'
                             className='filters-btn'
                             name='contractType'
                             value={labels.options.contractType.tempContract}
-                            onClick={dataFilterHandler} />
+                            onClick={e => dataFilterHandler(e.currentTarget.name, e.currentTarget.value)} />
                         <input
                             type='button'
                             className='filters-btn'
                             name='contractType'
                             value={labels.options.contractType.projectContract}
-                            onClick={dataFilterHandler} />
+                            onClick={e => dataFilterHandler(e.currentTarget.name, e.currentTarget.value)} />
                     </div>
                 </fieldset>
                 
