@@ -2,6 +2,7 @@ import React, {SyntheticEvent, useState} from 'react';
 import {labels} from "../../utils/labels";
 
 import './StudentRegisterForm.scss';
+import {useParams} from "react-router-dom";
 
 enum TypeWork {
     stationary = 'stationary',
@@ -40,7 +41,7 @@ interface CreateStudentResponse {
 }
 
 export const StudentRegisterForm = () => {
-
+    const {id} = useParams();
     const [userData, setUserData] = useState<CreateStudentResponse>(
         {
             pwdHash: '',
@@ -87,27 +88,24 @@ export const StudentRegisterForm = () => {
             throw new Error('No required fields')
         }
 
-        const res = await fetch('http:localhost:3001/student/register/:id/:token', {
+        console.log(JSON.stringify(["siemanko123"]))
+
+        const res = await fetch(`http://localhost:3001/student/register/${id}`, {
             method: 'POST',
-            body: JSON.stringify({
-                userData
-            }),
+            body: JSON.stringify(userData),
             headers: {
                 'Content-Type': 'application/json'
             }
         })
 
         const data = await res.json()
-
-        if (data.success){
-            window.location.href = 'http://localhost:3000/student';
+        console.log(data)
+        if (data.isOk){
+            window.location.href = `http://localhost:3000/${id}`;
         } else {
             throw new Error('Something went wrong. Try again later.')
         }
-
-        console.log(userData)
     }
-
 
     const handleChange = (key: string, value: any) => {
         setUserData(dataItem => ({
