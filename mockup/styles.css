@@ -1,5 +1,5 @@
 body {margin:0; padding:0; font-family: Catamaran; }
-div.container {min-height:100vh; background-color: #222224; color:#f7f7f7; }
+div.container {min-height:100vh; background-color: #222224; color:#f7f7f7}
 a {color:#f7f7f7;}
 p {margin: 0;}
 button:hover {cursor: pointer;}

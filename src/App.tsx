@@ -22,9 +22,10 @@ export const App = () => {
                 <Route path='/student/register/:id/:token/form' element={<StudentRegisterForm/>}/>
                 <Route path='/' element={<LoginPage/>}/>
                 <Route path='recruiter' element={<CandidatesListPage/>}>
-                    <Route path={':userId'} element={<CandidatePage/>}/>
+                    <Route path={'cv'} element={<CandidatePage/>}/>
                     {/* <Route path={'profile'} element={<Profile/>}/> */}
                 </Route>
+                <Route path={'cv'} element={<CandidatePage/>}/>
                 <Route path='*' element={<ErrorPage/>}/>
             </Routes>
             <Footer/>
