@@ -49,6 +49,7 @@ export interface ForInterviewStudentToListResponseInterface {
   teamProjectDegree: number;
   githubUsername: string;
   endOfReservation: Date;
+  avatarUrl: string;
 }
 
 export enum RecruiterActionsOfStatusEnum {
@@ -113,13 +114,13 @@ const CandidatesListPage: React.FC = () => {
         }
         {
           candidates === 'meetings'
-          ? forInterviewStudentsList.map(student => <GenericSection key={student.id}
-                                                                  children={<ForInterviewCard
-                                                                    student={student}
-                                                                    setActiveStudentsList={setActiveStudentsList}
-                                                                    setForInterviewStudentsList={setForInterviewStudentsList}
-                                                                  />}
-                                                                  customClass='userList__list'/>)
+            ? forInterviewStudentsList.map(student => <GenericSection key={student.id}
+                                                                      children={<ForInterviewCard
+                                                                        student={student}
+                                                                        setActiveStudentsList={setActiveStudentsList}
+                                                                        setForInterviewStudentsList={setForInterviewStudentsList}
+                                                                      />}
+                                                                      customClass='userList__list'/>)
             : null
         }
       </main>

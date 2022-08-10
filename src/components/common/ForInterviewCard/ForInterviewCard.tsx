@@ -10,9 +10,9 @@ import {
   RecruiterActionsOfStatusEnum
 } from "../../CandidatesListPage/CandidatesListPage";
 import {showExpectedContractType, showExpectedTypeWork} from "../../../utils/displayCorrectPlainInStudentsLists";
-import {updateStudentsLists} from "../../../utils/updateStudentsLists";
 import {studentsStatusHandler} from "../../../utils/studentsStatusHandler";
 import {handleEndReservation} from "../../../utils/handleEndReservation";
+import './ForInterviewCard.scss';
 
 interface Props {
   student: ForInterviewStudentToListResponseInterface;
@@ -21,18 +21,19 @@ interface Props {
 }
 
 
-export const ForInterviewCard: React.FC<Props> = ({student, setActiveStudentsList, setForInterviewStudentsList}: Props) => {
+export const ForInterviewCard: React.FC<Props> = ({
+                                                    student,
+                                                    setActiveStudentsList,
+                                                    setForInterviewStudentsList
+                                                  }: Props) => {
 
   const [cartState, setCartState] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const candidates = searchParams.get('candidates');
 
-
-
   useEffect(() => {
     setSearchParams({candidates: 'meetings'})
   }, [])
-
 
   const {
     id,
@@ -48,9 +49,10 @@ export const ForInterviewCard: React.FC<Props> = ({student, setActiveStudentsLis
     teamProjectDegree,
     targetWorkCity,
     lastName,
-    githubUsername,
-    firstName
+    firstName,
+    avatarUrl,
   } = student
+
 
   const openCardHandler = () => {
     setCartState(!cartState);
@@ -78,21 +80,21 @@ export const ForInterviewCard: React.FC<Props> = ({student, setActiveStudentsLis
             </div>
         }
         <div className='candidate-info'>
-          {candidates === 'meetings' &&
-              <Icon.AvatarDef/>
+          {
+            avatarUrl ? <img className='gh-avatar' src={avatarUrl} alt=""/> : <Icon.AvatarDef/>
+
           }
+
           <p>{firstName} {lastName}</p>
         </div>
         <div className='group-btns'>
-          {candidates === 'meetings' ?
-            <>
-              <ButtonLink type='button' customClass='opener' label={labels.buttons.showCV} onClick={showCv}/>
-              <ButtonLink type='button' customClass='opener' label={labels.buttons.notInterested} onClick={handleNoInterested}/>
-              <ButtonLink type='button' customClass='opener' label={labels.buttons.hired} onClick={handleEmployed}/>
-            </>
-            :
-            <ButtonLink customClass='opener' label='Zarezerwuj rozmowę'/>
-          }
+          <>
+            <ButtonLink type='button' customClass='opener' label={labels.buttons.showCV} onClick={showCv}/>
+            <ButtonLink type='button' customClass='opener' label={labels.buttons.notInterested}
+                        onClick={handleNoInterested}/>
+            <ButtonLink type='button' customClass='opener' label={labels.buttons.hired} onClick={handleEmployed}/>
+          </>
+
           <ButtonLink type='button' customClass={`opener-btn ${cartState ? 'open' : ''}`} icon={<Icon.ArrowUp/>}
                       onClick={openCardHandler}/>
         </div>
