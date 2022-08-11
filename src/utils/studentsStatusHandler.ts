@@ -1,15 +1,14 @@
 import {
-  AvailableStudentToListResponseInterface, ForInterviewStudentToListResponseInterface,
   RecruiterActionsOfStatusEnum
 } from "../components/CandidatesListPage/CandidatesListPage";
 import {updateStudentsLists} from "./updateStudentsLists";
-import React from "react";
+import React, { Dispatch } from "react";
+import { AnyAction } from "redux";
 
 export const studentsStatusHandler = async (
   action: RecruiterActionsOfStatusEnum,
   id: string,
-  setActiveStudentsList: React.Dispatch<React.SetStateAction<AvailableStudentToListResponseInterface[]>>,
-  setForInterviewStudentsList: React.Dispatch<React.SetStateAction<ForInterviewStudentToListResponseInterface[]>>,
+  dispatch:  Dispatch<AnyAction>
 ) => {
 
   switch(action){
@@ -24,7 +23,7 @@ export const studentsStatusHandler = async (
         }
       })
 
-      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList);
+      await updateStudentsLists(dispatch);
       //@TODO dodano pomyślnie
       break;
     case `no-interested`:
@@ -38,7 +37,7 @@ export const studentsStatusHandler = async (
         }
       })
 
-      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList);
+      await updateStudentsLists(dispatch);
       //@TODO dodano pomyślnie
       break;
 
@@ -53,7 +52,7 @@ export const studentsStatusHandler = async (
         }
       })
 
-      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList);
+      await updateStudentsLists(dispatch);
       //@TODO dodano pomyślnie
       break;
   }

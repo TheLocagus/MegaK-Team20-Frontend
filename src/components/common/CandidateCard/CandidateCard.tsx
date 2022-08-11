@@ -13,21 +13,22 @@ import {
 import './CandidateCard.scss';
 import {updateStudentsLists} from "../../../utils/updateStudentsLists";
 import {studentsStatusHandler} from "../../../utils/studentsStatusHandler";
+import { useDispatch } from 'react-redux';
 
 // element listy kandydatów na liście 'dostępni kursanci' i 'do rozmowy'
 // a także (w zależności od miejsca renderowania) pełna karta kandydata - dla slajdu 6
 
 interface Props {
   student: AvailableStudentToListResponseInterface;
-  setActiveStudentsList: React.Dispatch<React.SetStateAction<AvailableStudentToListResponseInterface[]>>;
-  setForInterviewStudentsList: React.Dispatch<React.SetStateAction<ForInterviewStudentToListResponseInterface[]>>;
 }
 
-const CandidateCard: React.FC<Props> = ({student, setActiveStudentsList, setForInterviewStudentsList}: Props) => {
+const CandidateCard: React.FC<Props> = ({student}: Props) => {
   const [cartState, setCartState] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const candidates = searchParams.get('candidates');
 
+  const dispatch = useDispatch();
+  
   const {
     id,
     firstName,
@@ -50,7 +51,7 @@ const CandidateCard: React.FC<Props> = ({student, setActiveStudentsList, setForI
   }
 
   const handleReservation = async () => {
-    await studentsStatusHandler(RecruiterActionsOfStatusEnum.forInterview, id, setActiveStudentsList, setForInterviewStudentsList);
+    await studentsStatusHandler(RecruiterActionsOfStatusEnum.forInterview, id, dispatch);
   }
 
   return (
