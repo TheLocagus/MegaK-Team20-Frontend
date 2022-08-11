@@ -7,32 +7,27 @@ import CandidatesListPage from './components/CandidatesListPage/CandidatesListPa
 import CandidatePage from './components/CandidatePage/CandidatePage';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import Footer from './components/Footer/Footer';
-
-import './App.scss';
 import {StudentRegisterForm} from "./components/StudentRegisterForm/StudentRegisterForm";
-import {CheckingBeforeStudentRegistryForm} from "./components/CheckingBeforeStudentRegistryForm/CheckingBeforeStudentRegistryForm";
+import {
+  CheckingBeforeStudentRegistryForm
+} from "./components/CheckingBeforeStudentRegistryForm/CheckingBeforeStudentRegistryForm";
 import {CV} from "./tymczasowy/CV";
-
+import './App.scss';
 
 export const App = () => {
 
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path='student/:id' element={<CV />}/>
-                {/*  ^ Chwilowe ^  */}
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path='/student/register/:id/:token/' element={<CheckingBeforeStudentRegistryForm/>}/>
+        <Route path='/student/register/:id/:token/form' element={<StudentRegisterForm/>}/>
+        <Route path='/' element={<LoginPage/>}/>
+        <Route path='/recruiter' element={<CandidatesListPage/>}/>
+        <Route path={'/recruiter/cv/:id'} element={<CandidatePage/>}/>
 
-                <Route path='/student/register/:id/:token/' element={<CheckingBeforeStudentRegistryForm/>}/>
-                <Route path='/student/register/:id/:token/form' element={<StudentRegisterForm/>}/>
-                <Route path='/' element={<LoginPage/>}/>
-                <Route path='recruiter' element={<CandidatesListPage/>}>
-                    <Route path={'cv'} element={<CandidatePage/>}/>
-                    {/* <Route path={'profile'} element={<Profile/>}/> */}
-                </Route>
-                <Route path={'cv'} element={<CandidatePage/>}/>
-                <Route path='*' element={<ErrorPage/>}/>
-            </Routes>
-            <Footer/>
-        </BrowserRouter>
-    );
+        <Route path='*' element={<ErrorPage/>}/>
+      </Routes>
+      <Footer/>
+    </BrowserRouter>
+  );
 }
