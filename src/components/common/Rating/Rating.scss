@@ -1,9 +1,2 @@
 @import '_variables';
 @import '_mixins.scss';
-
-.buttons .active {
-    background-color: $color-red !important;
-    span {
-        color: $color-white !important;
-    }
-}
