@@ -1,40 +1,46 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useSearchParams} from 'react-router-dom';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import Icon from 'components/Icon/Icon';
+
 import {labels} from 'utils/labels'
 import {
-  AvailableStudentToListResponseInterface, ForInterviewStudentToListResponseInterface,
+  AvailableStudentToListResponseInterface,
+  ForInterviewStudentToListResponseInterface,
   RecruiterActionsOfStatusEnum
 } from "../../CandidatesListPage/CandidatesListPage";
-import {
-  showExpectedContractType, showExpectedTypeWork
-} from "../../../utils/displayCorrectPlainInStudentsLists";
-import './CandidateCard.scss';
-import {updateStudentsLists} from "../../../utils/updateStudentsLists";
+import {showExpectedContractType, showExpectedTypeWork} from "../../../utils/displayCorrectPlainInStudentsLists";
 import {studentsStatusHandler} from "../../../utils/studentsStatusHandler";
-
-// element listy kandydatów na liście 'dostępni kursanci' i 'do rozmowy'
-// a także (w zależności od miejsca renderowania) pełna karta kandydata - dla slajdu 6
+import {handleEndReservation} from "../../../utils/handleEndReservation";
+import './ForInterviewCard.scss';
 
 interface Props {
-  student: AvailableStudentToListResponseInterface;
+  student: ForInterviewStudentToListResponseInterface;
   setActiveStudentsList: React.Dispatch<React.SetStateAction<AvailableStudentToListResponseInterface[]>>;
   setForInterviewStudentsList: React.Dispatch<React.SetStateAction<ForInterviewStudentToListResponseInterface[]>>;
 }
 
-const CandidateCard: React.FC<Props> = ({student, setActiveStudentsList, setForInterviewStudentsList}: Props) => {
+
+export const ForInterviewCard: React.FC<Props> = ({
+                                                    student,
+                                                    setActiveStudentsList,
+                                                    setForInterviewStudentsList
+                                                  }: Props) => {
+
   const [cartState, setCartState] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const candidates = searchParams.get('candidates');
 
+  useEffect(() => {
+    setSearchParams({candidates: 'meetings'})
+  }, [])
+
   const {
     id,
-    firstName,
-    lastName,
     canTakeApprenticeship,
     courseCompletion,
     courseEngagement,
+    endOfReservation,
     expectedContractType,
     expectedTypeWork,
     expectedSalary,
@@ -42,25 +48,53 @@ const CandidateCard: React.FC<Props> = ({student, setActiveStudentsList, setForI
     projectDegree,
     teamProjectDegree,
     targetWorkCity,
-    status
+    lastName,
+    firstName,
+    avatarUrl,
   } = student
 
+
   const openCardHandler = () => {
-    setCartState(!cartState)
+    setCartState(!cartState);
   }
 
-  const handleReservation = async () => {
-    await studentsStatusHandler(RecruiterActionsOfStatusEnum.forInterview, id, setActiveStudentsList, setForInterviewStudentsList);
+  const handleNoInterested = async () => {
+    await studentsStatusHandler(RecruiterActionsOfStatusEnum.noInterested, id, setActiveStudentsList, setForInterviewStudentsList);
+  }
+
+  const handleEmployed = async () => {
+    await studentsStatusHandler(RecruiterActionsOfStatusEnum.employed, id, setActiveStudentsList, setForInterviewStudentsList);
+  }
+
+  const showCv = async () => {
+    window.location.href = `http://localhost:3000/student/${id}`
   }
 
   return (
     <li className={cartState ? 'open' : ''}>
       <div className='listElement'>
+        {candidates === 'meetings' &&
+            <div className='reservation-info'>
+                <span className='reservation-info__label'>{labels.recruiter.reservation}</span>
+                <span className='reservation-info__date'>{handleEndReservation(endOfReservation)} r.</span>
+            </div>
+        }
         <div className='candidate-info'>
+          {
+            avatarUrl ? <img className='gh-avatar' src={avatarUrl} alt=""/> : <Icon.AvatarDef/>
+
+          }
+
           <p>{firstName} {lastName}</p>
         </div>
         <div className='group-btns'>
-          <ButtonLink type='button' customClass='opener' label='Zarezerwuj rozmowę' onClick={handleReservation}/>
+          <>
+            <ButtonLink type='button' customClass='opener' label={labels.buttons.showCV} onClick={showCv}/>
+            <ButtonLink type='button' customClass='opener' label={labels.buttons.notInterested}
+                        onClick={handleNoInterested}/>
+            <ButtonLink type='button' customClass='opener' label={labels.buttons.hired} onClick={handleEmployed}/>
+          </>
+
           <ButtonLink type='button' customClass={`opener-btn ${cartState ? 'open' : ''}`} icon={<Icon.ArrowUp/>}
                       onClick={openCardHandler}/>
         </div>
@@ -89,7 +123,7 @@ const CandidateCard: React.FC<Props> = ({student, setActiveStudentsList, setForI
           <td>{showExpectedTypeWork(expectedTypeWork)}</td>
           <td>{targetWorkCity}</td>
           <td>{showExpectedContractType(expectedContractType)}</td>
-          <td>{expectedSalary !== 0 ? `${expectedSalary} zł` : "Nie podano"}</td>
+          <td>{expectedSalary}</td>
           <td>{canTakeApprenticeship ? "Tak" : "Nie"}</td>
           <td>{monthsOfCommercialExp}</td>
         </tr>
@@ -97,6 +131,5 @@ const CandidateCard: React.FC<Props> = ({student, setActiveStudentsList, setForI
       </table>
     </li>
   )
-}
 
-export default CandidateCard;
+}

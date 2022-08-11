@@ -11,6 +11,7 @@ import Footer from './components/Footer/Footer';
 import './App.scss';
 import {StudentRegisterForm} from "./components/StudentRegisterForm/StudentRegisterForm";
 import {CheckingBeforeStudentRegistryForm} from "./components/CheckingBeforeStudentRegistryForm/CheckingBeforeStudentRegistryForm";
+import {CV} from "./tymczasowy/CV";
 
 
 export const App = () => {
@@ -18,6 +19,9 @@ export const App = () => {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path='student/:id' element={<CV />}/>
+                {/*  ^ Chwilowe ^  */}
+
                 <Route path='/student/register/:id/:token/' element={<CheckingBeforeStudentRegistryForm/>}/>
                 <Route path='/student/register/:id/:token/form' element={<StudentRegisterForm/>}/>
                 <Route path='/' element={<LoginPage/>}/>

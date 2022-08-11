@@ -36,7 +36,7 @@ module.exports = {
             codeRate: 'Ocena kodu w projekcie własnym',
             teamWorkRate: 'Ocena pracy w zespole w Scrum',
             workPlace: {
-                label: 'Preferowane miejsce pracy',
+                label: 'Preferowany typ pracy',
                 remote: 'Praca zdalna',
                 office: 'Praca w biurze',
             },
