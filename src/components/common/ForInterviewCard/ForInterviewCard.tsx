@@ -13,23 +13,22 @@ import {showExpectedContractType, showExpectedTypeWork} from "../../../utils/dis
 import {studentsStatusHandler} from "../../../utils/studentsStatusHandler";
 import {handleEndReservation} from "../../../utils/handleEndReservation";
 import './ForInterviewCard.scss';
+import { useDispatch } from 'react-redux';
 
 interface Props {
   student: ForInterviewStudentToListResponseInterface;
-  setActiveStudentsList: React.Dispatch<React.SetStateAction<AvailableStudentToListResponseInterface[]>>;
-  setForInterviewStudentsList: React.Dispatch<React.SetStateAction<ForInterviewStudentToListResponseInterface[]>>;
 }
 
 
 export const ForInterviewCard: React.FC<Props> = ({
-                                                    student,
-                                                    setActiveStudentsList,
-                                                    setForInterviewStudentsList
+                                                    student
                                                   }: Props) => {
 
   const [cartState, setCartState] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const candidates = searchParams.get('candidates');
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setSearchParams({candidates: 'meetings'})
@@ -50,7 +49,7 @@ export const ForInterviewCard: React.FC<Props> = ({
     targetWorkCity,
     lastName,
     firstName,
-    avatarUrl,
+    githubUsername,
   } = student
 
 
@@ -59,11 +58,11 @@ export const ForInterviewCard: React.FC<Props> = ({
   }
 
   const handleNoInterested = async () => {
-    await studentsStatusHandler(RecruiterActionsOfStatusEnum.noInterested, id, setActiveStudentsList, setForInterviewStudentsList);
+    await studentsStatusHandler(RecruiterActionsOfStatusEnum.noInterested, id, dispatch);
   }
 
   const handleEmployed = async () => {
-    await studentsStatusHandler(RecruiterActionsOfStatusEnum.employed, id, setActiveStudentsList, setForInterviewStudentsList);
+    await studentsStatusHandler(RecruiterActionsOfStatusEnum.employed, id, dispatch);
   }
 
   const showCv = async () => {
@@ -81,8 +80,8 @@ export const ForInterviewCard: React.FC<Props> = ({
         }
         <div className='candidate-info'>
           {
-            avatarUrl ? <img className='gh-avatar' src={avatarUrl} alt=""/> : <Icon.AvatarDef/>
-
+            githubUsername.length !== 0 || githubUsername ? <img className='gh-avatar' src={`https://www.github.com/${githubUsername}.png`} alt=""/> : <Icon.AvatarDef/>
+          //  póki co będzie wywalać błąd 404 w consoli jeśli githubUsername nie jest prawdziwy
           }
 
           <p>{firstName} {lastName}</p>

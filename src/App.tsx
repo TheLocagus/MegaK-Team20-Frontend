@@ -11,7 +11,7 @@ import {StudentRegisterForm} from "./components/StudentRegisterForm/StudentRegis
 import {
   CheckingBeforeStudentRegistryForm
 } from "./components/CheckingBeforeStudentRegistryForm/CheckingBeforeStudentRegistryForm";
-import {CV} from "./tymczasowy/CV";
+
 import './App.scss';
 
 export const App = () => {

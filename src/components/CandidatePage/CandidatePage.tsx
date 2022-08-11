@@ -8,6 +8,8 @@ import { RecruiterActionsOfStatusEnum } from 'components/CandidatesListPage/Cand
 import {
     showExpectedContractType, showExpectedTypeWork
 } from "../../utils/displayCorrectPlainInStudentsLists";
+import { useDispatch } from 'react-redux';
+import {Generating} from '../Generating/Generating'
 
 //strona profilu kandydata
 
@@ -38,7 +40,7 @@ export interface StudentCvInterface {
 }
 
 const CandidatePage: React.FC = () => {
-
+    const [isGenerated, setIsGenerated] = useState<boolean>(false)
     const [student, setStudent] = useState<StudentCvInterface>({
         bio: '',
         firstName: '',
@@ -65,19 +67,45 @@ const CandidatePage: React.FC = () => {
         avatarUrl: ''
     })
 
+    const dispatch = useDispatch();
+
     const {id} = useParams()
    useEffect(()=>{
        (async () => {
            try {
                const res = await fetch(`http://localhost:3001/recruiter/cv/${id}`)
                const data = await res.json()
-               console.log(data)
+
                setStudent(data)
+               setIsGenerated(true)
            } catch (e){
                throw new Error('Something went wrong')
            }
        })()
    }, [])
+
+    const generateStars = (value: number, type: string) => {
+        switch(type){
+            case 'red':{
+                let redStars = '';
+                for (let i = 0; i < value; i++) {
+                    redStars += '★'
+                }
+                return redStars;
+            }
+            case 'gray': {
+                let grayStars = '';
+                for (let i = 0; i < (5 - value); i++) {
+                    grayStars += '★'
+                }
+                return grayStars;
+            }
+            default: {
+                throw new Error('Something went wrong.')
+            }
+        }
+
+    }
 
     const handleNoInterested = async () => {
         const res = await fetch(`http://localhost:3001/recruiter/${id}`, {
@@ -90,12 +118,10 @@ const CandidatePage: React.FC = () => {
             }
         })
 
-        console.log(await res.json())
         window.location.href = 'http://localhost:3000/recruiter'
     }
 
     const handleEmployed = async () => {
-        console.log('siema')
         await fetch(`http://localhost:3001/recruiter/${id}`, {
             method: 'PATCH',
             body: JSON.stringify({
@@ -107,13 +133,17 @@ const CandidatePage: React.FC = () => {
         })
     }
 
+    if (!isGenerated) {
+        return <Generating/>
+    }
+
     return (
         <div className="container">
 
             <header className="header-admin">
 
                 <nav className="header-admin__nav">
-                    <a href="index.html">
+                    <a href="/">
                         <div className="logo"></div>
                     </a>
                     <div className="header-admin__usermenu">
@@ -126,11 +156,12 @@ const CandidatePage: React.FC = () => {
 
             <main className="main__cv">
                 <div className="main__back">
-                    <span> ‹ </span><p> Wróć</p>
+
+                    <a href="/recruiter"><span> ‹ </span><p>Wróć</p></a>
                 </div>
                 <div className="main__personalcard">
                     <div className="personalcard__avatar">
-                        <img className="personalcard__avatar-center" src={student.avatarUrl.length !== 0 ? student.avatarUrl : "/images/avatar_big.png"} alt=""/>
+                        <img className="personalcard__avatar-center" src={student.githubUsername.length !== 0 ? `https://www.github.com/${student.githubUsername}.png` : "/images/avatar_big.png"} alt=""/>
                             <p className="personalcard__avatar-center">{student.firstName} {student.lastName}</p>
                             <p className="personalcard__avatar-center"><a href=""><i
                                 className="bi bi-github"></i>{student.githubUsername}</a></p>
@@ -161,10 +192,10 @@ const CandidatePage: React.FC = () => {
                         </thead>
                         <tbody>
                         <tr>
-                            <td><span className="scale">{student.courseCompletion}</span>/ 5 <span className="star"><span>★★★★★</span></span></td>
-                            <td><span className="scale">{student.courseEngagement}</span>/ 5 <span className="star"><span>★★★</span>★★</span></td>
-                            <td><span className="scale">{student.projectDegree}</span>/ 5 <span className="star"><span>★★★★</span>★</span></td>
-                            <td><span className="scale">{student.teamProjectDegree}</span>/ 5 <span className="star"><span>★★★★★</span></span></td>
+                            <td><span className="scale">{student.courseCompletion}</span>/ 5 <span className="star"><span>{generateStars(student.courseCompletion, 'red')}</span>{generateStars(student.courseCompletion, 'gray')}</span></td>
+                            <td><span className="scale">{student.courseEngagement}</span>/ 5 <span className="star"><span>{generateStars(student.courseEngagement, 'red')}</span>{generateStars(student.courseEngagement, 'gray')}</span></td>
+                            <td><span className="scale">{student.projectDegree}</span>/ 5 <span className="star"><span>{generateStars(student.projectDegree, 'red')}</span>{generateStars(student.projectDegree, 'gray')}</span></td>
+                            <td><span className="scale">{student.teamProjectDegree}</span>/ 5 <span className="star"><span>{generateStars(student.teamProjectDegree, 'red')}</span>{generateStars(student.teamProjectDegree, 'gray')}</span></td>
                         </tr>
                         </tbody>
                     </table>
@@ -184,9 +215,9 @@ const CandidatePage: React.FC = () => {
                         </thead>
                         <tbody>
                         <tr>
-                            <td>{student.expectedTypeWork}</td>
+                            <td>{showExpectedTypeWork(student.expectedTypeWork)}</td>
                             <td>{student.targetWorkCity}</td>
-                            <td>{student.expectedContractType}</td>
+                            <td>{showExpectedContractType(student.expectedContractType)}</td>
                             <td>{student.expectedSalary} zł</td>
                             <td>{student.canTakeApprenticeship ? "Tak" : "Nie"}</td>
                             <td>{student.monthsOfCommercialExp} miesięcy</td>
@@ -209,7 +240,7 @@ const CandidatePage: React.FC = () => {
 
                     {
                         student.portfolioUrls ?
-                        student.portfolioUrls.map(url => <p key={url}><img src="paperclip.svg"/><a href={url}>{url}</a></p>) :
+                        student.portfolioUrls.map(url => <p key={url}><img src="../../icons/clip.png"/><a href={url}>{url}</a></p>) :
                           ''
                     }
 
@@ -217,7 +248,7 @@ const CandidatePage: React.FC = () => {
 
                     {
                         student.bonusProjectUrls ?
-                          student.bonusProjectUrls.map(url => <p key={url}><img src="paperclip.svg"/><a
+                          student.bonusProjectUrls.map(url => <p key={url}><img src="../../icons/clip.png"/><a
                             href={url}>{url}</a></p>)
                           : ''
                     }

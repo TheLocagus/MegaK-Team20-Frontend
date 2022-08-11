@@ -17,9 +17,10 @@ button:hover {cursor: pointer;}
 }
 
 .main{
-  &__back {
+  &__back a {
     display:flex;
     align-items: center;
+
 
     span{
       display:inline-block;
@@ -30,6 +31,7 @@ button:hover {cursor: pointer;}
       height:30px;
       padding:0;
       text-align: center;
+      color: white;
     }
 
     p {
@@ -37,6 +39,7 @@ button:hover {cursor: pointer;}
       height:27px;
       line-height:1.6rem;
       vertical-align: top;
+      color: white;
     }
   }
 
