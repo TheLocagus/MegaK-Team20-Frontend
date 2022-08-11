@@ -1,16 +1,111 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useParams } from 'react-router-dom';
 import Navigation from 'components/Navigation/Navigation';
 import GenericSection from 'components/common/GenericSection/GenericSection';
 
+import { useEffect, useState } from 'react';
 import './CandidatePage.scss';
+import { RecruiterActionsOfStatusEnum } from 'components/CandidatesListPage/CandidatesListPage';
+import {
+    showExpectedContractType, showExpectedTypeWork
+} from "../../utils/displayCorrectPlainInStudentsLists";
 
 //strona profilu kandydata
 
-
+export interface StudentCvInterface {
+    firstName: string;
+    lastName: string;
+    bio: string;
+    githubUsername: string;
+    courseCompletion: number;
+    courseEngagement: number;
+    projectDegree: number;
+    teamProjectDegree: number;
+    bonusProjectUrls: string[];
+    projectUrls: string[];
+    portfolioUrls: string[] | null;
+    expectedTypeWork: string;
+    targetWorkCity: string;
+    expectedContractType: string;
+    expectedSalary: string | number;
+    canTakeApprenticeship: boolean;
+    monthsOfCommercialExp: number;
+    education: string;
+    workExperience: string;
+    courses: string;
+    email: string;
+    telephone: string;
+    avatarUrl: string;
+}
 
 const CandidatePage: React.FC = () => {
 
+    const [student, setStudent] = useState<StudentCvInterface>({
+        bio: '',
+        firstName: '',
+        courses: '',
+        bonusProjectUrls: [],
+        expectedContractType: '',
+        canTakeApprenticeship: false,
+        courseCompletion: 0,
+        education: '',
+        expectedTypeWork: '',
+        githubUsername: '',
+        lastName: '',
+        portfolioUrls: [],
+        workExperience: '',
+        telephone: '',
+        courseEngagement: 0,
+        email: '',
+        expectedSalary: 0,
+        monthsOfCommercialExp: 0,
+        projectDegree: 0,
+        projectUrls: [],
+        targetWorkCity: '',
+        teamProjectDegree: 0,
+        avatarUrl: ''
+    })
 
+    const {id} = useParams()
+   useEffect(()=>{
+       (async () => {
+           try {
+               const res = await fetch(`http://localhost:3001/recruiter/cv/${id}`)
+               const data = await res.json()
+               console.log(data)
+               setStudent(data)
+           } catch (e){
+               throw new Error('Something went wrong')
+           }
+       })()
+   }, [])
+
+    const handleNoInterested = async () => {
+        const res = await fetch(`http://localhost:3001/recruiter/${id}`, {
+            method: 'PATCH',
+            body: JSON.stringify({
+                status: RecruiterActionsOfStatusEnum.noInterested
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        console.log(await res.json())
+        window.location.href = 'http://localhost:3000/recruiter'
+    }
+
+    const handleEmployed = async () => {
+        console.log('siema')
+        await fetch(`http://localhost:3001/recruiter/${id}`, {
+            method: 'PATCH',
+            body: JSON.stringify({
+                status: RecruiterActionsOfStatusEnum.employed
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
 
     return (
         <div className="container">
@@ -35,24 +130,21 @@ const CandidatePage: React.FC = () => {
                 </div>
                 <div className="main__personalcard">
                     <div className="personalcard__avatar">
-                        <img className="personalcard__avatar-center" src="/images/avatar_big.png" alt=""/>
-                            <p className="personalcard__avatar-center">Jan Kowalski</p>
+                        <img className="personalcard__avatar-center" src={student.avatarUrl.length !== 0 ? student.avatarUrl : "/images/avatar_big.png"} alt=""/>
+                            <p className="personalcard__avatar-center">{student.firstName} {student.lastName}</p>
                             <p className="personalcard__avatar-center"><a href=""><i
-                                className="bi bi-github"></i> jankowalski</a></p>
-                            <p className="personalcard__avatar-contactdata"><i className="bi bi-telephone-fill"></i> +48
-                                566 072 227</p>
+                                className="bi bi-github"></i>{student.githubUsername}</a></p>
+                            <p className="personalcard__avatar-contactdata"><i className="bi bi-telephone-fill"></i>{student.telephone}</p>
                             <p className="personalcard__avatar-contactdata"><i
-                                className="bi bi-envelope-fill"></i> jankowalski@gmail.com</p>
+                                className="bi bi-envelope-fill"></i>{student.email}</p>
                     </div>
                     <div className="personalcard__about">
                         <h3>O mnie</h3>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae dolorum unde aliquid, eum esse
-                            ex consequuntur cum aperiam omnis odit officia cupiditate, perferendis, nisi sunt. Doloribus
-                            numquam nesciunt voluptates tempora!</p>
+                        <p>{student.bio}</p>
                     </div>
                     <div className="personalcard__buttons">
-                        <button>Brak zainteresowania</button>
-                        <button>Zatrudniony</button>
+                        <button onClick={handleNoInterested}>Brak zainteresowania</button>
+                        <button onClick={handleEmployed}>Zatrudniony</button>
                     </div>
                 </div>
 
@@ -69,10 +161,10 @@ const CandidatePage: React.FC = () => {
                         </thead>
                         <tbody>
                         <tr>
-                            <td><span className="scale">5</span>/5 <span className="star"><span>★★★★★</span></span></td>
-                            <td><span className="scale">3</span>/5 <span className="star"><span>★★★</span>★★</span></td>
-                            <td><span className="scale">4</span>/5 <span className="star"><span>★★★★</span>★</span></td>
-                            <td><span className="scale">5</span>/5 <span className="star"><span>★★★★★</span></span></td>
+                            <td><span className="scale">{student.courseCompletion}</span>/ 5 <span className="star"><span>★★★★★</span></span></td>
+                            <td><span className="scale">{student.courseEngagement}</span>/ 5 <span className="star"><span>★★★</span>★★</span></td>
+                            <td><span className="scale">{student.projectDegree}</span>/ 5 <span className="star"><span>★★★★</span>★</span></td>
+                            <td><span className="scale">{student.teamProjectDegree}</span>/ 5 <span className="star"><span>★★★★★</span></span></td>
                         </tr>
                         </tbody>
                     </table>
@@ -82,7 +174,7 @@ const CandidatePage: React.FC = () => {
                     <table>
                         <thead>
                         <tr>
-                            <td>Preferowane miejsce pracy</td>
+                            <td>Preferowany typ pracy</td>
                             <td>Docelowe miasto, gdzie chce pracować kandydat</td>
                             <td>Oczekiwany typ kontraktu</td>
                             <td>Oczekiwane wynagrodzenie netto</td>
@@ -92,25 +184,21 @@ const CandidatePage: React.FC = () => {
                         </thead>
                         <tbody>
                         <tr>
-                            <td>Biuro</td>
-                            <td>Warszawa</td>
-                            <td>Umowa o pracę</td>
-                            <td>8 000 zł</td>
-                            <td>TAK</td>
-                            <td>6 miesięcy</td>
+                            <td>{student.expectedTypeWork}</td>
+                            <td>{student.targetWorkCity}</td>
+                            <td>{student.expectedContractType}</td>
+                            <td>{student.expectedSalary} zł</td>
+                            <td>{student.canTakeApprenticeship ? "Tak" : "Nie"}</td>
+                            <td>{student.monthsOfCommercialExp} miesięcy</td>
                         </tr>
                         </tbody>
                     </table>
 
                     <h3>Edukacja</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis repudiandae eos iste laudantium
-                        dignissimos, corrupti, numquam rem, optio consequuntur atque mollitia itaque eius officia eum
-                        temporibus ratione repellat tempore</p>
+                    <p>{student.education}</p>
 
                     <h3>Kursy</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis repudiandae eos iste laudantium
-                        dignissimos, corrupti, numquam rem, optio consequuntur atque mollitia itaque eius officia eum
-                        temporibus ratione repellat tempore</p>
+                    <p>{student.courses}</p>
 
                     <h3>Doświadczenie zawodowe</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis repudiandae eos iste laudantium
@@ -118,19 +206,30 @@ const CandidatePage: React.FC = () => {
                         temporibus ratione repellat tempore</p>
 
                     <h3>Portfolio</h3>
-                    <p><img src="paperclip.svg"/><a href="#">https://Loremipsum/dolor/sit/amet</a></p>
+
+                    {
+                        student.portfolioUrls ?
+                        student.portfolioUrls.map(url => <p key={url}><img src="paperclip.svg"/><a href={url}>{url}</a></p>) :
+                          ''
+                    }
 
                     <h3>Projekt w zespole Scrumowym</h3>
-                    <p><img src="paperclip.svg"/><a
-                        href="#">https://github.com/Ami777/MegaKursTest/commits?author=Ami777</a></p>
-                    <p><img src="paperclip.svg"/><a
-                        href="#">https://github.com/Ami777/MegaKursTest/pulls?q=is%3Apr+reviewed-by%3AAmi777</a></p>
+
+                    {
+                        student.bonusProjectUrls ?
+                          student.bonusProjectUrls.map(url => <p key={url}><img src="paperclip.svg"/><a
+                            href={url}>{url}</a></p>)
+                          : ''
+                    }
 
                     <h3>Projekt na zaliczenie</h3>
-                    <p><img src="paperclip.svg"/><a href="#">https://Loremipsum/dolor/sit/amet</a></p>
-                    <p><img src="paperclip.svg"/><a href="#">https://Loremipsum/dolor/sit/amet</a></p>
-                </div>
 
+                    {
+                        student.projectUrls ?
+                          student.projectUrls.map(url => <p key={url}><img src={url}/><a href="#">{url}</a></p>)
+                          : ''
+                    }
+                </div>
 
             </main>
         </div>

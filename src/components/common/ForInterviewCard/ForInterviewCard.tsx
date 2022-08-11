@@ -67,7 +67,7 @@ export const ForInterviewCard: React.FC<Props> = ({
   }
 
   const showCv = async () => {
-    window.location.href = `http://localhost:3000/student/${id}`
+    window.location.href = `http://localhost:3000/recruiter/cv/${id}`
   }
 
   return (

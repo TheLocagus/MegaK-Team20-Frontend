@@ -114,6 +114,7 @@ button:hover {cursor: pointer;}
 .personalcard{
   &__avatar img{
     height: 150px;
+    border-radius: 50%;
   }
   &__avatar-center {
     display:block;
