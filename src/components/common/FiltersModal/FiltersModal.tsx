@@ -13,6 +13,8 @@ interface Props {
     onClick: () => void;
 }
 
+const MONTHS_COUNT = 6
+
 
 const FiltersModal: React.FC<Props> = ({ onClick }) => {
     const [filterData, setFilterData] = useState({
@@ -20,9 +22,10 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
         activityRate: [],
         codeRate: [],
         teamWorkRate: [],
-        workPlace: '',
-        contractType: '',
-        salary: '',
+        workPlace: [],
+        contractType: [],
+        salaryMin: '',
+        salaryMax: '',
         internship: '',
         experience: '',
     })
@@ -33,31 +36,40 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
             activityRate: [],
             codeRate: [],
             teamWorkRate: [],
-            workPlace: '',
-            contractType: '',
-            salary: '',
+            workPlace: [],
+            contractType: [],
+            salaryMin: '',
+            salaryMax: '',
             internship: '',
             experience: '',
         })
     }
 
-    const dataFilterHandler = (key: string, value: any) => {
-        const keyP = key as string;
-        const keyState = filterData[keyP as keyof typeof filterData]
-        console.log(keyState)
+    const btnFilterHandler = (e: any) => {
+        const keyString = e.target.name as string;
+        const currentState = filterData[keyString as keyof typeof filterData]
+        const exist = Array.isArray(currentState) && currentState.find(el => el === e.target.value)
+
+        const newState = () => {
+            if(exist) {
+                return currentState.filter(el => el !== exist)
+            } else {
+                return [currentState, e.target.value].flat()
+            }
+        }
+        
         setFilterData(dataItem => ({
             ...dataItem,
-            // [key]: [...keyState, value]
-            [key]: value
-        })
-    )};
+            [e.target.name]: newState()
+        }))
+    };
 
-    const timeSelectHandler = (e: React.ChangeEvent<HTMLSelectElement>) => 
+    const selectFilterHandler = (e: any) => {
         setFilterData(dataItem => ({
             ...dataItem,
             [e.target.name]: e.target.value
         })
-    );
+    )};
 
     const filtersHandler = (e: React.SyntheticEvent) => {
         e.preventDefault()
@@ -73,8 +85,19 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
         onClick()
     };
 
-    // console.log(filterData)
+    const months = () => {
+        const monthsTable: React.ReactNode[] = []
 
+        for (let i=0; i<=MONTHS_COUNT; i++) {
+            monthsTable.push(
+                <option key={`month-${i}`} value={i} selected={filterData.experience === String(i)}>
+                    {i} {labels.filters.months}
+                </option>
+            )
+        }
+        return monthsTable
+    }
+    
 
     return (
         <main className='filter__main'>
@@ -85,92 +108,118 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
                         customClass='filter__header-button'
                         label={labels.buttons.clearFilters}
                         type='button'
-                        onClick={resetFilterDataHandler} />
+                        onClick={resetFilterDataHandler}
+                    />
                 </div>
                 <fieldset>
                     <legend>{labels.options.courseRate}</legend>
                     <Rating
                         customClass='filter__main-selector buttons'
-                        onClick={dataFilterHandler}
+                        onClick={btnFilterHandler}
                         name='courseRate'
-                        filterData={filterData} />
+                        filterData={filterData}
+                    />
                 </fieldset>
 
                 <fieldset>
                     <legend>{labels.options.activityRate}</legend>
                     <Rating
                         customClass='filter__main-selector buttons'
-                        onClick={dataFilterHandler}
+                        onClick={btnFilterHandler}
                         name='activityRate'
-                        filterData={filterData} 
-                        />
+                        filterData={filterData}
+                    />
                 </fieldset>
 
                 <fieldset>
                     <legend>{labels.options.codeRate}</legend>
                     <Rating
                         customClass='filter__main-selector buttons'
-                        onClick={dataFilterHandler}
+                        onClick={btnFilterHandler}
                         name='codeRate'
-                        filterData={filterData} 
-                        />
+                        filterData={filterData}
+                    />
                 </fieldset>
 
                 <fieldset>
                     <legend>{labels.options.teamWorkRate}</legend>
                     <Rating
                         customClass='filter__main-selector buttons'
-                        onClick={dataFilterHandler}
+                        onClick={btnFilterHandler}
                         name='teamWorkRate'
-                        filterData={filterData} 
-                        />
+                        filterData={filterData}
+                    />
                 </fieldset>
 
                 <fieldset>
                     <legend>{labels.options.workPlace.label}</legend>
                     <div className='filter__main-selector buttons'>
-                        <input
-                            type='button'
-                            className='filters-btn'
-                            name='workPlace'
-                            value={labels.options.workPlace.remote}
-                            onClick={e => dataFilterHandler(e.currentTarget.name, e.currentTarget.value)} />
-                        <input
-                            type='button'
-                            className='filters-btn'
-                            name='workPlace'
-                            value={labels.options.workPlace.office}
-                            onClick={e => dataFilterHandler(e.currentTarget.name, e.currentTarget.value)} />
+                        <label className={filterData.workPlace.find(el => el === labels.options.workPlace.remote) ? 'active' : ''}>
+                            {labels.options.workPlace.remote}
+                            <input
+                                type='button'
+                                className='filters-btn'
+                                name='workPlace'
+                                value={labels.options.workPlace.remote}
+                                onClick={btnFilterHandler}
+                            />
+                        </label>
+                        <label className={filterData.workPlace.find(el => el === labels.options.workPlace.office) ? 'active' : ''}>
+                            {labels.options.workPlace.office}
+                            <input
+                                type='button'
+                                className='filters-btn'
+                                name='workPlace'
+                                value={labels.options.workPlace.office}
+                                onClick={btnFilterHandler}
+                            />
+                        </label>
                     </div>
                 </fieldset>
 
                 <fieldset>
                     <legend>{labels.options.contractType.label}</legend>
                     <div className='filter__main-selector buttons'>
-                        <input
-                            type='button'
-                            className='filters-btn'
-                            name='contractType'
-                            value={labels.options.contractType.permContract}
-                            onClick={e => dataFilterHandler(e.currentTarget.name, e.currentTarget.value)} />
-                        <input
-                            type='button'
-                            className='filters-btn'
-                            name='contractType'
-                            value={labels.options.contractType.b2b}
-                            onClick={e => dataFilterHandler(e.currentTarget.name, e.currentTarget.value)} />
-                        <input
-                            type='button'
-                            className='filters-btn'
-                            name='contractType'
-                            value={labels.options.contractType.tempContract}
-                            onClick={e => dataFilterHandler(e.currentTarget.name, e.currentTarget.value)} />
-                        <input
-                            type='button'
-                            className='filters-btn'
-                            name='contractType'
-                            value={labels.options.contractType.projectContract}
-                            onClick={e => dataFilterHandler(e.currentTarget.name, e.currentTarget.value)} />
+                        <label className={filterData.contractType.find(el => el === labels.options.contractType.permContract) ? 'active' : ''}>
+                            {labels.options.contractType.permContract}
+                            <input
+                                type='button'
+                                className='filters-btn'
+                                name='contractType'
+                                value={labels.options.contractType.permContract}
+                                onClick={btnFilterHandler} 
+                            />
+                        </label>
+                        <label className={filterData.contractType.find(el => el === labels.options.contractType.b2b) ? 'active' : ''}>
+                            {labels.options.contractType.b2b}
+                            <input
+                                type='button'
+                                className='filters-btn'
+                                name='contractType'
+                                value={labels.options.contractType.b2b}
+                                onClick={btnFilterHandler} 
+                            />
+                        </label>
+                        <label className={filterData.contractType.find(el => el === labels.options.contractType.tempContract) ? 'active' : ''}>
+                            {labels.options.contractType.tempContract}
+                            <input
+                                type='button'
+                                className='filters-btn'
+                                name='contractType'
+                                value={labels.options.contractType.tempContract}
+                                onClick={btnFilterHandler} 
+                            />
+                        </label>
+                        <label className={filterData.contractType.find(el => el === labels.options.contractType.projectContract) ? 'active' : ''}>
+                            {labels.options.contractType.projectContract}
+                            <input
+                                type='button'
+                                className='filters-btn'
+                                name='contractType'
+                                value={labels.options.contractType.projectContract}
+                                onClick={btnFilterHandler} 
+                            />
+                        </label>
                     </div>
                 </fieldset>
                 
@@ -179,28 +228,50 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
                     <div className='filter__main-selector'>
                         <label>{labels.options.salary.from}
                             <input
-                                type='text'
-                                placeholder='np. 1000 zł' />
+                                type='number'
+                                min='1'
+                                placeholder='np. 1000 zł'
+                                name='salaryMin'
+                                value={filterData.salaryMin}
+                                onChange={selectFilterHandler}
+                            />
                         </label>
                         <label>{labels.options.salary.to}
                             <input
-                                type='text'
-                                placeholder='np. 10000 zł' />
+                                type='number'
+                                min='2'
+                                placeholder='np. 10000 zł'
+                                name='salaryMax'
+                                value={filterData.salaryMax}
+                                onChange={selectFilterHandler}
+                            />
                         </label>
                     </div>
                 </fieldset>
 
                 <fieldset>
                     <legend>{labels.options.internship.label}</legend>
-                    <div className='filter__main-selector'>
-                        <ButtonLink
-                            customClass='filters-btn'
-                            label={labels.options.internship.yes}
-                            name='internship' />
-                        <ButtonLink
-                            customClass='filters-btn'
-                            label={labels.options.internship.no}
-                            name='internship' />
+                    <div className='filter__main-selector radio'>
+                        <label>
+                            <input
+                                type='radio'
+                                value={labels.options.internship.yes}
+                                name='internship'
+                                onClick={selectFilterHandler}
+                                checked={filterData.internship === labels.options.internship.yes}
+                            />
+                            {labels.options.internship.yes}
+                        </label>
+                        <label>
+                            <input
+                                type='radio'
+                                value={labels.options.internship.no}
+                                name='internship'
+                                onClick={selectFilterHandler}
+                                checked={filterData.internship === labels.options.internship.no}
+                            />
+                            {labels.options.internship.no}
+                        </label>
                     </div>
                 </fieldset>
 
@@ -210,14 +281,8 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
                     <select
                         className='arrows'
                         name='experience'
-                        onChange={timeSelectHandler} >
-                        <option value='0'>0 {labels.filters.months}</option>
-                        <option value='1'>1 {labels.filters.months}</option>
-                        <option value='2'>2 {labels.filters.months}</option>
-                        <option value='3'>3 {labels.filters.months}</option>
-                        <option value='4'>4 {labels.filters.months}</option>
-                        <option value='5'>5 {labels.filters.months}</option>
-                        <option value='6'>6 {labels.filters.months}</option>
+                        onChange={selectFilterHandler} >
+                            {months()}
                     </select>
                 </div>
                 </fieldset>
@@ -227,12 +292,14 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
                         customClass='cancel-btn'
                         type='button'
                         label={labels.buttons.cancel}
-                        onClick={onClick} />
+                        onClick={onClick}
+                    />
                     <input
                         className='submit-btn'
                         type='submit'
                         value={labels.buttons.showResults}
-                        onClick={filtersHandler} />
+                        onClick={filtersHandler}
+                    />
                 </div>
             </form>
         </main>

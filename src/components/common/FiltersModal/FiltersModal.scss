@@ -1,18 +1,16 @@
-@import '_variables';
+@import '_variables.scss';
 @import '_mixins.scss';
 
 
 .filter__main {
+    @include flex;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     z-index: 1;
-    background-color: rgba(10, 10, 10, .5);
+    background-color: $color-filter-back;
 
     form {
         background-color: $color-black;
@@ -27,14 +25,14 @@
                 color: $color-white;
             }
             &-button {
-                background-color: #172a35;
+                background-color: $color-deep-blue;
                 border: none;
                 color: #e2e4e5;
                 padding: .5rem .63rem;
                 font-size: 14px;
                 &:hover {
                     background-color: #e2e4e5;
-                    color: #172a35;
+                    color: $color-deep-blue;
                 }
             }
         }
@@ -61,6 +59,12 @@
             position: relative;
             height: 27px;
             font-size: .75rem;
+            &.active {
+                background-color: $color-red !important;
+                span {
+                    color: $color-white !important;
+                }
+            }
         }
         label:not(:last-child) {
             margin-right: 1rem;  
@@ -85,7 +89,7 @@
             border: 1px solid grey;
             padding: .5rem;
             height: 27px;
-            color: #7E7E7E;
+            color: $color-light-grey;
             position: relative;
             font-size: 0.75rem;
             padding: 0 .5rem;
@@ -93,11 +97,13 @@
     }
     &-selector.buttons {
         label {
-            background-color: #292a2b;
+            @include flex;
+            background-color: $color-dark-grey;
             padding: 0 .52rem;
             cursor: pointer;
             transition: all .3s ease-out;
             span {
+                height: 100%;
                 color: $color-red;
                 font-size: 1.1rem;
                 margin-left: 4px;
@@ -116,21 +122,38 @@
                 position: absolute;
                 top: 0;
                 left: 0;
-                width: 42px;
+                width: 100%;
                 z-index: -1;
                 margin: 0;
-                padding: 0;
-                
+                padding: 0;  
             }
         }   
     }
+    &-selector.radio {
+        @include flex-start-center;
+        flex-direction: column;
+        label {
+            display: flex;
+            align-items: center;
+            font-size: .87rem;
+            input {
+                display: block;
+                border: 1px solid $color-white;
+                border-radius: 50%;
+                height: 16px;
+                width: 16px;
+                background-color: transparent;
+                margin-right: 10px;
+            }
+        }
+    }
     input {
         background-color: $color-dark-grey;
-        color: #7E7E7E;
+        color: $color-light-grey;
         border: none;
         padding: .5rem;
         height: 27px;
-        &[type='text'] {
+        &[type='number'] {
             width: 110px;
             font-size: 0.75rem;
             margin-left: 8px;
