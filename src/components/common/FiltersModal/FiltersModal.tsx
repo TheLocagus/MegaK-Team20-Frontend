@@ -230,7 +230,7 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
                             <input
                                 type='number'
                                 min='1'
-                                placeholder='np. 1000 zł'
+                                placeholder={labels.options.salary.minPlaceholder}
                                 name='salaryMin'
                                 value={filterData.salaryMin}
                                 onChange={selectFilterHandler}
@@ -240,7 +240,7 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
                             <input
                                 type='number'
                                 min='2'
-                                placeholder='np. 10000 zł'
+                                placeholder={labels.options.salary.maxPlaceholder}
                                 name='salaryMax'
                                 value={filterData.salaryMax}
                                 onChange={selectFilterHandler}
