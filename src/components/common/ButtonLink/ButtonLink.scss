@@ -16,7 +16,7 @@
 
 .opener {
     background-color: $color-red;
-    border: 1px solid #572329;
+    border: 1px solid $color-dark-red;
     color: $color-white;
     padding: .5rem;
     transition: all .3s ease-out;
@@ -27,7 +27,7 @@
 }
 
 .opener-btn {
-    background-color: #292a2b;
+    background-color: $color-dark-grey;
     svg {
         transform: rotate(180deg);
         transition: .2s ease-in-out;
@@ -46,9 +46,7 @@
 }
 
 .menu-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex;
     min-width: 200px;
     height: 100%;
     font-size: 1.13rem;
@@ -64,10 +62,10 @@
 
 .cancel-btn {
     background-color: $color-black;
-    cursor: pointer;
     color: $color-white;
-    transition: all .3s ease-out;
     margin-right: 8px;
+    transition: all .3s ease-out;
+    cursor: pointer;
     &:hover {
         background-color: $color-white;
         color: $color-black;

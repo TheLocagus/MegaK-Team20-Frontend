@@ -1,4 +1,4 @@
-@import '_variables';
+@import '_variables.scss';
 @import '_mixins.scss';
 
 .form-login {
@@ -13,16 +13,14 @@
         input {
             margin: 8px auto;
             background-color: $color-dark-grey;
-            color:#7e7e7e;
+            color: $color-light-grey;
             background: $color-dark-grey 0% 0% no-repeat padding-box;
             border: none;
             padding: 1rem;
         }
     }
     &__button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include flex;
         background-color: $color-red;
         color: $color-white;
         margin: 1rem auto;
