@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {labels} from 'utils/labels'
 
 import './CheckingBeforeStudentRegistryForm.scss';
 import {useParams} from "react-router-dom";
@@ -20,6 +21,6 @@ export const CheckingBeforeStudentRegistryForm = () => {
     }, [])
 
     return (
-        <div className='waiting-info'>Proszę czekać...</div>
+        <div className='waiting-info'>{labels.waiting}</div>
     )
 }

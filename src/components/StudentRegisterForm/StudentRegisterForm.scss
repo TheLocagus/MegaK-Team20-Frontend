@@ -1,94 +1,141 @@
+@import '_variables.scss';
+@import '_mixins.scss';
+
+section {
+  flex-direction: column;
+  margin: 20px auto;
+}
 .student-register-form_error {
   text-align: center;
   font-size: 30px;
-  color: red;
+  color: $color-red;
   margin-top: 50px;
 }
 
-.student-register-form{
+.student-register-form {
   display: flex;
   flex-direction: column;
-  color: white;
+  color: $color-white;
   margin-top: 30px;
-
-  label {
+  .form__header {
+    @include form-header;
+    margin-bottom: 20px;
+}
+  .passwords {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding: 20px 0;
-
+    justify-content: space-between;
+    label {
+      
+    }
+  }
+  &__personal-fields {
+    // @include flex;
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    label {
+      // display: flex;
+      // flex-direction: column;
+    }
+  }
+  &__githubUsername {
+    // display: flex;
+    // flex-direction: column;
+  }
+  &__urls {
+    // @include flex-start-center;
+    label {
+      margin-bottom: 1.25rem;
+    }
+    .btn {
+      @include blue-btn;
+      align-self: flex-end;
+    }
+  }
+  .typeWorkAndContract{
+    // @include flex-start-center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    select {
+      // width: 47%;
+      max-width: 100%
+    }
+  }
+  
+  .salaryAndExp {
+    // display: flex;
+    // align-items: center;
+    // justify-content: space-between;
     input {
-      margin-left: 5px;
-      padding: 10px 10px;
+      // max-width: 213px;
     }
   }
-}
+  
+  .educationWorkExperienceCourses {
+    // @include flex-start-center;
+  }
+  .student-register-form__canTakeApprenticeship {
+    .student-register-form__canTakeApprenticeship__agree,
+    .student-register-form__canTakeApprenticeship__disagree {
+      display: flex;
+      align-items: center;
+      font-size: 0.87rem;
+      input {
+        display: block;
+        border: 1px solid $color-white;
+        border-radius: 50%;
+        height: 16px;
+        width: 16px;
+        background-color: transparent;
+        margin-right: 10px;
+        height: 27px;
+      }
+      .yes-label-internship, .no-label-internship {
+        flex-direction: row;
+      }
+    }
+  }
 
-.passwords {
-  display: flex;
-  justify-content: center;
-}
-
-.student-register-form__personal-fields {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   label {
     display: flex;
-    flex-direction: column;
-  }
-}
-
-.student-register-form__githubUsername {
-  display: flex;
-  flex-direction: column;
-}
-
-.student-register-form__urls {
-  display: flex;
-  justify-content: center;
-}
-
-.typeWorkAndContract{
- display: flex;
-  justify-content: center;
-}
-
-.salaryAndExp {
-  display: flex;
-  justify-content: center;
-}
-
-.educationWorkExperienceCourses {
-  display: flex;
-  justify-content: center;
-}
-
-.student-register-form__canTakeApprenticeship {
-  height: 200px;
-  width: 400px;
-  .student-register-form__canTakeApprenticeship__agree, .student-register-form__canTakeApprenticeship__disagree {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .yes-label-internship, .no-label-internship {
-      flex-direction: row;
+    flex-direction: column; 
+    font-size: 0.87rem;
+    min-width: 47%;
+    input, select {
+      height: 27px;
+      margin: 0.4rem 0 1.25rem;
+    }
+    input, textarea {
+      padding: .52rem;
+      background-color: $color-dark-grey;
+      border: none;
+      font-size: 0.75rem;
+      color: $color-white;
+    }
+    textarea {
+      margin: 0.4rem 0 1.25rem;
     }
   }
-}
-
-.internship-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.submitStudentRegisterForm {
-  height: 50px;
-  width: 150px;
-  background-color: #aaa;
-  border: none;
-  margin: 20px auto;
-
+  legend {
+    font-size: 0.87rem;
+  }
+  select {
+    background-color: $color-dark-grey;
+    color: $color-light-grey;
+    font-size: 0.75rem;
+    max-width: 110px;
+  }
+  fieldset {
+    border: none;
+  }
+  .submitStudentRegisterForm {
+    @include submit-btn;
+    align-self: flex-end;
+    border: none;
+    margin: 20px 0;
+  }
 }
