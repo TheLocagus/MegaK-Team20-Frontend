@@ -2,18 +2,21 @@ import {
   RecruiterActionsOfStatusEnum
 } from "../components/CandidatesListPage/CandidatesListPage";
 import {updateStudentsLists} from "./updateStudentsLists";
-import React, { Dispatch } from "react";
-import { AnyAction } from "redux";
+import {DataTypeEnum} from "../actions/students";
 
 export const studentsStatusHandler = async (
   action: RecruiterActionsOfStatusEnum,
   id: string,
-  dispatch:  Dispatch<AnyAction>
+  setActiveStudentsList: any,
+  setForInterviewStudentsList: any,
+  numberOfPage: string,
+  type: DataTypeEnum,
+  actualSearchPhrase: string,
 ) => {
 
   switch(action){
     case `for-interview`:
-      await fetch(`http://localhost:3001/recruiter/${id}`, {
+      const res = await fetch(`http://localhost:3001/recruiter/${id}`, {
         method: 'PATCH',
         body: JSON.stringify({
           status: RecruiterActionsOfStatusEnum.forInterview
@@ -22,8 +25,8 @@ export const studentsStatusHandler = async (
           'Content-Type': 'application/json'
         }
       })
-
-      await updateStudentsLists(dispatch);
+      console.log(await res.json())
+      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase);
       //@TODO dodano pomyślnie
       break;
     case `no-interested`:
@@ -37,7 +40,7 @@ export const studentsStatusHandler = async (
         }
       })
 
-      await updateStudentsLists(dispatch);
+      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage, type, actualSearchPhrase);
       //@TODO dodano pomyślnie
       break;
 
@@ -52,9 +55,13 @@ export const studentsStatusHandler = async (
         }
       })
 
-      await updateStudentsLists(dispatch);
+      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage, type, actualSearchPhrase);
       //@TODO dodano pomyślnie
       break;
+
+    default: {
+      console.log(action)
+    }
   }
 
 }

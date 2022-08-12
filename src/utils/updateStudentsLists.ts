@@ -1,26 +1,33 @@
-import {setActiveStudents, setForInterviewStudents } from "actions/students";
-import { Dispatch } from "react";
-import { useDispatch } from "react-redux";
-import { AnyAction } from "redux";
-import {
-  AvailableStudentToListResponseInterface,
-  ForInterviewStudentToListResponseInterface
-} from "../components/CandidatesListPage/CandidatesListPage";
+import {DataTypeEnum} from "actions/students";
 
 export const updateStudentsLists = async (
-  dispatch:  Dispatch<AnyAction>
+  setActiveStudentsList: any,
+  setForInterviewStudentsList: any,
+  numberOfPage: string,
+  type: DataTypeEnum,
+  actualSearchPhrase: string,
 ) => {
+  console.log(numberOfPage)
 
-  const resAllStudents = await fetch('http://localhost:3001/recruiter/students')
+  if (type === DataTypeEnum.all){
+    const resAllStudents = await fetch(`http://localhost:3001/recruiter/${Number(numberOfPage)}`)
+    const dataAllStudents = await resAllStudents.json();
+    setActiveStudentsList(dataAllStudents)
+  } else if (type === DataTypeEnum.searched){
+    const resAllStudents = await fetch(`http://localhost:3001/recruiter/${Number(numberOfPage)}/${actualSearchPhrase}`)
+    const dataAllStudents = await resAllStudents.json();
+    setActiveStudentsList(dataAllStudents)
+  }
   const resForInterviewStudents = await fetch('http://localhost:3001/recruiter/for-interview')
 
-  const dataAllStudents = await resAllStudents.json();
   const dataForInterviewStudents = await resForInterviewStudents.json();
 
-  dispatch(setActiveStudents(dataAllStudents))
-  dispatch(setForInterviewStudents(dataForInterviewStudents))
-  // activeState(dataAllStudents);
-  // interviewState(dataForInterviewStudents);
+
+  setForInterviewStudentsList(dataForInterviewStudents)
+  // dispatch(setActiveStudents(dataAllStudents))
+  // dispatch(setForInterviewStudents(dataForInterviewStudents))
+
+
 }
 
 

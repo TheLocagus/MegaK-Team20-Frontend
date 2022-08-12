@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {useSearchParams} from 'react-router-dom';
+import {useParams, useSearchParams} from 'react-router-dom';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import Icon from 'components/Icon/Icon';
 
 import {labels} from 'utils/labels'
 import {
-  AvailableStudentToListResponseInterface,
   ForInterviewStudentToListResponseInterface,
   RecruiterActionsOfStatusEnum
 } from "../../CandidatesListPage/CandidatesListPage";
@@ -13,22 +12,28 @@ import {showExpectedContractType, showExpectedTypeWork} from "../../../utils/dis
 import {studentsStatusHandler} from "../../../utils/studentsStatusHandler";
 import {handleEndReservation} from "../../../utils/handleEndReservation";
 import './ForInterviewCard.scss';
-import { useDispatch } from 'react-redux';
+import {DataTypeEnum} from "../../../actions/students";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../store";
 
 interface Props {
   student: ForInterviewStudentToListResponseInterface;
+  setActiveStudentsList: any;
+  setForInterviewStudentsList: any;
 }
 
 
 export const ForInterviewCard: React.FC<Props> = ({
-                                                    student
+                                                    student,
+                                                    setActiveStudentsList,
+                                                    setForInterviewStudentsList,
                                                   }: Props) => {
 
   const [cartState, setCartState] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const candidates = searchParams.get('candidates');
-
-  const dispatch = useDispatch();
+  const {numberOfPage} = useParams();
+  const {type, actualSearchPhrase} = useSelector((store: RootState) => store.students)
 
   useEffect(() => {
     setSearchParams({candidates: 'meetings'})
@@ -58,11 +63,11 @@ export const ForInterviewCard: React.FC<Props> = ({
   }
 
   const handleNoInterested = async () => {
-    await studentsStatusHandler(RecruiterActionsOfStatusEnum.noInterested, id, dispatch);
+    await studentsStatusHandler(RecruiterActionsOfStatusEnum.noInterested, id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase);
   }
 
   const handleEmployed = async () => {
-    await studentsStatusHandler(RecruiterActionsOfStatusEnum.employed, id, dispatch);
+    await studentsStatusHandler(RecruiterActionsOfStatusEnum.employed, id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase);
   }
 
   const showCv = async () => {
