@@ -1,5 +1,6 @@
 import { StudentsAction } from "action-types/students";
 import { AvailableStudentToListResponseInterface, ForInterviewStudentToListResponseInterface } from "components/CandidatesListPage/CandidatesListPage";
+import {DataTypeEnum} from "../actions/students";
 
 export interface StudentsState {
   activeStudents: {
@@ -8,6 +9,8 @@ export interface StudentsState {
     totalPages: Number;
   };
   forInterviewStudents: ForInterviewStudentToListResponseInterface[];
+  type: DataTypeEnum;
+  actualSearchPhrase: string
 }
 
 const initialState: StudentsState = {
@@ -17,6 +20,8 @@ const initialState: StudentsState = {
     totalPages: 1,
   },
   forInterviewStudents: [],
+  type: DataTypeEnum.all,
+  actualSearchPhrase: '',
 }
 
 interface SetActiveStudents {
@@ -29,7 +34,17 @@ interface SetForInterviewStudents {
   payload: ForInterviewStudentToListResponseInterface[];
 }
 
-type Action = SetActiveStudents | SetForInterviewStudents;
+interface SetDataType {
+  type: StudentsAction.SET_DATA_TYPE;
+  payload: DataTypeEnum;
+}
+
+interface SetActualSearchPhrase {
+  type: StudentsAction.SET_ACTUAL_SEARCH_PHRASE;
+  payload: string;
+}
+
+type Action = SetActiveStudents | SetForInterviewStudents | SetDataType | SetActualSearchPhrase;
 
 export default (state: StudentsState = initialState, action: Action) => {
   switch(action.type){
@@ -43,6 +58,18 @@ export default (state: StudentsState = initialState, action: Action) => {
       return {
         ...state,
         forInterviewStudents: action.payload,
+      }
+    }
+    case StudentsAction.SET_DATA_TYPE: {
+      return {
+        ...state,
+        type: action.payload,
+      }
+    }
+    case StudentsAction.SET_ACTUAL_SEARCH_PHRASE: {
+      return {
+        ...state,
+        actualSearchPhrase: action.payload,
       }
     }
     default: return state;

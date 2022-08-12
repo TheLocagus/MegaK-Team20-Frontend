@@ -12,6 +12,9 @@ import {showExpectedContractType, showExpectedTypeWork} from "../../../utils/dis
 import {studentsStatusHandler} from "../../../utils/studentsStatusHandler";
 import {handleEndReservation} from "../../../utils/handleEndReservation";
 import './ForInterviewCard.scss';
+import {DataTypeEnum} from "../../../actions/students";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../store";
 
 interface Props {
   student: ForInterviewStudentToListResponseInterface;
@@ -30,6 +33,7 @@ export const ForInterviewCard: React.FC<Props> = ({
   const [searchParams, setSearchParams] = useSearchParams();
   const candidates = searchParams.get('candidates');
   const {numberOfPage} = useParams();
+  const {type, actualSearchPhrase} = useSelector((store: RootState) => store.students)
 
   useEffect(() => {
     setSearchParams({candidates: 'meetings'})
@@ -59,11 +63,11 @@ export const ForInterviewCard: React.FC<Props> = ({
   }
 
   const handleNoInterested = async () => {
-    await studentsStatusHandler(RecruiterActionsOfStatusEnum.noInterested, id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1');
+    await studentsStatusHandler(RecruiterActionsOfStatusEnum.noInterested, id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase);
   }
 
   const handleEmployed = async () => {
-    await studentsStatusHandler(RecruiterActionsOfStatusEnum.employed, id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1');
+    await studentsStatusHandler(RecruiterActionsOfStatusEnum.employed, id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase);
   }
 
   const showCv = async () => {

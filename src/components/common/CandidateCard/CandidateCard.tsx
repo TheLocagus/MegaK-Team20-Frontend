@@ -12,6 +12,8 @@ import {
 } from "../../../utils/displayCorrectPlainInStudentsLists";
 import './CandidateCard.scss';
 import {studentsStatusHandler} from "../../../utils/studentsStatusHandler";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../store";
 
 // element listy kandydatów na liście 'dostępni kursanci' i 'do rozmowy'
 // a także (w zależności od miejsca renderowania) pełna karta kandydata - dla slajdu 6
@@ -27,7 +29,7 @@ const CandidateCard: React.FC<Props> = ({student, setActiveStudentsList, setForI
   const [searchParams, setSearchParams] = useSearchParams();
   const candidates = searchParams.get('candidates');
 const {numberOfPage} = useParams();
-  
+  const {type, actualSearchPhrase} = useSelector((store: RootState) => store.students)
   const {
     firstName,
     lastName,
@@ -45,7 +47,7 @@ const {numberOfPage} = useParams();
   }
 
   const handleReservation = async () => {
-    await studentsStatusHandler(RecruiterActionsOfStatusEnum.forInterview, studentImport.id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || "1");
+    await studentsStatusHandler(RecruiterActionsOfStatusEnum.forInterview, studentImport.id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || "1", type, actualSearchPhrase);
   }
 
   return (

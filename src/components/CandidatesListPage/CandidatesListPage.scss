@@ -70,10 +70,9 @@
     span {
         color: $color-light-grey;
         padding: 0 10px;
+        font-size: 22px;
+        cursor: pointer;
 
-        a {
-            font-size: 22px;
-        }
     }
 
     .active {

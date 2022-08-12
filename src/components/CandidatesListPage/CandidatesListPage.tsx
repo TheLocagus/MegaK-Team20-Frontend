@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {SyntheticEvent, useEffect, useState} from 'react';
 import {useParams, useSearchParams} from 'react-router-dom';
 import Header from 'components/Header/Header';
 import Navigation from 'components/Navigation/Navigation';
@@ -13,6 +13,9 @@ import './CandidatesListPage.scss';
 import {ForInterviewCard} from "../common/ForInterviewCard/ForInterviewCard";
 import {updateStudentsLists} from "../../utils/updateStudentsLists";
 import {Generating} from 'components/Generating/Generating';
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../store";
+import {DataTypeEnum, setActualSearchPhrase, setDataType} from "../../actions/students";
 
 //strona z listą kandydatów 
 
@@ -74,11 +77,16 @@ export enum RecruiterActionsOfStatusEnum {
 
 
 const CandidatesListPage: React.FC = () => {
+  const {type, actualSearchPhrase} = useSelector((store: RootState) => store.students)
+  const dispatch = useDispatch();
   const [isGenerated, setIsGenerated] = useState<boolean>(false)
   const [modalState, setModalState] = useState(false);
+  const [searchValue, setSearchValue] = useState<string>('')
   const [searchParams, setSearchParams] = useSearchParams();
   const candidates = searchParams.get('candidates');
-  const {numberOfPage} = useParams()
+  const {numberOfPage} = useParams();
+  const [numberOfSearchedPage, setNumberOfSearchedPage] = useState<number>(Number(numberOfPage))
+
   const [activeStudentsList, setActiveStudentsList] = useState<ActiveStudentsData>({
     count: 1,
     totalPages: 1,
@@ -89,7 +97,7 @@ const CandidatesListPage: React.FC = () => {
   const modalHandler = () => {
     setModalState(!modalState)
   }
-
+  console.log(type)
   useEffect(() => {
     setSearchParams({candidates: 'available'})
   }, [])
@@ -98,8 +106,24 @@ const CandidatesListPage: React.FC = () => {
 
     (async () => {
       try {
-        await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1');
-        setIsGenerated(true);
+        switch(type){
+          case DataTypeEnum.all:
+            console.log('czy wchodzi do alla')
+            await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase);
+            setIsGenerated(true);
+            break;
+          case DataTypeEnum.filtered:
+            //fetch z przefiltrowanymi danymi + trzeba zrobić w reduxie stan dla ustawionych filtrów
+            const res = await fetch(`http://localhost:3001/recruiter/${numberOfPage}/filter`)
+            setActiveStudentsList(await res.json())
+            break;
+          case DataTypeEnum.searched:
+            const resSearched = await fetch(`http://localhost:3001/recruiter/${numberOfPage}/${actualSearchPhrase}`)
+            //fetch z wyszukanymi
+            console.log('czy wchodzi do searched')
+            setActiveStudentsList(await resSearched.json())
+            break;
+        }
 
       } catch (e) {
         throw new Error('Something went wrong.')
@@ -112,7 +136,7 @@ const CandidatesListPage: React.FC = () => {
   const createPageNumbers = (current: string, total: number) => {
     const currentPage = Number(current)
     let valuesToMap: (string | number)[]
-    if (total === 1) {
+    if (total === 1 || total === 0) {
       valuesToMap = [1]
     } else if (total === 2) {
       valuesToMap = [1, 2]
@@ -141,14 +165,49 @@ const CandidatesListPage: React.FC = () => {
       valuesToMap = [1, '...', previous, currentPage, next, '...', total]
     }
     return valuesToMap.map((value, i) => {
-      if (value === currentPage) {
-        return <span key={i} className='active'><a href={`/recruiter/${value}`}>{value}</a></span>
+      console.log(numberOfPage)
+
+      if (value === (type === DataTypeEnum.all ? Number(numberOfPage) : numberOfSearchedPage)) {
+        return <span key={i} className='active' onClick={() => handleChangePage(Number(type === DataTypeEnum.all ? numberOfPage : numberOfSearchedPage))}>{(type === DataTypeEnum.all ? numberOfPage : numberOfSearchedPage)}</span>
       }
       if (typeof value === 'number') {
-        return <span key={i}><a href={`/recruiter/${value}`}>{value}</a></span>
+        return <span key={i} onClick={() => handleChangePage(value)}>{value}</span>
       }
       return <span key={i}>{value}</span>
     })
+  }
+
+  const handleSearchForm = async (e: SyntheticEvent) => {
+    e.preventDefault();
+
+    if(searchValue.length !== 0){
+      dispatch(setDataType(DataTypeEnum.searched))
+      console.log('w handleform', type)
+      dispatch(setActualSearchPhrase(searchValue))
+      const res = await fetch(`http://localhost:3001/recruiter/${numberOfPage}/${searchValue}`)
+      const data = await res.json()
+
+      setActiveStudentsList(data)
+    } else {
+      dispatch(setDataType(DataTypeEnum.all))
+      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase)
+    }
+
+  }
+
+  const handleChangePage = async (numberOfWantedPage: number) => {
+    console.log(type)
+    switch(type){
+      case DataTypeEnum.all:
+        window.location.href = `/recruiter/${numberOfWantedPage}`
+        break;
+
+      case DataTypeEnum.searched:
+        const resSearched = await fetch(`http://localhost:3001/recruiter/${numberOfWantedPage}/${actualSearchPhrase}`)
+        setNumberOfSearchedPage(numberOfWantedPage)
+        setActiveStudentsList(await resSearched.json())
+        break;
+    }
   }
 
   if (!isGenerated) {
@@ -159,9 +218,16 @@ const CandidatesListPage: React.FC = () => {
     <div className='userlist-header__searchform'>
       <div>
         <Icon.Search/>
-        <input placeholder={labels.filters.inputPlaceholder}/>
+        <form onSubmit={handleSearchForm}>
+          <input
+            placeholder={labels.filters.inputPlaceholder}
+            value={searchValue}
+            onChange={e => setSearchValue(e.target.value)
+            }
+          />
+        </form>
       </div>
-      <ButtonLink type='button' label={labels.filters.header} onClick={modalHandler}/>
+      <ButtonLink type='submit' label={labels.filters.header} onClick={modalHandler}/>
     </div>
   </>
 

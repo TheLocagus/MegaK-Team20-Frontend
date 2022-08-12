@@ -2,13 +2,16 @@ import {
   RecruiterActionsOfStatusEnum
 } from "../components/CandidatesListPage/CandidatesListPage";
 import {updateStudentsLists} from "./updateStudentsLists";
+import {DataTypeEnum} from "../actions/students";
 
 export const studentsStatusHandler = async (
   action: RecruiterActionsOfStatusEnum,
   id: string,
   setActiveStudentsList: any,
   setForInterviewStudentsList: any,
-  numberOfPage: string
+  numberOfPage: string,
+  type: DataTypeEnum,
+  actualSearchPhrase: string,
 ) => {
 
   switch(action){
@@ -23,7 +26,7 @@ export const studentsStatusHandler = async (
         }
       })
       console.log(await res.json())
-      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1');
+      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase);
       //@TODO dodano pomyślnie
       break;
     case `no-interested`:
@@ -37,7 +40,7 @@ export const studentsStatusHandler = async (
         }
       })
 
-      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage);
+      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage, type, actualSearchPhrase);
       //@TODO dodano pomyślnie
       break;
 
@@ -52,7 +55,7 @@ export const studentsStatusHandler = async (
         }
       })
 
-      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage);
+      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage, type, actualSearchPhrase);
       //@TODO dodano pomyślnie
       break;
 
