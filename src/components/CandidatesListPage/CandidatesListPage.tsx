@@ -12,6 +12,9 @@ import {labels} from 'utils/labels'
 import './CandidatesListPage.scss';
 import {ForInterviewCard} from "../common/ForInterviewCard/ForInterviewCard";
 import {updateStudentsLists} from "../../utils/updateStudentsLists";
+import {useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store';
+import { Generating } from 'components/Generating/Generating';
 
 //strona z listą kandydatów 
 
@@ -60,12 +63,15 @@ export enum RecruiterActionsOfStatusEnum {
 
 
 const CandidatesListPage: React.FC = () => {
+  const {activeStudents, forInterviewStudents} = useSelector((store:RootState) => store.students);
+  const dispatch = useDispatch();
+  const [isGenerated, setIsGenerated] = useState<boolean>(false)
   const [modalState, setModalState] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const candidates = searchParams.get('candidates');
 
-  const [activeStudentsList, setActiveStudentsList] = useState<AvailableStudentToListResponseInterface[]>([])
-  const [forInterviewStudentsList, setForInterviewStudentsList] = useState<ForInterviewStudentToListResponseInterface[]>([])
+  // const [activeStudentsList, setActiveStudentsList] = useState<AvailableStudentToListResponseInterface[]>([])
+  // const [forInterviewStudentsList, setForInterviewStudentsList] = useState<ForInterviewStudentToListResponseInterface[]>([])
 
   const modalHandler = () => {
     setModalState(!modalState)
@@ -78,10 +84,21 @@ const CandidatesListPage: React.FC = () => {
   useEffect(() => {
 
     (async () => {
-      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList);
+      try {
+        await updateStudentsLists(dispatch);
+        setIsGenerated(true);
+
+      } catch(e){
+        throw new Error('Something went wrong.')
+      }
+
     })()
 
   }, [])
+
+  if(!isGenerated){
+    return <Generating/>
+  }
 
   const filters: React.ReactNode = <>
     <div className='userlist-header__searchform'>
@@ -94,6 +111,7 @@ const CandidatesListPage: React.FC = () => {
   </>
 
 
+
   return (
     <>
       <Header/>
@@ -102,11 +120,9 @@ const CandidatesListPage: React.FC = () => {
         <GenericSection children={filters} customClass='filters'/>
         {
           candidates === 'available'
-            ? activeStudentsList.map(student => <GenericSection key={student.id}
+            ? activeStudents.map(student => <GenericSection key={student.id}
                                                                 children={<CandidateCard
                                                                   student={student}
-                                                                  setActiveStudentsList={setActiveStudentsList}
-                                                                  setForInterviewStudentsList={setForInterviewStudentsList}
                                                                 />}
                                                                 customClass='userList__list'/>
             )
@@ -114,11 +130,9 @@ const CandidatesListPage: React.FC = () => {
         }
         {
           candidates === 'meetings'
-            ? forInterviewStudentsList.map(student => <GenericSection key={student.id}
+            ? forInterviewStudents.map(student => <GenericSection key={student.id}
                                                                       children={<ForInterviewCard
                                                                         student={student}
-                                                                        setActiveStudentsList={setActiveStudentsList}
-                                                                        setForInterviewStudentsList={setForInterviewStudentsList}
                                                                       />}
                                                                       customClass='userList__list'/>)
             : null
