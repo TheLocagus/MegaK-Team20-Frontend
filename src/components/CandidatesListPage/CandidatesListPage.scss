@@ -60,3 +60,23 @@
     margin: 0 14px;
     border-bottom: 14px solid $color-grey;
 }
+
+.pages {
+    height: 7vh;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+
+    span {
+        color: $color-light-grey;
+        padding: 0 10px;
+
+        a {
+            font-size: 22px;
+        }
+    }
+
+    .active {
+        color: $color-white
+    }
+}

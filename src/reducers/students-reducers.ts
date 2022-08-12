@@ -1,19 +1,27 @@
 import { StudentsAction } from "action-types/students";
 import { AvailableStudentToListResponseInterface, ForInterviewStudentToListResponseInterface } from "components/CandidatesListPage/CandidatesListPage";
 
-interface StudentsState {
-  activeStudents: AvailableStudentToListResponseInterface[];
+export interface StudentsState {
+  activeStudents: {
+    count: number;
+    items: AvailableStudentToListResponseInterface[];
+    totalPages: Number;
+  };
   forInterviewStudents: ForInterviewStudentToListResponseInterface[];
 }
 
 const initialState: StudentsState = {
-  activeStudents: [],
+  activeStudents: {
+    count: 1,
+    items: [],
+    totalPages: 1,
+  },
   forInterviewStudents: [],
 }
 
 interface SetActiveStudents {
   type: StudentsAction.SET_ACTIVE_STUDENTS;
-  payload: AvailableStudentToListResponseInterface[];
+  payload: StudentsState["activeStudents"];
 }
 
 interface SetForInterviewStudents {

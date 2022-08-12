@@ -1,49 +1,43 @@
 import React, {useState} from 'react';
-import {useSearchParams} from 'react-router-dom';
+import {useParams, useSearchParams} from 'react-router-dom';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import Icon from 'components/Icon/Icon';
 import {labels} from 'utils/labels'
 import {
-  AvailableStudentToListResponseInterface, ForInterviewStudentToListResponseInterface,
+  AvailableStudentToListResponseInterface,
   RecruiterActionsOfStatusEnum
 } from "../../CandidatesListPage/CandidatesListPage";
 import {
   showExpectedContractType, showExpectedTypeWork
 } from "../../../utils/displayCorrectPlainInStudentsLists";
 import './CandidateCard.scss';
-import {updateStudentsLists} from "../../../utils/updateStudentsLists";
 import {studentsStatusHandler} from "../../../utils/studentsStatusHandler";
-import { useDispatch } from 'react-redux';
 
 // element listy kandydatów na liście 'dostępni kursanci' i 'do rozmowy'
 // a także (w zależności od miejsca renderowania) pełna karta kandydata - dla slajdu 6
 
 interface Props {
   student: AvailableStudentToListResponseInterface;
+  setActiveStudentsList: any;
+  setForInterviewStudentsList: any;
 }
 
-const CandidateCard: React.FC<Props> = ({student}: Props) => {
+const CandidateCard: React.FC<Props> = ({student, setActiveStudentsList, setForInterviewStudentsList}: Props) => {
   const [cartState, setCartState] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const candidates = searchParams.get('candidates');
-
-  const dispatch = useDispatch();
+const {numberOfPage} = useParams();
   
   const {
-    id,
     firstName,
     lastName,
     canTakeApprenticeship,
-    courseCompletion,
-    courseEngagement,
     expectedContractType,
     expectedTypeWork,
     expectedSalary,
     monthsOfCommercialExp,
-    projectDegree,
-    teamProjectDegree,
     targetWorkCity,
-    status
+    studentImport
   } = student
 
   const openCardHandler = () => {
@@ -51,7 +45,7 @@ const CandidateCard: React.FC<Props> = ({student}: Props) => {
   }
 
   const handleReservation = async () => {
-    await studentsStatusHandler(RecruiterActionsOfStatusEnum.forInterview, id, dispatch);
+    await studentsStatusHandler(RecruiterActionsOfStatusEnum.forInterview, studentImport.id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || "1");
   }
 
   return (
@@ -83,10 +77,10 @@ const CandidateCard: React.FC<Props> = ({student}: Props) => {
         </thead>
         <tbody>
         <tr>
-          <td>{courseCompletion}<span> / 5</span></td>
-          <td>{courseEngagement}<span> / 5</span></td>
-          <td>{projectDegree}<span> / 5</span></td>
-          <td>{teamProjectDegree}<span> / 5</span></td>
+          <td>{studentImport.courseCompletion}<span> / 5</span></td>
+          <td>{studentImport.courseEngagement}<span> / 5</span></td>
+          <td>{studentImport.projectDegree}<span> / 5</span></td>
+          <td>{studentImport.teamProjectDegree}<span> / 5</span></td>
           <td>{showExpectedTypeWork(expectedTypeWork)}</td>
           <td>{targetWorkCity}</td>
           <td>{showExpectedContractType(expectedContractType)}</td>

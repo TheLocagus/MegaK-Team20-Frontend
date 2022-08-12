@@ -8,19 +8,24 @@ import {
 } from "../components/CandidatesListPage/CandidatesListPage";
 
 export const updateStudentsLists = async (
-  dispatch:  Dispatch<AnyAction>
+  setActiveStudentsList: any,
+  setForInterviewStudentsList: any,
+  numberOfPage: string,
 ) => {
-
-  const resAllStudents = await fetch('http://localhost:3001/recruiter/students')
+  console.log(numberOfPage)
+  const resAllStudents = await fetch(`http://localhost:3001/recruiter/${Number(numberOfPage)}`)
   const resForInterviewStudents = await fetch('http://localhost:3001/recruiter/for-interview')
 
   const dataAllStudents = await resAllStudents.json();
   const dataForInterviewStudents = await resForInterviewStudents.json();
+  console.log(dataAllStudents)
 
-  dispatch(setActiveStudents(dataAllStudents))
-  dispatch(setForInterviewStudents(dataForInterviewStudents))
-  // activeState(dataAllStudents);
-  // interviewState(dataForInterviewStudents);
+  setActiveStudentsList(dataAllStudents)
+  setForInterviewStudentsList(dataForInterviewStudents)
+  // dispatch(setActiveStudents(dataAllStudents))
+  // dispatch(setForInterviewStudents(dataForInterviewStudents))
+
+
 }
 
 

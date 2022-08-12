@@ -1,7 +1,8 @@
 import { StudentsAction } from "action-types/students";
-import { AvailableStudentToListResponseInterface, ForInterviewStudentToListResponseInterface } from "components/CandidatesListPage/CandidatesListPage";
+import { ForInterviewStudentToListResponseInterface } from "components/CandidatesListPage/CandidatesListPage";
+import {StudentsState} from "../reducers/students-reducers";
 
-export const setActiveStudents = (activeStudents: AvailableStudentToListResponseInterface[]) => ({
+export const setActiveStudents = (activeStudents: StudentsState["activeStudents"]) => ({
   type: StudentsAction.SET_ACTIVE_STUDENTS,
   payload: activeStudents,
 })
