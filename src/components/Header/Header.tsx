@@ -7,18 +7,18 @@ import './Header.scss';
 // top pasek - miejsce na logo i info o zalogowanym użytkowniku
 
 interface Props {
-
+    personData: string;
 }
 
 
-const Header: React.FC<Props> = () => {
+const Header: React.FC<Props> = ({ personData }) => {
     const [menuDropdownState, setMenuDropdownState] = useState(false)
 
 
     return (
         <header className='header-admin'>
             <nav className='header-admin__nav'>
-                <a href='index.html'>
+                <a href='/'>
                     <div className='logo'></div>
                 </a>
                 <div className={`header-admin__usermenu ${menuDropdownState && 'open'}`}
@@ -27,11 +27,10 @@ const Header: React.FC<Props> = () => {
                     >
                     <div>
                         <img className='avatar' src={require('../../images/avatar.jpg')} alt='' />
-                        <span>Mateusz Kowalski</span>
+                        <span>{personData}</span>
                         <div className='arrow-down'>▼</div>
                     </div>
                     <div className='header-admin__usermenu-list'>
-                        <ButtonLink label={labels.buttons.account} />
                         <ButtonLink label={labels.buttons.logout} />
                     </div>
                 </div>
