@@ -64,8 +64,13 @@ section {
   label {
     display: flex;
     flex-direction: column; 
-    font-size: 0.87rem;
     min-width: 47%;
+    span {
+      font-size: 0.87rem;
+      span {
+        color: $color-red;
+      }
+    }
     input, select {
       height: 27px;
       margin: 0.4rem 0 1.25rem;
@@ -83,6 +88,9 @@ section {
   }
   legend {
     font-size: 0.87rem;
+    span {
+      color: $color-red;
+    }
   }
   select {
     background-color: $color-dark-grey;

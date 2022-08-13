@@ -24,7 +24,7 @@ enum ContractType {
 interface CreateStudentResponse {
     pwdHash: string;
     bio: string;
-    canTakeApprenticeship: boolean;
+    canTakeApprenticeship: boolean | '';
     courses: string;
     education: string;
     expectedContractType: ContractType;
@@ -64,6 +64,7 @@ const StudentRegisterForm = () => {
             courses: '' //długi test, zachowujemy entery
         }
     )
+
     const [inputPortfolio, setInputPortfolio] = useState<string>('')
     const [inputProjects, setInputProjects] = useState<string>('')
     const [repeatPassword, setRepeatPassword] = useState<string>('');
@@ -132,6 +133,32 @@ const StudentRegisterForm = () => {
         setInputProjects('')
 
     }
+
+    const resetFormHandler = () => {
+        setUserData(
+            {
+                pwdHash: '',
+                telephone: '',
+                firstName: '',
+                lastName: '',
+                githubUsername: '',
+                portfolioUrls: [],
+                projectUrls: [],
+                bio: '',
+                expectedTypeWork: TypeWork.noPreference,
+                targetWorkCity: '',
+                expectedContractType: ContractType.noPreference,
+                expectedSalary: '',
+                canTakeApprenticeship: true,
+                monthsOfCommercialExp: '',
+                education: '',
+                workExperience: '',
+                courses: '',
+            }
+        )
+    }
+
+
     return (
         <section>
             <img className='form-login__logo' src={require('../../images/logo-mk.png')} alt='' width='124' height='76' />
@@ -149,11 +176,12 @@ const StudentRegisterForm = () => {
                         type='button'
                         customClass='filter__header-button blue-btn'
                         label={labels.buttons.clearFilters}
+                        onClick={resetFormHandler}
                     />
                 </div>
                 <fieldset className='passwords'>
                     <label className='student-register-form__password'>
-                        {labels.login.password}
+                        <span>{labels.login.password}<span> *</span></span>
                         <input type='password'
                             placeholder={labels.studentRegister.placeholder.password}
                             value={userData.pwdHash}
@@ -162,7 +190,7 @@ const StudentRegisterForm = () => {
                         />
                     </label>
                     <label className='student-register-form__repeat-password'>
-                        {labels.studentRegister.repeatPassword}
+                        <span>{labels.studentRegister.repeatPassword}<span> *</span></span>
                         <input type='password'
                             placeholder={labels.studentRegister.placeholder.password}
                             value={repeatPassword}
@@ -174,7 +202,7 @@ const StudentRegisterForm = () => {
                 <fieldset className='student-register-form__personal-fields'>
                     <div>
                         <label className='student-register-form__firstName'>
-                            {labels.studentRegister.name}
+                            <span>{labels.studentRegister.name}<span> *</span></span>
                             <input type='text'
                                 placeholder={labels.studentRegister.placeholder.name}
                                 value={userData.firstName}
@@ -183,7 +211,7 @@ const StudentRegisterForm = () => {
                             />
                         </label>
                         <label className='student-register-form__lastName'>
-                            {labels.studentRegister.surname}
+                            <span>{labels.studentRegister.surname}<span> *</span></span>
                             <input type='text'
                                 placeholder={labels.studentRegister.placeholder.surname}
                                 value={userData.lastName}
@@ -194,29 +222,27 @@ const StudentRegisterForm = () => {
                     </div>
                     <div>
                         <label className='student-register-form__telephone'>
-                            {labels.studentRegister.telNumber}
+                            <span>{labels.studentRegister.telNumber}</span>
                             <input type='tel'
                                 placeholder={labels.studentRegister.placeholder.phone}
-                                pattern='[0-9]{3}-[0-9]{3}-[0-9]{3}'
+                                pattern='[0-9]{9}'
                                 value={userData.telephone}
                                 onChange={e => handleChange('telephone', e.target.value)}
-                                required
                             />
                         </label>
                         <label className='student-register-form__targetWorkCity'>
-                            {labels.studentRegister.preferedCity}
+                            <span>{labels.studentRegister.preferedCity}</span>
                             <input type='text'
                                 placeholder={labels.studentRegister.placeholder.city}
                                 value={userData.targetWorkCity}
                                 onChange={e => handleChange('targetWorkCity', e.target.value)}
-                                required
                             />
                         </label>
                     </div>
                 </fieldset>
                 <fieldset className='student-register-form__githubUsername'>
                     <label>
-                        {labels.studentRegister.githubNickname}
+                        <span>{labels.studentRegister.githubNickname}<span> *</span></span>
                         <input type='text'
                             placeholder={labels.studentRegister.placeholder.githubNickname}
                             value={userData.githubUsername}
@@ -227,12 +253,11 @@ const StudentRegisterForm = () => {
                 </fieldset>
                 <fieldset className='student-register-form__urls'>
                     <label className='student-register-form__portfolioUrls'>
-                        {labels.studentRegister.portfolioLink}
+                        <span>{labels.studentRegister.portfolioLink}</span>
                         <input type='text'
                             placeholder={labels.studentRegister.placeholder.links}
                             value={inputPortfolio}
                             onChange={e => setInputPortfolio(e.target.value)}
-                            required
                         />
                         <ButtonLink type='button'
                             customClass='blue-btn'
@@ -241,7 +266,7 @@ const StudentRegisterForm = () => {
                         />
                     </label>
                     <label className='student-register-form__projectUrls'>
-                        {labels.studentRegister.projectsLink}
+                        <span>{labels.studentRegister.projectsLink}<span> *</span></span>
                         <input type='text'
                             placeholder={labels.studentRegister.placeholder.links}
                             value={inputProjects}
@@ -256,7 +281,7 @@ const StudentRegisterForm = () => {
                     </label>
                 </fieldset>
                 <label className='student-register-form__bio'>
-                    {labels.studentRegister.aboutMe}
+                    <span>{labels.studentRegister.aboutMe}</span>
                     <textarea name='bio'
                         id='bio'
                         cols={30}
@@ -264,13 +289,12 @@ const StudentRegisterForm = () => {
                         placeholder={labels.studentRegister.placeholder.aboutMe}
                         value={userData.bio}
                         onChange={e => handleChange('bio', e.target.value)}
-                        required
                     >
                     </textarea>
                 </label>
                 <fieldset className='typeWorkAndContract'>
                     <label className='student-register-form__expectedTypeWork'>
-                        {labels.studentRegister.prefJobStyle.label}
+                        <span>{labels.studentRegister.prefJobStyle.label}<span> *</span></span>
                         <select name='expectedTypeWork'
                             id='expectedTypeWork'
                             onChange={e => handleChange('expectedTypeWork', e.target.value)}
@@ -294,7 +318,7 @@ const StudentRegisterForm = () => {
                         </select>
                     </label>
                     <label className='student-register-form__expectedContractType'>
-                        {labels.options.contractType.label}
+                        <span>{labels.options.contractType.label}<span> *</span></span>
                         <select name='expectedContractType'
                             id='expectedContractType'
                             onChange={e => handleChange('expectedContractType', e.target.value)}
@@ -320,16 +344,15 @@ const StudentRegisterForm = () => {
                 </fieldset>
                 <fieldset className='salaryAndExp'>
                     <label className='student-register-form__expectedSalary'>
-                        {labels.options.salary.label}
+                        <span>{labels.options.salary.label}</span>
                         <input type='text'
                             placeholder={labels.options.salary.maxPlaceholder}
                             value={userData.expectedSalary}
                             onChange={e => handleChange('expectedSalary', Number(e.target.value))}
-                            required
                         />
                     </label>
                     <label className='student-register-form__monthsOfCommercialExp'>
-                        {labels.options.experience}
+                        <span>{labels.options.experience}<span> *</span></span>
                         <input type='number'
                             placeholder={labels.studentRegister.placeholder.months}
                             value={userData.monthsOfCommercialExp}
@@ -340,7 +363,7 @@ const StudentRegisterForm = () => {
                 </fieldset>
                 <fieldset className='educationWorkExperienceCourses'>
                     <label className='student-register-form__education'>
-                        {labels.studentRegister.education}
+                        <span>{labels.studentRegister.education}</span>
                         <textarea name='education'
                             id='education'
                             cols={30}
@@ -348,12 +371,11 @@ const StudentRegisterForm = () => {
                             placeholder={labels.studentRegister.placeholder.education}
                             value={userData.education}
                             onChange={e => handleChange('education', e.target.value)}
-                            required
                         >
                         </textarea>
                     </label>
                     <label className='student-register-form__workExperience'>
-                        {labels.studentRegister.experience}
+                        <span>{labels.studentRegister.experience}</span>
                         <textarea name='workExperience'
                             id='workExperience'
                             cols={30}
@@ -361,12 +383,11 @@ const StudentRegisterForm = () => {
                             placeholder={labels.studentRegister.placeholder.experience}
                             value={userData.workExperience}
                             onChange={e => handleChange('workExperience', e.target.value)}
-                            required
                         >
                         </textarea>
                     </label>
                     <label className='student-register-form__courses'>
-                        {labels.studentRegister.courses}
+                        <span>{labels.studentRegister.courses}</span>
                         <textarea name='courses'
                             id='courses'
                             cols={30}
@@ -374,13 +395,12 @@ const StudentRegisterForm = () => {
                             placeholder={labels.studentRegister.placeholder.courses}
                             value={userData.courses}
                             onChange={e => handleChange('courses', e.target.value)}
-                            required
                         >
                         </textarea>
                     </label>
                 </fieldset>
                 <fieldset className='student-register-form__canTakeApprenticeship'>
-                    <legend>{labels.options.internship.label}</legend>
+                    <legend>{labels.options.internship.label}<span> *</span></legend>
                     <div className='student-register-form__canTakeApprenticeship__agree'>
                         <input type='radio'
                             name='internship'
