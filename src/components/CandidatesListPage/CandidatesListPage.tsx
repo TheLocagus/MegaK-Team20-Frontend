@@ -64,7 +64,7 @@ export interface ForInterviewStudentToListResponseInterface {
 }
 
 export interface ActiveStudentsData {
-  items: AvailableStudentToListResponseInterface[],
+  availableStudents: AvailableStudentToListResponseInterface[],
   count: number,
   totalPages: number,
 }
@@ -90,7 +90,7 @@ const CandidatesListPage: React.FC = () => {
   const [activeStudentsList, setActiveStudentsList] = useState<ActiveStudentsData>({
     count: 1,
     totalPages: 1,
-    items: []
+    availableStudents: []
   })
   const [forInterviewStudentsList, setForInterviewStudentsList] = useState<ForInterviewStudentToListResponseInterface[]>([])
 
@@ -118,7 +118,7 @@ const CandidatesListPage: React.FC = () => {
             setActiveStudentsList(await res.json())
             break;
           case DataTypeEnum.searched:
-            const resSearched = await fetch(`http://localhost:3001/recruiter/${numberOfPage}/${actualSearchPhrase}`)
+            const resSearched = await fetch(`http://localhost:3001/recruiter/1/${actualSearchPhrase}`)
             //fetch z wyszukanymi
             console.log('czy wchodzi do searched')
             setActiveStudentsList(await resSearched.json())
@@ -184,7 +184,7 @@ const CandidatesListPage: React.FC = () => {
       dispatch(setDataType(DataTypeEnum.searched))
       console.log('w handleform', type)
       dispatch(setActualSearchPhrase(searchValue))
-      const res = await fetch(`http://localhost:3001/recruiter/${numberOfPage}/${searchValue}`)
+      const res = await fetch(`http://localhost:3001/recruiter/1/${searchValue}`)
       const data = await res.json()
 
       setActiveStudentsList(data)
@@ -240,7 +240,7 @@ const CandidatesListPage: React.FC = () => {
         <GenericSection children={filters} customClass='filters'/>
         {
           candidates === 'available'
-            ? activeStudentsList.items.map(student => <GenericSection key={student.studentImport.id}
+            ? activeStudentsList.availableStudents.map(student => <GenericSection key={student.id}
                                                                       children={<CandidateCard
                                                                         student={student}
                                                                         setActiveStudentsList={setActiveStudentsList}

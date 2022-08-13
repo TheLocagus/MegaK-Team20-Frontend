@@ -5,7 +5,7 @@ import {DataTypeEnum} from "../actions/students";
 export interface StudentsState {
   activeStudents: {
     count: number;
-    items: AvailableStudentToListResponseInterface[];
+    availableStudents: AvailableStudentToListResponseInterface[];
     totalPages: Number;
   };
   forInterviewStudents: ForInterviewStudentToListResponseInterface[];
@@ -16,7 +16,7 @@ export interface StudentsState {
 const initialState: StudentsState = {
   activeStudents: {
     count: 1,
-    items: [],
+    availableStudents: [],
     totalPages: 1,
   },
   forInterviewStudents: [],

@@ -39,7 +39,11 @@ const {numberOfPage} = useParams();
     expectedSalary,
     monthsOfCommercialExp,
     targetWorkCity,
-    studentImport
+    courseCompletion,
+    teamProjectDegree,
+    projectDegree,
+    courseEngagement,
+    id
   } = student
 
   const openCardHandler = () => {
@@ -47,7 +51,7 @@ const {numberOfPage} = useParams();
   }
 
   const handleReservation = async () => {
-    await studentsStatusHandler(RecruiterActionsOfStatusEnum.forInterview, studentImport.id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || "1", type, actualSearchPhrase);
+    await studentsStatusHandler(RecruiterActionsOfStatusEnum.forInterview, id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || "1", type, actualSearchPhrase);
   }
 
   return (
@@ -79,10 +83,10 @@ const {numberOfPage} = useParams();
         </thead>
         <tbody>
         <tr>
-          <td>{studentImport.courseCompletion}<span> / 5</span></td>
-          <td>{studentImport.courseEngagement}<span> / 5</span></td>
-          <td>{studentImport.projectDegree}<span> / 5</span></td>
-          <td>{studentImport.teamProjectDegree}<span> / 5</span></td>
+          <td>{courseCompletion}<span> / 5</span></td>
+          <td>{courseEngagement}<span> / 5</span></td>
+          <td>{projectDegree}<span> / 5</span></td>
+          <td>{teamProjectDegree}<span> / 5</span></td>
           <td>{showExpectedTypeWork(expectedTypeWork)}</td>
           <td>{targetWorkCity}</td>
           <td>{showExpectedContractType(expectedContractType)}</td>

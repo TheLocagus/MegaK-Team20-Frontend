@@ -36,7 +36,6 @@ export interface StudentCvInterface {
     courses: string;
     email: string;
     telephone: string;
-    avatarUrl: string;
 }
 
 const CandidatePage: React.FC = () => {
@@ -64,18 +63,18 @@ const CandidatePage: React.FC = () => {
         projectUrls: [],
         targetWorkCity: '',
         teamProjectDegree: 0,
-        avatarUrl: ''
     })
 
     const dispatch = useDispatch();
 
     const {id} = useParams()
-   useEffect(()=>{
+    useEffect(()=>{
        (async () => {
            try {
+               console.log(id)
+
                const res = await fetch(`http://localhost:3001/recruiter/cv/${id}`)
                const data = await res.json()
-
                setStudent(data)
                setIsGenerated(true)
            } catch (e){
@@ -131,6 +130,7 @@ const CandidatePage: React.FC = () => {
                 'Content-Type': 'application/json'
             }
         })
+        window.location.href = 'http://localhost:3000/recruiter'
     }
 
     if (!isGenerated) {
