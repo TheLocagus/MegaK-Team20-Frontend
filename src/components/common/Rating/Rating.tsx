@@ -14,8 +14,7 @@ interface Props {
         teamWorkRate: string[];
         workPlace: string[];
         contractType: string[];
-        salaryMin: number | string;
-        salaryMax: number | string;
+        salary: any[];
         internship: string | undefined | any;
         experience: string | undefined | any;
     };

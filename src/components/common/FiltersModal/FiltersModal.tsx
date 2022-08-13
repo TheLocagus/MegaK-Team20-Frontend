@@ -24,8 +24,7 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
         teamWorkRate: [],
         workPlace: [],
         contractType: [],
-        salaryMin: '',
-        salaryMax: '',
+        salary: [0, ''],
         internship: '',
         experience: '',
     })
@@ -38,8 +37,7 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
             teamWorkRate: [],
             workPlace: [],
             contractType: [],
-            salaryMin: '',
-            salaryMax: '',
+            salary: [0, ''],
             internship: '',
             experience: '',
         })
@@ -63,6 +61,13 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
             [e.target.name]: newState()
         }))
     };
+
+    const salaryFilterHandler = (e: any, i: number) => {
+        const nameString = e.target.name as string;
+        const salaryState = filterData[nameString as keyof typeof filterData]
+        console.log(salaryState)
+        setFilterData(dataItem => ({...dataItem, [salaryState[0]]: [e.target.value]}))
+    }
 
     const selectFilterHandler = (e: any) => {
         setFilterData(dataItem => ({
@@ -97,6 +102,8 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
         }
         return monthsTable
     }
+
+    console.log(filterData)
     
 
     return (
@@ -231,9 +238,8 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
                                 type='number'
                                 min='1'
                                 placeholder={labels.options.salary.minPlaceholder}
-                                name='salaryMin'
-                                value={filterData.salaryMin}
-                                onChange={selectFilterHandler}
+                                name='salary'
+                                onChange={e => salaryFilterHandler(e, 0)}
                             />
                         </label>
                         <label>{labels.options.salary.to}
@@ -241,9 +247,8 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
                                 type='number'
                                 min='2'
                                 placeholder={labels.options.salary.maxPlaceholder}
-                                name='salaryMax'
-                                value={filterData.salaryMax}
-                                onChange={selectFilterHandler}
+                                name='salary'
+                                onChange={e => salaryFilterHandler(e, 1)}
                             />
                         </label>
                     </div>
