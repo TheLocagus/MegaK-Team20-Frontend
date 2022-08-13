@@ -13,9 +13,10 @@ a {
 
 p {
   margin: 0;
+  color: $color-white;
 }
 
-.main{
+.main {
   &__back {
     display: flex;
     align-items: center;

@@ -227,33 +227,38 @@ const CandidatePage: React.FC = () => {
                         </tbody>
                     </table>
 
-                    <h3>Edukacja</h3>
-                    <p>{student?.education}</p>
-
-                    <h3>Kursy</h3>
-                    <p>{student?.courses}</p>
-
-                    <h3>Doświadczenie zawodowe</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis repudiandae eos iste laudantium
+                    <div>
+                        <h3>Edukacja</h3>
+                        <p>{student?.education}</p> 
+                    </div>
+                    
+                    <div>
+                        <h3>Kursy</h3>
+                        <p>{student?.courses}</p>
+                    </div>
+                    
+                    <div>
+                        <h3>Doświadczenie zawodowe</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis repudiandae eos iste laudantium
                         dignissimos, corrupti, numquam rem, optio consequuntur atque mollitia itaque eius officia eum
                         temporibus ratione repellat tempore</p>
-
-                    <h3>Portfolio</h3>
-
-                    <>
-                        {student?.portfolioUrls && student.portfolioUrls.map(url => showUrl(url))}
-                    </>
-
-                    <h3>Projekt w zespole Scrumowym</h3>
-
-                    <>
-                        {student?.bonusProjectUrls && student.bonusProjectUrls.map(url => showUrl(url))}
-                    </>
+                    </div>
                     
-                    <h3>Projekt na zaliczenie</h3>
-                    <>
-                        {student?.projectUrls && student.projectUrls.map(url => showUrl(url))}
-                    </>
+                    <div>
+                        <h3>Portfolio</h3>
+                        <>{student?.portfolioUrls && student.portfolioUrls.map(url => showUrl(url))}</>
+                    </div>
+                    
+                    <div>
+                        <h3>Projekt w zespole Scrumowym</h3>
+                        <>{student?.bonusProjectUrls && student.bonusProjectUrls.map(url => showUrl(url))}</>
+                    </div>
+
+                    <div>
+                        <h3>Projekt na zaliczenie</h3>
+                        <>{student?.projectUrls && student.projectUrls.map(url => showUrl(url))}</>
+                    </div>
+
                 </div>
             </main>
         </>

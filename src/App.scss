@@ -57,7 +57,8 @@ label {
 }
 
 input {
-
+  outline-width: 1px;
+  outline-color: $color-deep-grey;
 }
 
 a, button {
