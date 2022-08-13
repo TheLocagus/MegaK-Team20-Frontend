@@ -182,8 +182,8 @@ const CandidatesListPage: React.FC = () => {
 
     if(searchValue.length !== 0){
       dispatch(setDataType(DataTypeEnum.searched))
-      console.log('w handleform', type)
       dispatch(setActualSearchPhrase(searchValue))
+      localStorage.setItem('searchPhraseInMemory', actualSearchPhrase)
       const res = await fetch(`http://localhost:3001/recruiter/1/${searchValue}`)
       const data = await res.json()
 
@@ -235,7 +235,7 @@ const CandidatesListPage: React.FC = () => {
         <GenericSection children={filters} customClass='filters' />
         {!isGenerated && <GenericSection children={<Generating />} />}
         {
-          candidates === 'available'
+          (candidates === 'available' && isGenerated)
             && activeStudentsList?.availableStudents?.map(student =>
               <GenericSection key={student.id} customClass='userList__list'
                 children={<CandidateCard
@@ -248,7 +248,7 @@ const CandidatesListPage: React.FC = () => {
             )
         }
         {
-          candidates === 'meetings'
+          (candidates === 'meetings' && isGenerated)
             && forInterviewStudentsList?.map(student =>
               <GenericSection key={student.id} customClass='userList__list'
                 children={<ForInterviewCard

@@ -89,8 +89,6 @@ const StudentRegisterForm = () => {
             throw new Error('No required fields')
         }
 
-        console.log(JSON.stringify(["siemanko123"]))
-
         const res = await fetch(`http://localhost:3001/student/register/${id}`, {
             method: 'POST',
             body: JSON.stringify(userData),
@@ -151,7 +149,6 @@ const StudentRegisterForm = () => {
                         type='button'
                         customClass='filter__header-button blue-btn'
                         label={labels.buttons.clearFilters}
-                        // onClick={resetFilterDataHandler}
                     />
                 </div>
                 <fieldset className='passwords'>
@@ -408,7 +405,6 @@ const StudentRegisterForm = () => {
                         </label>
                     </div>
                 </fieldset>
-                {/* <input type='submit' >{labels.buttons.confirm}</input> */}
                 <button className='submitStudentRegisterForm btn submit-btn' type='submit'>{labels.buttons.confirm}</button>
             </form>
         </section>

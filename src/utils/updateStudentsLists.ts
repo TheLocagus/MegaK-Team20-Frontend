@@ -10,6 +10,7 @@ export const updateStudentsLists = async (
   console.log(numberOfPage)
 
   if (type === DataTypeEnum.all){
+    console.log(numberOfPage)
     const resAllStudents = await fetch(`http://localhost:3001/recruiter/${Number(numberOfPage)}`)
     const dataAllStudents = await resAllStudents.json();
     setActiveStudentsList(dataAllStudents)
