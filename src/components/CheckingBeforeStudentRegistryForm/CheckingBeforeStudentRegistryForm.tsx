@@ -12,7 +12,7 @@ export const CheckingBeforeStudentRegistryForm = () => {
             const res = await fetch(`http://localhost:3001/student/register/${id}/${token}`)
             const data = await res.json();
 
-            if (data.isOk){
+            if (data.success){
                 window.location.href = `http://localhost:3000/student/register/${id}/${token}/form`
             } else {
                 throw new Error('Wrong data.')
