@@ -1,5 +1,6 @@
-import {SyntheticEvent, useEffect, useState} from 'react';
-import {useParams, useSearchParams} from 'react-router-dom';
+import { SyntheticEvent, useEffect, useState } from 'react';
+import { useParams, useSearchParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from 'components/Header/Header';
 import Navigation from 'components/Navigation/Navigation';
 import GenericSection from 'components/common/GenericSection/GenericSection';
@@ -7,15 +8,15 @@ import CandidateCard from 'components/common/CandidateCard/CandidateCard';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import Icon from 'components/Icon/Icon';
 import FiltersModal from 'components/common/FiltersModal/FiltersModal';
-import {labels} from 'utils/labels'
+import { labels } from 'utils/labels'
+import { ForInterviewCard } from '../common/ForInterviewCard/ForInterviewCard';
+import { updateStudentsLists } from 'utils/updateStudentsLists';
+import { Generating } from 'components/Generating/Generating';
+
+import { RootState } from 'store';
+import { DataTypeEnum, setActualSearchPhrase, setDataType } from 'actions/students';
 
 import './CandidatesListPage.scss';
-import {ForInterviewCard} from '../common/ForInterviewCard/ForInterviewCard';
-import {updateStudentsLists} from '../../utils/updateStudentsLists';
-import {Generating} from 'components/Generating/Generating';
-import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../../store';
-import {DataTypeEnum, setActualSearchPhrase, setDataType} from '../../actions/students';
 
 //strona z listą kandydatów 
 
@@ -229,7 +230,7 @@ const CandidatesListPage: React.FC = () => {
 
   return (
     <>
-      <Header/>
+      <Header personData='zalogowany rekruter'/>
       <main className='userlist'>
         <GenericSection children={<Navigation />} customClass='navigation' />
         <GenericSection children={filters} customClass='filters' />
@@ -265,7 +266,7 @@ const CandidatesListPage: React.FC = () => {
             && <GenericSection children={createPageNumbers(numberOfPage as string, activeStudentsList.totalPages)} customClass='pages'/>
         }
       </main>
-      {modalState && <FiltersModal onClick={modalHandler}/>}
+      {modalState && <FiltersModal onClick={modalHandler} />}
     </>
 
   )

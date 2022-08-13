@@ -18,7 +18,8 @@ module.exports = {
             account: 'Konto',
             logout: 'Wyloguj',
             add: 'Dodaj',
-            confirm: 'Zatwierdź'
+            confirm: 'Zatwierdź',
+            back: 'Wróć'
         },
         recruiter: {
             menu: {
@@ -90,6 +91,7 @@ module.exports = {
             experience: 'Doświadczenie zawodowe',
             courses: 'Kursy i certyfikaty',
             placeholder: {
+                email: 'np. adam@kowalski.pl',
                 password: 'Twoje hasło',
                 name: 'np. Adam',
                 surname: 'np. Kowalski',
