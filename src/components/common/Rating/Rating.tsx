@@ -15,8 +15,8 @@ interface Props {
         workPlace: string[];
         contractType: string[];
         salary: any[];
-        internship: string | undefined | any;
-        experience: string | undefined | any;
+        internship: string;
+        experience: any;
     };
     onClick: (e: any) => void,
 }
@@ -34,7 +34,7 @@ const Rating: React.FC<Props> = ({ customClass, name, filterData, onClick }) => 
         for (let i=0; i<STARS_COUNT; i++) {
             starsTable.push(
                 <label key={`${name}-${i}`}
-                    className={nameState.includes(String(i + 1)) ? 'active' : ''}
+                    className={nameState?.includes(String(i + 1)) ? 'active' : ''}
                     >
                     {i + 1}
                     <span>★</span>

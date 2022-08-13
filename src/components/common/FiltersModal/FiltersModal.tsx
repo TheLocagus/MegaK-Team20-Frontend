@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Rating from '../Rating/Rating';
 import ButtonLink from '../ButtonLink/ButtonLink';
 
@@ -37,7 +37,7 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
             teamWorkRate: [],
             workPlace: [],
             contractType: [],
-            salary: [0, ''],
+            salary: ['', ''],
             internship: '',
             experience: '',
         })
@@ -62,17 +62,18 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
         }))
     };
 
-    const salaryFilterHandler = (e: any, i: number) => {
+    const salaryFilterHandler = (e: React.ChangeEvent<HTMLInputElement>, i: number) => {
         const nameString = e.target.name as string;
         const salaryState = filterData[nameString as keyof typeof filterData]
-        console.log(salaryState)
-        setFilterData(dataItem => ({...dataItem, [salaryState[0]]: [e.target.value]}))
+        const newSalaryRange = i === 0 ? [Number(e.target.value), salaryState[1]] : [salaryState[0], Number(e.target.value)]
+
+        setFilterData(dataItem => ({...dataItem, [nameString]: newSalaryRange}))
     }
 
-    const selectFilterHandler = (e: any) => {
+    const selectFilterHandler = (e: React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLInputElement>) => {
         setFilterData(dataItem => ({
             ...dataItem,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.name === 'experience' ? Number(e.target.value) : e.target.value
         })
     )};
 
@@ -103,8 +104,6 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
         return monthsTable
     }
 
-    console.log(filterData)
-    
 
     return (
         <main className='filter__main'>
@@ -236,18 +235,20 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
                         <label>{labels.options.salary.from}
                             <input
                                 type='number'
-                                min='1'
+                                min={1}
                                 placeholder={labels.options.salary.minPlaceholder}
                                 name='salary'
+                                value={filterData.salary[0] || ''}
                                 onChange={e => salaryFilterHandler(e, 0)}
                             />
                         </label>
                         <label>{labels.options.salary.to}
                             <input
                                 type='number'
-                                min='2'
+                                min={1}
                                 placeholder={labels.options.salary.maxPlaceholder}
                                 name='salary'
+                                value={filterData.salary[1] || ''}
                                 onChange={e => salaryFilterHandler(e, 1)}
                             />
                         </label>
@@ -262,7 +263,7 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
                                 type='radio'
                                 value={labels.options.internship.yes}
                                 name='internship'
-                                onClick={selectFilterHandler}
+                                onChange={selectFilterHandler}
                                 checked={filterData.internship === labels.options.internship.yes}
                             />
                             {labels.options.internship.yes}
@@ -272,7 +273,7 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
                                 type='radio'
                                 value={labels.options.internship.no}
                                 name='internship'
-                                onClick={selectFilterHandler}
+                                onChange={selectFilterHandler}
                                 checked={filterData.internship === labels.options.internship.no}
                             />
                             {labels.options.internship.no}
