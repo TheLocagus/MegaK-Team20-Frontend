@@ -3,7 +3,9 @@ module.exports = {
         login: {
             email: 'E-mail',
             password: 'Hasło',
+            repeatPassword: 'Powtórz hasło',
             forgottenPassword: 'Zapomniałeś hasło?',
+            resetPassLabel: 'Odzyskiwanie hasła',
         },
         buttons: {
             login: 'Zaloguj się',
@@ -19,7 +21,8 @@ module.exports = {
             logout: 'Wyloguj',
             add: 'Dodaj',
             confirm: 'Zatwierdź',
-            back: 'Wróć'
+            back: 'Wróć',
+            send: 'Wyślij'
         },
         recruiter: {
             menu: {
