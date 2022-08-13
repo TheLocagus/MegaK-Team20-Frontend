@@ -387,7 +387,6 @@ export const StudentRegisterForm = () => {
                             name='internship'
                             id='yes'
                             value={1}
-                            checked={userData.canTakeApprenticeship}
                             onChange={e => handleChange('canTakeApprenticeship', Boolean(Number(e.target.value)))}
                             required
                         />
@@ -399,7 +398,6 @@ export const StudentRegisterForm = () => {
                         <input type='radio'
                             name='internship' id='no'
                             value={0}
-                            checked={!userData.canTakeApprenticeship}
                             onChange={e => handleChange('canTakeApprenticeship', Boolean(Number(e.target.value)))}
                             required
                         />

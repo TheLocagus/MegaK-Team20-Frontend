@@ -1,9 +1,12 @@
+@import '_variables.scss';
+@import '_mixins.scss';
+
 .generating-info{
-  height: 100vh;
+  height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: $color-white;
    h1 {
      font-size: 50px;
    }

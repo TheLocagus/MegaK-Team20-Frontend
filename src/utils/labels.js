@@ -56,7 +56,8 @@ module.exports = {
                 from: 'Od',
                 to: 'Do',
                 minPlaceholder: 'np. 1000 zł',
-                maxPlaceholder: 'np. 10000 zł'
+                maxPlaceholder: 'np. 10000 zł',
+                notSpecify: 'Nie podano',
             },
             internship: {
                 label: 'Zgoda na odbycie bezpłatnych praktyk / stażu na początek',

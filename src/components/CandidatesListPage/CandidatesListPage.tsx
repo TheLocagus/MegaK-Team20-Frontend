@@ -10,12 +10,12 @@ import FiltersModal from 'components/common/FiltersModal/FiltersModal';
 import {labels} from 'utils/labels'
 
 import './CandidatesListPage.scss';
-import {ForInterviewCard} from "../common/ForInterviewCard/ForInterviewCard";
-import {updateStudentsLists} from "../../utils/updateStudentsLists";
+import {ForInterviewCard} from '../common/ForInterviewCard/ForInterviewCard';
+import {updateStudentsLists} from '../../utils/updateStudentsLists';
 import {Generating} from 'components/Generating/Generating';
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../store";
-import {DataTypeEnum, setActualSearchPhrase, setDataType} from "../../actions/students";
+import {useDispatch, useSelector} from 'react-redux';
+import {RootState} from '../../store';
+import {DataTypeEnum, setActualSearchPhrase, setDataType} from '../../actions/students';
 
 //strona z listą kandydatów 
 
@@ -210,10 +210,6 @@ const CandidatesListPage: React.FC = () => {
     }
   }
 
-  if (!isGenerated) {
-    return <Generating/>
-  }
-
   const filters: React.ReactNode = <>
     <div className='userlist-header__searchform'>
       <div>
@@ -238,43 +234,39 @@ const CandidatesListPage: React.FC = () => {
       <main className='userlist'>
         <GenericSection children={<Navigation/>} customClass='navigation'/>
         <GenericSection children={filters} customClass='filters'/>
+        {!isGenerated && <GenericSection children={<Generating/>} customClass='filters'/>}
         {
           candidates === 'available'
-            ? activeStudentsList.availableStudents.map(student => <GenericSection key={student.id}
-                                                                      children={<CandidateCard
-                                                                        student={student}
-                                                                        setActiveStudentsList={setActiveStudentsList}
-                                                                        setForInterviewStudentsList={setForInterviewStudentsList}
-                                                                      />}
-                                                                      customClass='userList__list'/>
+            && activeStudentsList?.availableStudents?.map(student =>
+              <GenericSection key={student.id} customClass='userList__list'
+                children={<CandidateCard
+                  student={student}
+                  setActiveStudentsList={setActiveStudentsList}
+                  setForInterviewStudentsList={setForInterviewStudentsList}
+                  />
+                }
+              />
             )
-            : null
         }
         {
           candidates === 'meetings'
-            ? forInterviewStudentsList.map(student => <GenericSection key={student.id}
-                                                                      children={<ForInterviewCard
-                                                                        student={student}
-                                                                        setActiveStudentsList={setActiveStudentsList}
-                                                                        setForInterviewStudentsList={setForInterviewStudentsList}
-                                                                      />}
-                                                                      customClass='userList__list'/>)
-            : null
+            && forInterviewStudentsList?.map(student =>
+              <GenericSection key={student.id} customClass='userList__list'
+                children={<ForInterviewCard
+                  student={student}
+                  setActiveStudentsList={setActiveStudentsList}
+                  setForInterviewStudentsList={setForInterviewStudentsList}
+                  />
+                }
+              />
+            )
         }
-
         {
           candidates === 'available'
-            ? <section className='pages'>
-              {createPageNumbers(numberOfPage as string, activeStudentsList.totalPages)}
-            </section>
-            : null
+            && <GenericSection children={createPageNumbers(numberOfPage as string, activeStudentsList.totalPages)} customClass='pages'/>
         }
-
-
       </main>
-      {
-        modalState && <FiltersModal onClick={modalHandler}/>
-      }
+      {modalState && <FiltersModal onClick={modalHandler}/>}
     </>
 
   )

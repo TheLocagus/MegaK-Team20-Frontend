@@ -20,33 +20,20 @@ section {
   .form__header {
     @include form-header;
     margin-bottom: 20px;
-}
+  }
   .passwords {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    label {
-      
-    }
   }
   &__personal-fields {
-    // @include flex;
     div {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    label {
-      // display: flex;
-      // flex-direction: column;
-    }
-  }
-  &__githubUsername {
-    // display: flex;
-    // flex-direction: column;
   }
   &__urls {
-    // @include flex-start-center;
     label {
       margin-bottom: 1.25rem;
     }
@@ -56,31 +43,17 @@ section {
     }
   }
   .typeWorkAndContract{
-    // @include flex-start-center;
     display: flex;
     align-items: center;
     justify-content: space-between;
     select {
-      // width: 47%;
       max-width: 100%
     }
   }
   
-  .salaryAndExp {
-    // display: flex;
-    // align-items: center;
-    // justify-content: space-between;
-    input {
-      // max-width: 213px;
-    }
-  }
-  
-  .educationWorkExperienceCourses {
-    // @include flex-start-center;
-  }
-  .student-register-form__canTakeApprenticeship {
-    .student-register-form__canTakeApprenticeship__agree,
-    .student-register-form__canTakeApprenticeship__disagree {
+  &__canTakeApprenticeship {
+    &__agree,
+    &__disagree {
       display: flex;
       align-items: center;
       font-size: 0.87rem;
@@ -93,6 +66,7 @@ section {
         background-color: transparent;
         margin-right: 10px;
         height: 27px;
+        cursor: pointer;
       }
       .yes-label-internship, .no-label-internship {
         flex-direction: row;

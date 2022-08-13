@@ -1,19 +1,19 @@
 import React, {useState} from 'react';
-import {useParams, useSearchParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import Icon from 'components/Icon/Icon';
 import {labels} from 'utils/labels'
 import {
   AvailableStudentToListResponseInterface,
   RecruiterActionsOfStatusEnum
-} from "../../CandidatesListPage/CandidatesListPage";
+} from '../../CandidatesListPage/CandidatesListPage';
 import {
   showExpectedContractType, showExpectedTypeWork
-} from "../../../utils/displayCorrectPlainInStudentsLists";
+} from '../../../utils/displayCorrectPlainInStudentsLists';
 import './CandidateCard.scss';
-import {studentsStatusHandler} from "../../../utils/studentsStatusHandler";
-import {useSelector} from "react-redux";
-import {RootState} from "../../../store";
+import {studentsStatusHandler} from '../../../utils/studentsStatusHandler';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../store';
 
 // element listy kandydatów na liście 'dostępni kursanci' i 'do rozmowy'
 // a także (w zależności od miejsca renderowania) pełna karta kandydata - dla slajdu 6
@@ -26,9 +26,7 @@ interface Props {
 
 const CandidateCard: React.FC<Props> = ({student, setActiveStudentsList, setForInterviewStudentsList}: Props) => {
   const [cartState, setCartState] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const candidates = searchParams.get('candidates');
-const {numberOfPage} = useParams();
+  const {numberOfPage} = useParams();
   const {type, actualSearchPhrase} = useSelector((store: RootState) => store.students)
   const {
     firstName,
@@ -51,7 +49,7 @@ const {numberOfPage} = useParams();
   }
 
   const handleReservation = async () => {
-    await studentsStatusHandler(RecruiterActionsOfStatusEnum.forInterview, id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || "1", type, actualSearchPhrase);
+    await studentsStatusHandler(RecruiterActionsOfStatusEnum.forInterview, id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase);
   }
 
   return (
@@ -61,9 +59,16 @@ const {numberOfPage} = useParams();
           <p>{firstName} {lastName}</p>
         </div>
         <div className='group-btns'>
-          <ButtonLink type='button' customClass='opener' label='Zarezerwuj rozmowę' onClick={handleReservation}/>
-          <ButtonLink type='button' customClass={`opener-btn ${cartState ? 'open' : ''}`} icon={<Icon.ArrowUp/>}
-                      onClick={openCardHandler}/>
+          <ButtonLink type='button'
+            customClass='opener'
+            label={labels.buttons.reserve}
+            onClick={handleReservation}
+          />
+          <ButtonLink type='button'
+            customClass={`opener-btn ${cartState ? 'open' : ''}`}
+            icon={<Icon.ArrowUp/>}
+            onClick={openCardHandler}
+          />
         </div>
       </div>
       <table>
@@ -90,8 +95,8 @@ const {numberOfPage} = useParams();
           <td>{showExpectedTypeWork(expectedTypeWork)}</td>
           <td>{targetWorkCity}</td>
           <td>{showExpectedContractType(expectedContractType)}</td>
-          <td>{expectedSalary !== 0 ? `${expectedSalary} zł` : "Nie podano"}</td>
-          <td>{canTakeApprenticeship ? "Tak" : "Nie"}</td>
+          <td>{expectedSalary !== 0 ? `${expectedSalary} zł` : labels.options.salary.notSpecify}</td>
+          <td>{canTakeApprenticeship ? labels.options.internship.yes : labels.options.internship.no}</td>
           <td>{monthsOfCommercialExp}</td>
         </tr>
         </tbody>
