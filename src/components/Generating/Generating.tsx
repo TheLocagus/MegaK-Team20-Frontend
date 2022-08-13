@@ -1,8 +1,14 @@
-import React from 'react';
-import "./Generating.scss"
+import { labels } from 'utils/labels'
+
+import './Generating.scss'
+
+
 export const Generating = () => {
 
+  
   return (
-    <div className='generating-info'><h1>Trwa generowanie danych...</h1></div>
+    <div className='generating-info'>
+      <h3>{labels.generatingData}</h3>
+    </div>
   )
 }

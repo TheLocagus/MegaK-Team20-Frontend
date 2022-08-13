@@ -7,50 +7,38 @@ section {
 }
 .student-register-form_error {
   text-align: center;
-  font-size: 30px;
+  font-size: 1.88rem;
   color: $color-red;
-  margin-top: 50px;
+  margin-top: 3rem;
 }
 
 .student-register-form {
   display: flex;
   flex-direction: column;
   color: $color-white;
-  margin-top: 30px;
+  margin-top: 1.88rem;
   .form__header {
     @include form-header;
     margin-bottom: 20px;
   }
-  .passwords {
+  .passwords,
+  &__personal-fields div,
+  .typeWorkAndContract {
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-  &__personal-fields {
-    div {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
   }
   &__urls {
     label {
       margin-bottom: 1.25rem;
     }
     .btn {
-      @include blue-btn;
       align-self: flex-end;
     }
   }
-  .typeWorkAndContract{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    select {
-      max-width: 100%
-    }
+  .typeWorkAndContract select {
+    max-width: 100%
   }
-  
   &__canTakeApprenticeship {
     &__agree,
     &__disagree {
@@ -73,7 +61,6 @@ section {
       }
     }
   }
-
   label {
     display: flex;
     flex-direction: column; 

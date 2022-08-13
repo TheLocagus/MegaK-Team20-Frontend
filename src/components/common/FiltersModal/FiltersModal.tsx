@@ -111,7 +111,7 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
                 <div className='filter__header'>
                     <h2>{labels.filters.header}</h2>
                     <ButtonLink
-                        customClass='filter__header-button'
+                        customClass='filter__header-button blue-btn'
                         label={labels.buttons.clearFilters}
                         type='button'
                         onClick={resetFilterDataHandler}

@@ -1,6 +1,7 @@
-import {useEffect} from "react";
+import { useEffect } from 'react';
 
-export const RedirectPage = () => {
+const RedirectPage = () => {
+  
   useEffect(() => {
     window.location.href = 'http://localhost:3000/recruiter/1'
   }, [])
@@ -9,3 +10,5 @@ export const RedirectPage = () => {
     <div></div>
   )
 }
+
+export default RedirectPage;

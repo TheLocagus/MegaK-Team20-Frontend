@@ -1,20 +1,21 @@
-import React, {useEffect, useState} from 'react';
-import {useParams, useSearchParams} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, useSearchParams } from 'react-router-dom';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import Icon from 'components/Icon/Icon';
-
-import {labels} from 'utils/labels'
+import TableHeader from 'components/common/TableHeader/TableHeader';
+import { labels } from 'utils/labels'
 import {
   ForInterviewStudentToListResponseInterface,
   RecruiterActionsOfStatusEnum
-} from "../../CandidatesListPage/CandidatesListPage";
-import {showExpectedContractType, showExpectedTypeWork} from "../../../utils/displayCorrectPlainInStudentsLists";
-import {studentsStatusHandler} from "../../../utils/studentsStatusHandler";
-import {handleEndReservation} from "../../../utils/handleEndReservation";
+} from 'components/CandidatesListPage/CandidatesListPage';
+import { showExpectedContractType, showExpectedTypeWork } from 'utils/displayCorrectPlainInStudentsLists';
+import { studentsStatusHandler } from 'utils/studentsStatusHandler';
+import { handleEndReservation } from 'utils/handleEndReservation';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store';
+
 import './ForInterviewCard.scss';
-import {DataTypeEnum} from "../../../actions/students";
-import {useSelector} from "react-redux";
-import {RootState} from "../../../store";
+
 
 interface Props {
   student: ForInterviewStudentToListResponseInterface;
@@ -23,17 +24,13 @@ interface Props {
 }
 
 
-export const ForInterviewCard: React.FC<Props> = ({
-                                                    student,
-                                                    setActiveStudentsList,
-                                                    setForInterviewStudentsList,
-                                                  }: Props) => {
+export const ForInterviewCard: React.FC<Props> = ({ student, setActiveStudentsList, setForInterviewStudentsList }: Props) => {
 
   const [cartState, setCartState] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const candidates = searchParams.get('candidates');
-  const {numberOfPage} = useParams();
-  const {type, actualSearchPhrase} = useSelector((store: RootState) => store.students)
+  const { numberOfPage } = useParams();
+  const { type, actualSearchPhrase } = useSelector((store: RootState) => store.students)
 
   useEffect(() => {
     setSearchParams({candidates: 'meetings'})
@@ -85,7 +82,7 @@ export const ForInterviewCard: React.FC<Props> = ({
         }
         <div className='candidate-info'>
           {
-            githubUsername.length !== 0 || githubUsername ? <img className='gh-avatar' src={`https://www.github.com/${githubUsername}.png`} alt=""/> : <Icon.AvatarDef/>
+            githubUsername.length !== 0 || githubUsername ? <img className='gh-avatar' src={`https://www.github.com/${githubUsername}.png`} alt=''/> : <Icon.AvatarDef/>
           //  póki co będzie wywalać błąd 404 w consoli jeśli githubUsername nie jest prawdziwy
           }
 
@@ -93,47 +90,46 @@ export const ForInterviewCard: React.FC<Props> = ({
         </div>
         <div className='group-btns'>
           <>
-            <ButtonLink type='button' customClass='opener' label={labels.buttons.showCV} onClick={showCv}/>
-            <ButtonLink type='button' customClass='opener' label={labels.buttons.notInterested}
-                        onClick={handleNoInterested}/>
-            <ButtonLink type='button' customClass='opener' label={labels.buttons.hired} onClick={handleEmployed}/>
+            <ButtonLink type='button'
+              customClass='opener'
+              label={labels.buttons.showCV}
+              onClick={showCv}
+            />
+            <ButtonLink type='button'
+              customClass='opener'
+              label={labels.buttons.notInterested}
+              onClick={handleNoInterested}
+            />
+            <ButtonLink type='button'
+              customClass='opener'
+              label={labels.buttons.hired}
+              onClick={handleEmployed}
+            />
           </>
-
-          <ButtonLink type='button' customClass={`opener-btn ${cartState ? 'open' : ''}`} icon={<Icon.ArrowUp/>}
-                      onClick={openCardHandler}/>
+          <ButtonLink type='button'
+            customClass={`opener-btn ${cartState ? 'open' : ''}`}
+            icon={<Icon.ArrowUp/>}
+            onClick={openCardHandler}
+          />
         </div>
       </div>
       <table>
-        <thead>
-        <tr>
-          <td>{labels.options.courseRate}</td>
-          <td>{labels.options.activityRate}</td>
-          <td>{labels.options.codeRate}</td>
-          <td>{labels.options.teamWorkRate}</td>
-          <td>{labels.options.workPlace.label}</td>
-          <td>{labels.options.city}</td>
-          <td>{labels.options.contractType.label}</td>
-          <td>{labels.options.salary.label}</td>
-          <td>{labels.options.internship.label}</td>
-          <td>{labels.options.experience}</td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>{courseCompletion}<span> / 5</span></td>
-          <td>{courseEngagement}<span> / 5</span></td>
-          <td>{projectDegree}<span> / 5</span></td>
-          <td>{teamProjectDegree}<span> / 5</span></td>
-          <td>{showExpectedTypeWork(expectedTypeWork)}</td>
-          <td>{targetWorkCity}</td>
-          <td>{showExpectedContractType(expectedContractType)}</td>
-          <td>{expectedSalary}</td>
-          <td>{canTakeApprenticeship ? "Tak" : "Nie"}</td>
-          <td>{monthsOfCommercialExp}</td>
-        </tr>
-        </tbody>
+        <TableHeader />
+          <tbody>
+          <tr>
+            <td>{courseCompletion}<span> / 5</span></td>
+            <td>{courseEngagement}<span> / 5</span></td>
+            <td>{projectDegree}<span> / 5</span></td>
+            <td>{teamProjectDegree}<span> / 5</span></td>
+            <td>{showExpectedTypeWork(expectedTypeWork)}</td>
+            <td>{targetWorkCity}</td>
+            <td>{showExpectedContractType(expectedContractType)}</td>
+            <td>{expectedSalary}</td>
+            <td>{canTakeApprenticeship ? labels.options.internship.yes : labels.options.internship.no}</td>
+            <td>{monthsOfCommercialExp}</td>
+          </tr>
+          </tbody>
       </table>
     </li>
   )
-
 }

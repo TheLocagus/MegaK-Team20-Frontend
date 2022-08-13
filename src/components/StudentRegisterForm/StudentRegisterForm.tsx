@@ -41,7 +41,7 @@ interface CreateStudentResponse {
     workExperience: string;
 }
 
-export const StudentRegisterForm = () => {
+const StudentRegisterForm = () => {
     const {id} = useParams();
     const [userData, setUserData] = useState<CreateStudentResponse>(
         {
@@ -149,7 +149,7 @@ export const StudentRegisterForm = () => {
                     <h2>{labels.studentRegister.label}</h2>
                     <ButtonLink
                         type='button'
-                        customClass='filter__header-button'
+                        customClass='filter__header-button blue-btn'
                         label={labels.buttons.clearFilters}
                         // onClick={resetFilterDataHandler}
                     />
@@ -238,6 +238,7 @@ export const StudentRegisterForm = () => {
                             required
                         />
                         <ButtonLink type='button'
+                            customClass='blue-btn'
                             label={labels.buttons.add}
                             onClick={() => addUrlToPortfolio(inputPortfolio)}
                         />
@@ -251,6 +252,7 @@ export const StudentRegisterForm = () => {
                             required
                         />
                         <ButtonLink type='button'
+                            customClass='blue-btn'
                             label={labels.buttons.add}
                             onClick={() => addUrlToProjects(inputProjects)}
                         />
@@ -412,3 +414,5 @@ export const StudentRegisterForm = () => {
         </section>
     )
 }
+
+export default StudentRegisterForm;

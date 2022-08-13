@@ -71,3 +71,15 @@
         color: $color-black;
     } 
 }
+
+.blue-btn {
+    background-color: $color-deep-blue;
+    border: none;
+    color: $color-light-blue;
+    padding: .5rem .63rem;
+    font-size: 14px;
+    &:hover {
+        background-color: $color-light-blue;
+        color: $color-deep-blue;
+    }
+}

@@ -103,6 +103,11 @@ module.exports = {
                 experience: 'np. Pracowałem/am na stanowisku... w firmie...',
                 courses: 'np. Kursy i szkolenia które ukończyłem/am...'
             }
+        },
+        generatingData: 'Trwa generowanie listy...',
+        errorPageMsg: {
+            noPageFound: 'Nie znaleziono strony.',
+            redirect: 'Za chwilę zostaniesz przekierowany do strony głównej.'
         }
     }
 }

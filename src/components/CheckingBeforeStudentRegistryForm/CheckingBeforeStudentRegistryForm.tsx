@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {labels} from 'utils/labels'
 
 import './CheckingBeforeStudentRegistryForm.scss';
-import {useParams} from "react-router-dom";
+import {useParams} from 'react-router-dom';
 
 export const CheckingBeforeStudentRegistryForm = () => {
     const { id, token } = useParams()

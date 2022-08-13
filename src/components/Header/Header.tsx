@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import ButtonLink from '../common/ButtonLink/ButtonLink';
-
 import { labels } from 'utils/labels'
 
 import './Header.scss';
@@ -19,14 +18,17 @@ const Header: React.FC<Props> = () => {
     return (
         <header className='header-admin'>
             <nav className='header-admin__nav'>
-                <a href='index.html'><div className='logo'></div></a>
+                <a href='index.html'>
+                    <div className='logo'></div>
+                </a>
                 <div className={`header-admin__usermenu ${menuDropdownState && 'open'}`}
                     onMouseEnter={() => setMenuDropdownState(true)}
-                    onMouseLeave={() => setMenuDropdownState(false)}>
+                    onMouseLeave={() => setMenuDropdownState(false)}
+                    >
                     <div>
                         <img className='avatar' src={require('../../images/avatar.jpg')} alt='' />
                         <span>Mateusz Kowalski</span>
-                        <div className="arrow-down">▼</div>
+                        <div className='arrow-down'>▼</div>
                     </div>
                     <div className='header-admin__usermenu-list'>
                         <ButtonLink label={labels.buttons.account} />

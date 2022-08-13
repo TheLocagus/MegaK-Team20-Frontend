@@ -218,8 +218,7 @@ const CandidatesListPage: React.FC = () => {
           <input
             placeholder={labels.filters.inputPlaceholder}
             value={searchValue}
-            onChange={e => setSearchValue(e.target.value)
-            }
+            onChange={e => setSearchValue(e.target.value)}
           />
         </form>
       </div>
@@ -232,9 +231,9 @@ const CandidatesListPage: React.FC = () => {
     <>
       <Header/>
       <main className='userlist'>
-        <GenericSection children={<Navigation/>} customClass='navigation'/>
-        <GenericSection children={filters} customClass='filters'/>
-        {!isGenerated && <GenericSection children={<Generating/>} customClass='filters'/>}
+        <GenericSection children={<Navigation />} customClass='navigation' />
+        <GenericSection children={filters} customClass='filters' />
+        {!isGenerated && <GenericSection children={<Generating />} />}
         {
           candidates === 'available'
             && activeStudentsList?.availableStudents?.map(student =>

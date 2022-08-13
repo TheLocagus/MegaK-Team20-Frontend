@@ -17,20 +17,8 @@
     height: unset;
     transition: all .3s ease-out;
     &:hover {
-        background-color: #e2e4e5;
+        background-color: $color-white;
         color: $color-red;
-    }
-}
-
-@mixin blue-btn {
-    background-color: $color-deep-blue;
-    border: none;
-    color: #e2e4e5;
-    padding: .5rem .63rem;
-    font-size: 14px;
-    &:hover {
-        background-color: #e2e4e5;
-        color: $color-deep-blue;
     }
 }
 
@@ -40,10 +28,7 @@
     align-items: center;
     margin-bottom: 10px;
     h2 {
-        font-size: 22px;
+        font-size: 1.38rem;
         color: $color-white;
-    }
-    button {
-        @include blue-btn;
     }
 }

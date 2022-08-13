@@ -7,7 +7,7 @@ import './CandidatePage.scss';
 import { RecruiterActionsOfStatusEnum } from 'components/CandidatesListPage/CandidatesListPage';
 import {
     showExpectedContractType, showExpectedTypeWork
-} from "../../utils/displayCorrectPlainInStudentsLists";
+} from '../../utils/displayCorrectPlainInStudentsLists';
 import { useDispatch } from 'react-redux';
 import {Generating} from '../Generating/Generating'
 
@@ -138,48 +138,48 @@ const CandidatePage: React.FC = () => {
     }
 
     return (
-        <div className="container">
+        <div className='container'>
 
-            <header className="header-admin">
+            <header className='header-admin'>
 
-                <nav className="header-admin__nav">
-                    <a href="/">
-                        <div className="logo"></div>
+                <nav className='header-admin__nav'>
+                    <a href='/'>
+                        <div className='logo'></div>
                     </a>
-                    <div className="header-admin__usermenu">
-                        <div className="avatar"></div>
+                    <div className='header-admin__usermenu'>
+                        <div className='avatar'></div>
                         <p>Mateusz Kowalski</p>
-                        <div className="arrow-down">▼</div>
+                        <div className='arrow-down'>▼</div>
                     </div>
                 </nav>
             </header>
 
-            <main className="main__cv">
-                <div className="main__back">
+            <main className='main__cv'>
+                <div className='main__back'>
 
-                    <a href="/recruiter"><span> ‹ </span><p>Wróć</p></a>
+                    <a href='/recruiter'><span> ‹ </span><p>Wróć</p></a>
                 </div>
-                <div className="main__personalcard">
-                    <div className="personalcard__avatar">
-                        <img className="personalcard__avatar-center" src={student.githubUsername.length !== 0 ? `https://www.github.com/${student.githubUsername}.png` : "/images/avatar_big.png"} alt=""/>
-                            <p className="personalcard__avatar-center">{student.firstName} {student.lastName}</p>
-                            <p className="personalcard__avatar-center"><a href=""><i
-                                className="bi bi-github"></i>{student.githubUsername}</a></p>
-                            <p className="personalcard__avatar-contactdata"><i className="bi bi-telephone-fill"></i>{student.telephone}</p>
-                            <p className="personalcard__avatar-contactdata"><i
-                                className="bi bi-envelope-fill"></i>{student.email}</p>
+                <div className='main__personalcard'>
+                    <div className='personalcard__avatar'>
+                        <img className='personalcard__avatar-center' src={student.githubUsername.length !== 0 ? `https://www.github.com/${student.githubUsername}.png` : '/images/avatar_big.png'} alt=''/>
+                            <p className='personalcard__avatar-center'>{student.firstName} {student.lastName}</p>
+                            <p className='personalcard__avatar-center'><a href=''><i
+                                className='bi bi-github'></i>{student.githubUsername}</a></p>
+                            <p className='personalcard__avatar-contactdata'><i className='bi bi-telephone-fill'></i>{student.telephone}</p>
+                            <p className='personalcard__avatar-contactdata'><i
+                                className='bi bi-envelope-fill'></i>{student.email}</p>
                     </div>
-                    <div className="personalcard__about">
+                    <div className='personalcard__about'>
                         <h3>O mnie</h3>
                         <p>{student.bio}</p>
                     </div>
-                    <div className="personalcard__buttons">
+                    <div className='personalcard__buttons'>
                         <button onClick={handleNoInterested}>Brak zainteresowania</button>
                         <button onClick={handleEmployed}>Zatrudniony</button>
                     </div>
                 </div>
 
-                <div className="main__personaldata">
+                <div className='main__personaldata'>
                     <h3>Oceny</h3>
                     <table>
                         <thead>
@@ -192,10 +192,10 @@ const CandidatePage: React.FC = () => {
                         </thead>
                         <tbody>
                         <tr>
-                            <td><span className="scale">{student.courseCompletion}</span>/ 5 <span className="star"><span>{generateStars(student.courseCompletion, 'red')}</span>{generateStars(student.courseCompletion, 'gray')}</span></td>
-                            <td><span className="scale">{student.courseEngagement}</span>/ 5 <span className="star"><span>{generateStars(student.courseEngagement, 'red')}</span>{generateStars(student.courseEngagement, 'gray')}</span></td>
-                            <td><span className="scale">{student.projectDegree}</span>/ 5 <span className="star"><span>{generateStars(student.projectDegree, 'red')}</span>{generateStars(student.projectDegree, 'gray')}</span></td>
-                            <td><span className="scale">{student.teamProjectDegree}</span>/ 5 <span className="star"><span>{generateStars(student.teamProjectDegree, 'red')}</span>{generateStars(student.teamProjectDegree, 'gray')}</span></td>
+                            <td><span className='scale'>{student.courseCompletion}</span>/ 5 <span className='star'><span>{generateStars(student.courseCompletion, 'red')}</span>{generateStars(student.courseCompletion, 'gray')}</span></td>
+                            <td><span className='scale'>{student.courseEngagement}</span>/ 5 <span className='star'><span>{generateStars(student.courseEngagement, 'red')}</span>{generateStars(student.courseEngagement, 'gray')}</span></td>
+                            <td><span className='scale'>{student.projectDegree}</span>/ 5 <span className='star'><span>{generateStars(student.projectDegree, 'red')}</span>{generateStars(student.projectDegree, 'gray')}</span></td>
+                            <td><span className='scale'>{student.teamProjectDegree}</span>/ 5 <span className='star'><span>{generateStars(student.teamProjectDegree, 'red')}</span>{generateStars(student.teamProjectDegree, 'gray')}</span></td>
                         </tr>
                         </tbody>
                     </table>
@@ -219,7 +219,7 @@ const CandidatePage: React.FC = () => {
                             <td>{student.targetWorkCity}</td>
                             <td>{showExpectedContractType(student.expectedContractType)}</td>
                             <td>{student.expectedSalary} zł</td>
-                            <td>{student.canTakeApprenticeship ? "Tak" : "Nie"}</td>
+                            <td>{student.canTakeApprenticeship ? 'Tak' : 'Nie'}</td>
                             <td>{student.monthsOfCommercialExp} miesięcy</td>
                         </tr>
                         </tbody>
@@ -240,7 +240,7 @@ const CandidatePage: React.FC = () => {
 
                     {
                         student.portfolioUrls ?
-                        student.portfolioUrls.map(url => <p key={url}><img src="../../icons/clip.png"/><a href={url}>{url}</a></p>) :
+                        student.portfolioUrls.map(url => <p key={url}><img src='../../icons/clip.png'/><a href={url}>{url}</a></p>) :
                           ''
                     }
 
@@ -248,7 +248,7 @@ const CandidatePage: React.FC = () => {
 
                     {
                         student.bonusProjectUrls ?
-                          student.bonusProjectUrls.map(url => <p key={url}><img src="../../icons/clip.png"/><a
+                          student.bonusProjectUrls.map(url => <p key={url}><img src='../../icons/clip.png'/><a
                             href={url}>{url}</a></p>)
                           : ''
                     }
@@ -257,7 +257,7 @@ const CandidatePage: React.FC = () => {
 
                     {
                         student.projectUrls ?
-                          student.projectUrls.map(url => <p key={url}><img src={url}/><a href="#">{url}</a></p>)
+                          student.projectUrls.map(url => <p key={url}><img src={url}/><a href='#'>{url}</a></p>)
                           : ''
                     }
                 </div>

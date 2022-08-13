@@ -21,7 +21,7 @@ button:hover {
 
 .main{
   &__back {
-    display:flex;
+    display: flex;
     align-items: center;
 
 
@@ -85,15 +85,15 @@ button:hover {
     padding-top: 2rem;
   }
 
-  &__personaldata{
+  &__personaldata {
     h3 {
+      display: flex;
+      align-items: center;
       background-color: $color-dark-grey;
       padding: .3rem 1rem;
       margin: 0;
       font-size: 1.1rem;
       height: 60px;
-      display: flex;
-      align-items: center;
     }
 
     p {

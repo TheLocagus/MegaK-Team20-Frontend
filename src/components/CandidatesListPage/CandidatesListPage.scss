@@ -11,19 +11,17 @@
         background-color: $color-dark-grey;
         justify-content: flex-start;
     }
-}
-
-.userList__list {
-    background-color: $color-dark-grey;
-    padding: 0 20px;
-}
-
-.userList__list li {
-    width: 100%;
-}
-.userList__list:not(:last-child) li {
-    background-color: $color-grey;
-    padding-bottom: 16px;
+    &__list {
+        background-color: $color-dark-grey;
+        padding: 0 20px;
+        li {
+            width: 100%;
+        }
+        &:not(:last-child) li {
+            background-color: $color-grey;
+            padding-bottom: 16px;
+        }
+    }
 }
 
 .userlist-header__searchform {
@@ -56,7 +54,7 @@
 }
 
 .userlist-header__list li {
-    color: #f4f4f4;
+    color: $color-white;
     margin: 0 14px;
     border-bottom: 14px solid $color-grey;
 }
@@ -67,15 +65,12 @@
     flex-direction: row;
     justify-content: right;
     align-items: center;
-
     span {
         color: $color-light-grey;
         padding: 0 10px;
         font-size: 22px;
         cursor: pointer;
-
     }
-
     .active {
         color: $color-white
     }
