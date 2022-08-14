@@ -25,6 +25,7 @@ export const App = () => {
       <Routes>
         <Route path='/student/register/:id/:token/' element={<CheckingBeforeStudentRegistryForm/>} />
         <Route path='/student/register/:id/:token/form' element={<StudentRegisterForm/>} />
+        <Route path='/recruiter/:recruiterId/cv/:id' element={<CandidatePage/>}/>
         <Route path='/' element={<LoginPage />} />
         <Route path='/recruiter/register/:recruiterId/:registerToken/' element={<CheckingBeforeRecruiterRegistryForm/>} />
         <Route path='/recruiter/register/:recruiterId/:registerToken/form' element={<RecruiterPasswordForm/>} />

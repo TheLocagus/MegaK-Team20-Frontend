@@ -23,7 +23,9 @@ enum ContractType {
 }
 
 interface CreateStudentResponse {
-    pwdHash: string;
+    id: string;
+    registerToken: string;
+    pwd: string;
     bio: string;
     canTakeApprenticeship: boolean | '';
     courses: string;
@@ -43,11 +45,13 @@ interface CreateStudentResponse {
 }
 
 const StudentRegisterForm = () => {
-    const { id } = useParams();
+    const { id, token } = useParams();
     const { pathname } = useLocation();
     const [userData, setUserData] = useState<CreateStudentResponse>(
         {
-            pwdHash: '',
+            id: id as string,
+            registerToken: token as string,
+            pwd: '',
             telephone: '',
             firstName: '', //nie puste
             lastName: '', //nie puste
@@ -75,11 +79,11 @@ const StudentRegisterForm = () => {
     const handleForm = async (e: SyntheticEvent) => {
         e.preventDefault();
         // walidacja
-        if (userData.pwdHash !== repeatPassword) {
+        if (userData.pwd !== repeatPassword) {
             setErrorMessage('Wrong password.')
             throw new Error('Wrong password')
         }
-        if (userData.pwdHash.length < 6){
+        if (userData.pwd.length < 6){
             setErrorMessage('Password should have atleast 6 characters.')
             throw new Error('Password should have atleast 6 characters.')
         }
@@ -92,7 +96,7 @@ const StudentRegisterForm = () => {
             throw new Error('No required fields')
         }
 
-        const res = await fetch(`http://localhost:3001/student/register/${id}`, {
+        const res = await fetch(`http://localhost:3001/student/`, {
             method: 'POST',
             body: JSON.stringify(userData),
             headers: {
@@ -101,9 +105,10 @@ const StudentRegisterForm = () => {
         })
 
         const data = await res.json()
+        console.log(userData)
         console.log(data)
-        if (data.isOk){
-            window.location.href = `http://localhost:3000/${id}`;
+        if (data.success){
+            window.location.href = `http://localhost:3000/student/${id}`;
         } else {
             throw new Error('Something went wrong. Try again later.')
         }
@@ -139,7 +144,9 @@ const StudentRegisterForm = () => {
     const resetFormHandler = () => {
         setUserData(
             {
-                pwdHash: '',
+                id: id as string,
+                registerToken: token as string,
+                pwd: '',
                 telephone: '',
                 firstName: '',
                 lastName: '',
@@ -199,8 +206,8 @@ const StudentRegisterForm = () => {
                         <span>{labels.form.password}<span> *</span></span>
                         <input type='password'
                             placeholder={labels.studentRegister.placeholder.password}
-                            value={userData.pwdHash}
-                            onChange={e => handleChange('pwdHash', e.target.value)}
+                            value={userData.pwd}
+                            onChange={e => handleChange('pwd', e.target.value)}
                             required
                         />
                     </label>
@@ -281,12 +288,11 @@ const StudentRegisterForm = () => {
                         />
                     </label>
                     <label className='student-register-form__projectUrls'>
-                        <span>{labels.studentRegister.projectsLink}<span> *</span></span>
+                        <span>{labels.studentRegister.projectsLink}<span></span></span>
                         <input type='text'
                             placeholder={labels.studentRegister.placeholder.links}
                             value={inputProjects}
                             onChange={e => setInputProjects(e.target.value)}
-                            required
                         />
                         <ButtonLink type='button'
                             customClass='blue-btn'

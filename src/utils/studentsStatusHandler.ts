@@ -46,7 +46,7 @@ export const studentsStatusHandler = async (
       break;
 
     case 'employed':
-      await fetch(`http://localhost:3001/recruiter/status/${recruiterId}/${id}`, {
+      const resEmployed = await fetch(`http://localhost:3001/recruiter/status/${recruiterId}/${id}`, {
         method: 'PATCH',
         body: JSON.stringify({
           status: RecruiterActionsOfStatusEnum.employed
@@ -55,7 +55,7 @@ export const studentsStatusHandler = async (
           'Content-Type': 'application/json'
         }
       })
-
+      console.log(await resEmployed.json())
       await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage, type, actualSearchPhrase, recruiterId);
       //@TODO dodano pomyślnie
       break;
