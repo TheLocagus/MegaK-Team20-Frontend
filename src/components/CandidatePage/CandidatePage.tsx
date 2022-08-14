@@ -148,11 +148,13 @@ const CandidatePage: React.FC = () => {
             <Header personData={localStorage.getItem('full name') ?? 'Rekruter'} />
             <main className='main__cv'>
                 <div className='main__back'>
+                { pathname.includes('student') ? null :
                     <ButtonLink
                         label={labels.buttons.back} 
                         target={`/recruiter/${recruiterId}/1`}
                         icon={<Icon.ArrowUp/>}
                     />
+                }
                 </div>
                 <div className='main__personalcard'>
                     { pathname.includes('student') &&
