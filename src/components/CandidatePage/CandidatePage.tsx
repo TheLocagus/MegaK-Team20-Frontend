@@ -135,13 +135,16 @@ const CandidatePage: React.FC = () => {
         })
         window.location.href = `/recruiter/${recruiterId}/1`
     }
+    console.log(student)
 
-    const showUrl = (url: string) => {
+    const showUrl = (url: string) => (
         <div key={url}>
             <FontAwesomeIcon icon={faPaperclip} />
             <a href={url}>{url}</a>
         </div>
-    }
+    )
+
+    if (!isGenerated) return <Generating message='Trwa generowanie...'/>
 
 
     return (
@@ -174,16 +177,16 @@ const CandidatePage: React.FC = () => {
                         <p className='personalcard__avatar-center github'>
                             <a href=''>
                                 <FontAwesomeIcon icon={brands('github')} />
-                                {student?.githubUsername}
+                                <span>{student?.githubUsername}</span>
                             </a>
                         </p>
                         <p className='personalcard__avatar-contactdata'>
                             <FontAwesomeIcon icon={faPhone} />
-                            {student?.telephone}
+                            <span>{student?.telephone}</span>
                         </p>
                         <p className='personalcard__avatar-contactdata'>
                             <FontAwesomeIcon icon={faEnvelope} />
-                            {student?.email}
+                            <span>{student?.email}</span>
                         </p>
                     </div>
                     <div className='personalcard__about'>
@@ -297,7 +300,7 @@ const CandidatePage: React.FC = () => {
                     
                     <div className='urls-section'>
                         <h3>{labels.candidate.scrumProject}</h3>
-                        <>{student?.bonusProjectUrls && student.bonusProjectUrls.map(url => showUrl(url))}</>
+                        <>{student.bonusProjectUrls.map(url => showUrl(url))}</>
                     </div>
 
                     <div className='urls-section'>
