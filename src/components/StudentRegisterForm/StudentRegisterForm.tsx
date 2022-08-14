@@ -181,7 +181,7 @@ const StudentRegisterForm = () => {
                 </div>
                 <fieldset className='passwords'>
                     <label className='student-register-form__password'>
-                        <span>{labels.login.password}<span> *</span></span>
+                        <span>{labels.form.password}<span> *</span></span>
                         <input type='password'
                             placeholder={labels.studentRegister.placeholder.password}
                             value={userData.pwdHash}

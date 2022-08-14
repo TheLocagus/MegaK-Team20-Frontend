@@ -10,15 +10,14 @@ import './LoginPage.scss';
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
     const [forgottenPassState, setForgottenPassState] = useState(false)
+
+    const forgottenPassHandler = () => setForgottenPassState(true)
     
     useEffect(() => {
         setTimeout(() => {
             navigate('/recruiter', { replace: true })
         }, 5000)
     },[])
-
-
-    const forgottenPassHandler = () => setForgottenPassState(true)
 
     
     return (

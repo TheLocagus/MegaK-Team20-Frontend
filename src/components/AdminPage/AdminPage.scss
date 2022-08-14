@@ -1,0 +1,21 @@
+@import '_variables.scss';
+@import '_mixins.scss';
+
+
+.adminPage {
+    padding-top: 26px;
+    section {
+        background-color: $color-dark-grey;
+        &.header {
+            @include flex;
+            height: 70px;
+            border-bottom: 2px solid $color-grey;
+        }
+        &.register-form {
+            align-items: stretch;
+            flex-direction: row;
+            justify-content: space-around;
+            background-color: $color-deep-grey;
+        }
+    } 
+}

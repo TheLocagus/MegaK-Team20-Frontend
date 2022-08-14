@@ -10,12 +10,12 @@ const PasswordForm: React.FC = () => {
     return (
         <form className='form-login'>
             <img className='form-login__logo' src={require('../../images/logo-mk.png')} alt='' width='124' height='76' />
-            <h2>{labels.login.resetPassLabel}</h2>
+            <h2>{labels.form.resetPassLabel}</h2>
             <label className='form-login__label'>
                 <input className='form-login__input'
                     type='text'
                     id='password'
-                    placeholder={labels.login.password}
+                    placeholder={labels.form.password}
                 >
                 </input>  
             </label>
@@ -24,7 +24,7 @@ const PasswordForm: React.FC = () => {
                 <input className='form-login__input'
                     type='text'
                     id='password'
-                    placeholder={labels.login.repeatPassword}
+                    placeholder={labels.form.repeatPassword}
                 >
                 </input>
             </label>

@@ -19,7 +19,7 @@ const LoginForm: React.FC<Props> = ({ onClick }) => {
                 <input className='form-login__input'
                     type='text'
                     id='email'
-                    placeholder={labels.login.email}
+                    placeholder={labels.form.email}
                 >
                 </input>  
             </label>
@@ -28,7 +28,7 @@ const LoginForm: React.FC<Props> = ({ onClick }) => {
                 <input className='form-login__input'
                     type='text'
                     id='password'
-                    placeholder={labels.login.password}
+                    placeholder={labels.form.password}
                 >
                 </input>
             </label>
@@ -42,7 +42,7 @@ const LoginForm: React.FC<Props> = ({ onClick }) => {
                 </div>
                 <div className='form-login__forgotten-password'>
                     <ButtonLink type='button'
-                        label={labels.login.forgottenPassword}
+                        label={labels.form.forgottenPassword}
                         onClick={onClick}
                     />
                 </div>

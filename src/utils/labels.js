@@ -1,6 +1,6 @@
 module.exports = {
     labels: {
-        login: {
+        form: {
             email: 'E-mail',
             password: 'Hasło',
             repeatPassword: 'Powtórz hasło',
@@ -123,6 +123,14 @@ module.exports = {
         errorPageMsg: {
             noPageFound: 'Nie znaleziono strony.',
             redirect: 'Za chwilę zostaniesz przekierowany do strony głównej.'
+        },
+        adminPage: {
+            header: 'Dodaj nowego rekrutera',
+            fillForm: 'Wypełnij formularz',
+            chooseFile: 'Wybierz plik',
+            nameSurname: 'Imię i nazwisko',
+            company: 'Firma',
+            studentsLimit: 'Maxymalna liczba kandydatów'
         }
     }
 }
