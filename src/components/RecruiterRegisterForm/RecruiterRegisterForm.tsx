@@ -66,7 +66,7 @@ export const RecruiterRegisterForm = () => {
     return <>
         <article className='add-recruiter-form'>
             <form action='' onSubmit={sendForm}>
-                <h3>{labels.adminPage.fillForm}</h3>
+                <h3>{labels.adminPage.addRecruiter}</h3>
                 <input
                     className='register-recruiter__input'
                     type='email'
@@ -114,7 +114,7 @@ export const RecruiterRegisterForm = () => {
         </article>
         <article className='register-input'>
             <form>
-                <h3>{labels.adminPage.chooseFile}</h3>
+                <h3>{labels.adminPage.addStudents}</h3>
                 <label className="custom-file-upload">
                     <input type='file'></input>
                 </label>

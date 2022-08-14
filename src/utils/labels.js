@@ -125,12 +125,14 @@ module.exports = {
             redirect: 'Za chwilę zostaniesz przekierowany do strony głównej.'
         },
         adminPage: {
-            header: 'Dodaj nowego rekrutera',
+            header: 'Wybierz co chcesz robić',
+            addRecruiter: 'Dodaj nowego rekrutera',
+            addStudents: 'Dodaj nowych studentów',
             fillForm: 'Wypełnij formularz',
             chooseFile: 'Wybierz plik',
             nameSurname: 'Imię i nazwisko',
             company: 'Firma',
-            studentsLimit: 'Maxymalna liczba kandydatów'
+            studentsLimit: 'Maksymalna liczba kandydatów'
         }
     }
 }
