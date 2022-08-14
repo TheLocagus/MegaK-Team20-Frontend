@@ -25,12 +25,11 @@
 
 ## Technologies Used
 
-- React
-- React Router
-- React Redux
-- SCSS
-- Typescript
-- FontAwesome
+* [![React][React.js]][React-url]
+* [![React Router][Reactrouter.com]][ReactRouter-url]
+* [![React Redux][React-redux.js.org]][ReactRedux-url]
+* [![SCSS][sass-lang.com]][SCSS-url]
+* [![Typescript][Typescript.com]][Typescript-url]
 
 ## Screenshots
 
@@ -103,3 +102,19 @@ Created by:
 [@TheLocagus](https://github.com/TheLocagus)
 
 feel free to contact us!
+
+
+[React.js]: https://img.shields.io/badge/-React-9cf
+[React-url]: https://reactjs.org/
+
+[Reactrouter.com]: https://img.shields.io/badge/-React%20Router-orange
+[ReactRouter-url]: https://reactrouter.com/
+
+[React-redux.js.org]: https://img.shields.io/badge/-React%20Redux-purple
+[ReactRedux-url]: https://react-redux.js.org/
+
+[Sass-lang.com]: https://img.shields.io/badge/-SCSS-pink
+[SCSS-url]: https://sass-lang.com/
+
+[Typescript.com]: https://img.shields.io/badge/-Typescript-blue
+[Typescript-url]: https://www.typescriptlang.org/
