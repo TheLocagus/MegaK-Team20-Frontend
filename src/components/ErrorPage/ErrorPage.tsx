@@ -9,11 +9,11 @@ import './ErrorPage.scss';
 const ErrorPage: React.FC = () => {
     const navigate = useNavigate();
     
-    useEffect(() => {
-        setTimeout(() => {
-            navigate('/', { replace: true })
-        }, 3000)
-    },[])
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         navigate('/', { replace: true })
+    //     }, 3000)
+    // },[])
 
 
     return (

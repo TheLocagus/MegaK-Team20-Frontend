@@ -177,16 +177,16 @@ const CandidatePage: React.FC = () => {
                         <p className='personalcard__avatar-center github'>
                             <a href=''>
                                 <FontAwesomeIcon icon={brands('github')} />
-                                {student?.githubUsername}
+                                <span>{student?.githubUsername}</span>
                             </a>
                         </p>
                         <p className='personalcard__avatar-contactdata'>
                             <FontAwesomeIcon icon={faPhone} />
-                            {student?.telephone}
+                            <span>{student?.telephone}</span>
                         </p>
                         <p className='personalcard__avatar-contactdata'>
                             <FontAwesomeIcon icon={faEnvelope} />
-                            {student?.email}
+                            <span>{student?.email}</span>
                         </p>
                     </div>
                     <div className='personalcard__about'>
