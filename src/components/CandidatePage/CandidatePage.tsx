@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Header from 'components/Header/Header';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import Icon from 'components/Icon/Icon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone, faEnvelope, faPaperclip } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faGear, faPaperclip, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { brands } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { RecruiterActionsOfStatusEnum } from 'components/CandidatesListPage/CandidatesListPage';
 import { showExpectedContractType, showExpectedTypeWork } from 'utils/displayCorrectPlainInStudentsLists';
-import { Generating } from '../Generating/Generating';
 import { labels } from 'utils/labels';
 
 import './CandidatePage.scss';
@@ -47,6 +46,8 @@ const CandidatePage: React.FC = () => {
     const [isGenerated, setIsGenerated] = useState<boolean>(false)
     const dispatch = useDispatch();
     const { id } = useParams()
+    const { pathname } = useLocation();
+    
     const [student, setStudent] = useState<StudentCvInterface>({
         bio: '',
         firstName: '',
@@ -156,6 +157,12 @@ const CandidatePage: React.FC = () => {
                     />
                 </div>
                 <div className='main__personalcard'>
+                    { pathname.includes('student') &&
+                        <ButtonLink
+                            icon={<FontAwesomeIcon icon={faGear} />}
+                            target={`/student/edit/${id}`}
+                        />
+                    }
                     <div className='personalcard__avatar'>
                         <img src={student?.githubUsername.length !== 0 ? `https://www.github.com/${student?.githubUsername}.png` : '/images/avatar_big.png'}
                             alt=''

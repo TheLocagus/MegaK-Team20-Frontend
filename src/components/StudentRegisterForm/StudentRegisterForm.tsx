@@ -1,9 +1,10 @@
-import React, {SyntheticEvent, useState} from 'react';
+import React, { SyntheticEvent, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
-import {labels} from '../../utils/labels';
+import { labels } from 'utils/labels';
 
 import './StudentRegisterForm.scss';
-import {useParams} from 'react-router-dom';
+
 
 enum TypeWork {
     stationary = 'stationary',
@@ -42,7 +43,8 @@ interface CreateStudentResponse {
 }
 
 const StudentRegisterForm = () => {
-    const {id} = useParams();
+    const { id } = useParams();
+    const { pathname } = useLocation();
     const [userData, setUserData] = useState<CreateStudentResponse>(
         {
             pwdHash: '',
@@ -171,13 +173,26 @@ const StudentRegisterForm = () => {
             
             <form onSubmit={handleForm} className='student-register-form'>
                 <div className='form__header'>
+                { pathname.includes('register') ?
                     <h2>{labels.studentRegister.label}</h2>
+                    :
+                    <h2>{labels.candidate.edit}</h2>
+                }
+                { pathname.includes('register') ?
                     <ButtonLink
                         type='button'
                         customClass='filter__header-button blue-btn'
                         label={labels.buttons.clearFilters}
                         onClick={resetFormHandler}
                     />
+                    :
+                    <ButtonLink
+                        customClass='filter__header-button blue-btn'
+                        label={labels.candidate.backToProfile}
+                        target={`/student/${id}`}
+                    />
+                }
+                    
                 </div>
                 <fieldset className='passwords'>
                     <label className='student-register-form__password'>

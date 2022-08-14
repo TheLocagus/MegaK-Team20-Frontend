@@ -142,7 +142,9 @@ module.exports = {
             courses: 'Kursy',
             portfolio: 'Portfolio',
             scrumProject: 'Projekt w zespole Scrumowym',
-            finalProject: 'Projekt na zaliczenie'
+            finalProject: 'Projekt na zaliczenie',
+            edit: 'Edycja danych',
+            backToProfile: 'Powrót do profilu'
         }
     }
 }
