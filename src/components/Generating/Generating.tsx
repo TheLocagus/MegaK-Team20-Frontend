@@ -1,14 +1,18 @@
-import { labels } from 'utils/labels'
-
 import './Generating.scss'
 
+interface Props {
+  message: string;
+}
 
-export const Generating = () => {
+
+const Generating:React.FC<Props> = ({ message }) => {
 
   
   return (
     <div className='generating-info'>
-      <h3>{labels.generatingData}</h3>
+      <h3>{message}</h3>
     </div>
   )
 }
+
+export default Generating;

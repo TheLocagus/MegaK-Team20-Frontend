@@ -120,6 +120,7 @@ module.exports = {
             }
         },
         generatingData: 'Trwa generowanie listy...',
+        generatingProfile: 'Trwa pobieranie danych...',
         errorPageMsg: {
             noPageFound: 'Nie znaleziono strony.',
             redirect: 'Za chwilę zostaniesz przekierowany do strony głównej.'

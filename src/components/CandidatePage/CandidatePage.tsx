@@ -3,6 +3,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Header from 'components/Header/Header';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
+import Generating from 'components/Generating/Generating';
 import Icon from 'components/Icon/Icon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faGear, faPaperclip, faPhone } from '@fortawesome/free-solid-svg-icons';
@@ -146,14 +147,16 @@ const CandidatePage: React.FC = () => {
     return (
         <>
             <Header personData={localStorage.getItem('full name') ?? 'Rekruter'} />
-            <main className='main__cv'>
+            {
+                isGenerated ?
+                <main className='main__cv'>
                 <div className='main__back'>
                 { pathname.includes('student') ? null :
                     <ButtonLink
                         label={labels.buttons.back} 
                         target={`/recruiter/${recruiterId}/1`}
                         icon={<Icon.ArrowUp/>}
-                    />
+                    />  
                 }
                 </div>
                 <div className='main__personalcard'>
@@ -304,6 +307,9 @@ const CandidatePage: React.FC = () => {
 
                 </div>
             </main>
+            :
+            <Generating message={labels.generatingProfile} />
+            }
         </>
     )
 }

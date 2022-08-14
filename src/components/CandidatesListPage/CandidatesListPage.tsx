@@ -8,12 +8,12 @@ import CandidateCard from 'components/common/CandidateCard/CandidateCard';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import Icon from 'components/Icon/Icon';
 import FiltersModal from 'components/common/FiltersModal/FiltersModal';
+import Generating from 'components/Generating/Generating';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { labels } from 'utils/labels'
 import { ForInterviewCard } from '../common/ForInterviewCard/ForInterviewCard';
 import { updateStudentsLists } from 'utils/updateStudentsLists';
-import { Generating } from 'components/Generating/Generating';
 import { RootState } from 'store';
 import { DataTypeEnum, setActualSearchPhrase, setDataType } from 'actions/students';
 
@@ -252,7 +252,7 @@ const CandidatesListPage: React.FC = () => {
       <main className='userlist'>
         <GenericSection children={<Navigation />} customClass='navigation' />
         <GenericSection children={filters} customClass='filters' />
-        {!isGenerated && <GenericSection children={<Generating />} />}
+        {!isGenerated && <GenericSection children={<Generating message={labels.generatingData} />} />}
         {
           (candidates === 'available' && isGenerated)
             && activeStudentsList?.availableStudents?.map(student =>
