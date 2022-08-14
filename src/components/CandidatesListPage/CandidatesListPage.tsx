@@ -85,7 +85,7 @@ const CandidatesListPage: React.FC = () => {
   const [searchValue, setSearchValue] = useState<string>('')
   const [searchParams, setSearchParams] = useSearchParams();
   const candidates = searchParams.get('candidates');
-  const {numberOfPage} = useParams();
+  const {numberOfPage, recruiterId} = useParams();
   const [numberOfSearchedPage, setNumberOfSearchedPage] = useState<number>(Number(numberOfPage))
 
   const [activeStudentsList, setActiveStudentsList] = useState<ActiveStudentsData>({
@@ -105,6 +105,16 @@ const CandidatesListPage: React.FC = () => {
   useEffect(() => {
 
     (async () => {
+
+      // CHWILOWO TUTAJ, TRZEBA BĘDZIE PRZENIEŚĆ W INNE MIEJSCE, ŻEBY WRZUCAŁO PO ZALOGOWANIU
+      const loggedRecruiterRes = await fetch(`http://localhost:3001/recruiter/${recruiterId}/data`)
+      const loggedRecruiterData = await loggedRecruiterRes.json();
+
+      localStorage.setItem('recruiterId', loggedRecruiterData.id)
+      localStorage.setItem('full name', loggedRecruiterData.fullName)
+      localStorage.setItem('recruitersStudents', JSON.stringify(loggedRecruiterData.studentsReserved))
+      //
+
       try {
         switch(type){
           case DataTypeEnum.all:
@@ -237,7 +247,7 @@ const CandidatesListPage: React.FC = () => {
 
   return (
     <>
-      <Header personData='zalogowany rekruter'/>
+      <Header personData={localStorage.getItem('full name') ?? 'Rekruter'}/>
       <main className='userlist'>
         <GenericSection children={<Navigation />} customClass='navigation' />
         <GenericSection children={filters} customClass='filters' />
