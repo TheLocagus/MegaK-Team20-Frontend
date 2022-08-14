@@ -2,16 +2,16 @@
 
 > MegaK Head Hunter is a final project - website build by MegaK course students.
 
-* As a recruiter you can:
+- As a recruiter you can:
+
   - select developers of your choice.
   - store up to 10 people you would like to hire.
   - set filters to meet your expectations easier.
 
-* As a developer:
+- As a developer:
   - create your profile.
   - set up links to your portfolio.
   - choose expectations about your employment.
-
 
 ## Table of Contents
 
@@ -25,17 +25,20 @@
 
 ## Technologies Used
 
-* [![React][React.js]][React-url]
-* [![React Router][Reactrouter.com]][ReactRouter-url]
-* [![React Redux][React-redux.js.org]][ReactRedux-url]
-* [![SCSS][sass-lang.com]][SCSS-url]
-* [![Typescript][Typescript.com]][Typescript-url]
+- [![React][react.js]][react-url]
+- [![React Router][reactrouter.com]][reactrouter-url]
+- [![React Redux][react-redux.js.org]][reactredux-url]
+- [![SCSS][sass-lang.com]][scss-url]
+- [![Typescript][typescript.com]][typescript-url]
 
 ## Screenshots
 
 ![](public/images/login.PNG)
 ![](public/images/admin.PNG)
 ![](public/images/registration.png)
+![](public/images/list.png)
+![](public/images/list2.png)
+![](public/images/filters.png)
 
 ## Setup
 
@@ -103,18 +106,13 @@ Created by:
 
 feel free to contact us!
 
-
-[React.js]: https://img.shields.io/badge/-React-9cf
-[React-url]: https://reactjs.org/
-
-[Reactrouter.com]: https://img.shields.io/badge/-React%20Router-orange
-[ReactRouter-url]: https://reactrouter.com/
-
-[React-redux.js.org]: https://img.shields.io/badge/-React%20Redux-purple
-[ReactRedux-url]: https://react-redux.js.org/
-
-[Sass-lang.com]: https://img.shields.io/badge/-SCSS-pink
-[SCSS-url]: https://sass-lang.com/
-
-[Typescript.com]: https://img.shields.io/badge/-Typescript-blue
-[Typescript-url]: https://www.typescriptlang.org/
+[react.js]: https://img.shields.io/badge/-React-9cf
+[react-url]: https://reactjs.org/
+[reactrouter.com]: https://img.shields.io/badge/-React%20Router-orange
+[reactrouter-url]: https://reactrouter.com/
+[react-redux.js.org]: https://img.shields.io/badge/-React%20Redux-purple
+[reactredux-url]: https://react-redux.js.org/
+[sass-lang.com]: https://img.shields.io/badge/-SCSS-pink
+[scss-url]: https://sass-lang.com/
+[typescript.com]: https://img.shields.io/badge/-Typescript-blue
+[typescript-url]: https://www.typescriptlang.org/
