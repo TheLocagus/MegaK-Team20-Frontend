@@ -98,7 +98,7 @@ You are allowed to use it for both personal and commercial use, but not to claim
 ## Contact
 
 Created by:
-[@Wiolinek](https://github.com/Wiolinek)
+[@Wiolinek](https://github.com/Wiolinek) \
 [@TheLocagus](https://github.com/TheLocagus)
 
 feel free to contact us!
