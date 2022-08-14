@@ -3,7 +3,9 @@ module.exports = {
         login: {
             email: 'E-mail',
             password: 'Hasło',
+            repeatPassword: 'Powtórz hasło',
             forgottenPassword: 'Zapomniałeś hasło?',
+            resetPassLabel: 'Odzyskiwanie hasła',
         },
         buttons: {
             login: 'Zaloguj się',
@@ -18,7 +20,9 @@ module.exports = {
             account: 'Konto',
             logout: 'Wyloguj',
             add: 'Dodaj',
-            confirm: 'Zatwierdź'
+            confirm: 'Zatwierdź',
+            back: 'Wróć',
+            send: 'Wyślij'
         },
         recruiter: {
             menu: {
@@ -100,6 +104,7 @@ module.exports = {
             experience: 'Doświadczenie zawodowe',
             courses: 'Kursy i certyfikaty',
             placeholder: {
+                email: 'np. adam@kowalski.pl',
                 password: 'Twoje hasło',
                 name: 'np. Adam',
                 surname: 'np. Kowalski',

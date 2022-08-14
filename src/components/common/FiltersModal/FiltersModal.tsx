@@ -288,8 +288,8 @@ const FiltersModal: React.FC<Props> = ({ onClick, setForInterview, setActive, se
                     <div className='filter__main-selector'>
                         <label>{labels.options.salary.from}
                             <input
-                                type='number'
-                                min={1}
+                                type='text'
+                                pattern='[0-9]'
                                 placeholder={labels.options.salary.minPlaceholder}
                                 name='salary'
                                 value={filterData.salary[0] || ''}
@@ -298,8 +298,8 @@ const FiltersModal: React.FC<Props> = ({ onClick, setForInterview, setActive, se
                         </label>
                         <label>{labels.options.salary.to}
                             <input
-                                type='number'
-                                min={1}
+                                type='text'
+                                pattern='[0-9]'
                                 placeholder={labels.options.salary.maxPlaceholder}
                                 name='salary'
                                 value={filterData.salary[1] || ''}

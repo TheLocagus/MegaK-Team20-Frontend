@@ -16,6 +16,13 @@ body {
   min-height: 100vh;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
 main {
   min-height: calc(100vh - 130px);
 }
@@ -50,7 +57,8 @@ label {
 }
 
 input {
-
+  outline-width: 1px;
+  outline-color: $color-deep-grey;
 }
 
 a, button {

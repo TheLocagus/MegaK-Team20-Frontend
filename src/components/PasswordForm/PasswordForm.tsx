@@ -1,25 +1,21 @@
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import { labels } from 'utils/labels'
 
-import './LoginForm.scss';
+import 'components/LoginForm/LoginForm.scss';
 
 
-interface Props {
-    onClick?: () => void;
-}
-
-
-const LoginForm: React.FC<Props> = ({ onClick }) => {
+const PasswordForm: React.FC = () => {
 
 
     return (
         <form className='form-login'>
             <img className='form-login__logo' src={require('../../images/logo-mk.png')} alt='' width='124' height='76' />
+            <h2>{labels.login.resetPassLabel}</h2>
             <label className='form-login__label'>
                 <input className='form-login__input'
                     type='text'
-                    id='email'
-                    placeholder={labels.login.email}
+                    id='password'
+                    placeholder={labels.login.password}
                 >
                 </input>  
             </label>
@@ -28,7 +24,7 @@ const LoginForm: React.FC<Props> = ({ onClick }) => {
                 <input className='form-login__input'
                     type='text'
                     id='password'
-                    placeholder={labels.login.password}
+                    placeholder={labels.login.repeatPassword}
                 >
                 </input>
             </label>
@@ -37,13 +33,7 @@ const LoginForm: React.FC<Props> = ({ onClick }) => {
                 <div className='form-login__login'>
                     <ButtonLink type='submit'
                         customClass='form-login__button'
-                        label={labels.buttons.login}
-                    />
-                </div>
-                <div className='form-login__forgotten-password'>
-                    <ButtonLink type='button'
-                        label={labels.login.forgottenPassword}
-                        onClick={onClick}
+                        label={labels.buttons.send}
                     />
                 </div>
            </div>
@@ -51,4 +41,4 @@ const LoginForm: React.FC<Props> = ({ onClick }) => {
     )
 }
 
-export default LoginForm;
+export default PasswordForm;

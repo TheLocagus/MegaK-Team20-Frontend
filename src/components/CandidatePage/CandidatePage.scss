@@ -13,19 +13,24 @@ a {
 
 p {
   margin: 0;
+  color: $color-white;
 }
 
-button:hover {
-  cursor: pointer;
-}
-
-.main{
+.main {
   &__back {
     display: flex;
     align-items: center;
-
-
-    span{
+    a {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      color: $color-white;
+      line-height: 1rem;
+      svg {
+        transform: rotate(-90deg);
+      }
+    }
+    span {
       display: inline-block;
       font-size: 2rem;
       line-height: 1.6rem;
@@ -53,10 +58,6 @@ button:hover {
     background-color: $color-grey;
     max-width: 1430px;
     margin: 26px auto 0;
-
-    a {
-      color: $color-blue;
-    }
 
     td {
       font-size: 16px;
@@ -90,9 +91,10 @@ button:hover {
       display: flex;
       align-items: center;
       background-color: $color-dark-grey;
+      color: $color-white;
       padding: .3rem 1rem;
       margin: 0;
-      font-size: 1.1rem;
+      font-size: 1.25rem;
       height: 60px;
     }
 
@@ -148,6 +150,9 @@ button:hover {
   &__about {
     margin: .1rem 1rem;
     margin-bottom: 36px;
+    p {
+      white-space: pre-wrap;
+    }
 
     h3 {
       color: $color-medium-grey;

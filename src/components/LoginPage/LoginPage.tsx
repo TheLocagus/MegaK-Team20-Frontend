@@ -1,15 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GenericSection from 'components/common/GenericSection/GenericSection';
 import LoginForm from 'components/LoginForm/LoginForm';
+import PasswordForm from 'components/PasswordForm/PasswordForm';
 
 import './LoginPage.scss';
-
-//strona logowania
 
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
+    const [forgottenPassState, setForgottenPassState] = useState(false)
     
     useEffect(() => {
         setTimeout(() => {
@@ -17,10 +17,21 @@ const LoginPage: React.FC = () => {
         }, 5000)
     },[])
 
+
+    const forgottenPassHandler = () => setForgottenPassState(true)
+
     
     return (
         <main>
-            <GenericSection customClass='login-page' children={<LoginForm />} />
+            {forgottenPassState ?
+                <GenericSection customClass='login-page'
+                    children={<PasswordForm />}
+                />
+            :
+                <GenericSection customClass='login-page'
+                    children={<LoginForm onClick={forgottenPassHandler} />}
+                />
+            }
         </main>
     )
 }
