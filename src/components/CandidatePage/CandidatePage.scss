@@ -1,15 +1,6 @@
 @import '_variables.scss';
 @import '_mixins.scss';
 
-div.container {
-  min-height: 100vh;
-  background-color: $color-deep-grey;
-  color: $color-white;
-}
-
-a {
-  color: $color-white;
-}
 
 p {
   margin: 0;
@@ -17,6 +8,19 @@ p {
 }
 
 .main {
+  &__cv {
+    svg {
+      color: $color-medium-grey;
+    }
+    .urls-section {
+      .fa-paperclip {
+        transform: rotate(-45deg);
+      }
+      .fa-paperclip, a {
+        color: $color-blue;
+      }
+    }
+  }
   &__back {
     display: flex;
     align-items: center;

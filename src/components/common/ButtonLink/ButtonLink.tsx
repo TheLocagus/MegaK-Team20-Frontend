@@ -30,7 +30,7 @@ const ButtonLink: React.FC<Props> = ({ customClass, label, type, target, icon, i
             </button> : 
             <NavLink to={target || '/'} className={customClass || ''}>
                 <>
-                    {label}
+                    <p>{label}</p>
                     {icon}
                 </>
             </NavLink>

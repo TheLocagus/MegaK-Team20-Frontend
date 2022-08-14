@@ -8,11 +8,12 @@ import CandidateCard from 'components/common/CandidateCard/CandidateCard';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import Icon from 'components/Icon/Icon';
 import FiltersModal from 'components/common/FiltersModal/FiltersModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { labels } from 'utils/labels'
 import { ForInterviewCard } from '../common/ForInterviewCard/ForInterviewCard';
 import { updateStudentsLists } from 'utils/updateStudentsLists';
 import { Generating } from 'components/Generating/Generating';
-
 import { RootState } from 'store';
 import { DataTypeEnum, setActualSearchPhrase, setDataType } from 'actions/students';
 
@@ -230,7 +231,7 @@ const CandidatesListPage: React.FC = () => {
           />
         </form>
       </div>
-      <ButtonLink type='submit' label={labels.filters.header} onClick={modalHandler}/>
+      <ButtonLink type='submit' label={labels.filters.header} onClick={modalHandler} icon={<FontAwesomeIcon icon={faFilter} />} />
     </div>
   </>
 

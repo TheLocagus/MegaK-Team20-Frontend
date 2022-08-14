@@ -1,12 +1,11 @@
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import GenericSection from 'components/common/GenericSection/GenericSection';
-
 import Header from 'components/Header/Header';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import Icon from 'components/Icon/Icon';
-
-import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone, faEnvelope, faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { RecruiterActionsOfStatusEnum } from 'components/CandidatesListPage/CandidatesListPage';
 import { showExpectedContractType, showExpectedTypeWork } from 'utils/displayCorrectPlainInStudentsLists';
 import { Generating } from '../Generating/Generating';
@@ -138,7 +137,7 @@ const CandidatePage: React.FC = () => {
 
     const showUrl = (url: string) => {
         <div key={url}>
-            <img src='../../icons/clip.png'/>
+            <FontAwesomeIcon icon={faPaperclip} />
             <a href={url}>{url}</a>
         </div>
     }
@@ -161,9 +160,14 @@ const CandidatePage: React.FC = () => {
                             <p className='personalcard__avatar-center'>{student?.firstName} {student?.lastName}</p>
                             <p className='personalcard__avatar-center'><a href=''><i
                                 className='bi bi-github'></i>{student?.githubUsername}</a></p>
-                            <p className='personalcard__avatar-contactdata'><i className='bi bi-telephone-fill'></i>{student?.telephone}</p>
-                            <p className='personalcard__avatar-contactdata'><i
-                                className='bi bi-envelope-fill'></i>{student?.email}</p>
+                            <p className='personalcard__avatar-contactdata'>
+                                <FontAwesomeIcon icon={faPhone} />
+                                {student?.telephone}
+                            </p>
+                            <p className='personalcard__avatar-contactdata'>
+                                <FontAwesomeIcon icon={faEnvelope} />
+                                {student?.email}
+                            </p>
                     </div>
                     <div className='personalcard__about'>
                         <h3>O mnie</h3>
@@ -217,11 +221,11 @@ const CandidatePage: React.FC = () => {
                         </thead>
                         <tbody>
                         <tr>
-                            {/* <td>{student && showExpectedTypeWork(student?.expectedTypeWork)}</td> */}
+                            <td>{student && showExpectedTypeWork(student?.expectedTypeWork)}</td>
                             <td></td>
                             <td>{student?.targetWorkCity}</td>
                             <td></td>
-                            {/* <td>{student && showExpectedContractType(student.expectedContractType)}</td> */}
+                            <td>{student && showExpectedContractType(student.expectedContractType)}</td>
                             <td>{student?.expectedSalary} zł</td>
                             <td>{student?.canTakeApprenticeship ? labels.options.internship.yes : labels.options.internship.no}</td>
                             <td>{student?.monthsOfCommercialExp} miesięcy</td>
@@ -246,17 +250,17 @@ const CandidatePage: React.FC = () => {
                         temporibus ratione repellat tempore</p>
                     </div>
                     
-                    <div>
+                    <div className='urls-section'>
                         <h3>Portfolio</h3>
                         <>{student?.portfolioUrls && student.portfolioUrls.map(url => showUrl(url))}</>
                     </div>
                     
-                    <div>
+                    <div className='urls-section'>
                         <h3>Projekt w zespole Scrumowym</h3>
                         <>{student?.bonusProjectUrls && student.bonusProjectUrls.map(url => showUrl(url))}</>
                     </div>
 
-                    <div>
+                    <div className='urls-section'>
                         <h3>Projekt na zaliczenie</h3>
                         <>{student?.projectUrls && student.projectUrls.map(url => showUrl(url))}</>
                     </div>

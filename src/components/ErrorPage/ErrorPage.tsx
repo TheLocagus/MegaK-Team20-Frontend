@@ -11,7 +11,7 @@ const ErrorPage: React.FC = () => {
     
     useEffect(() => {
         setTimeout(() => {
-            navigate('/recruiter', { replace: true })
+            navigate('/', { replace: true })
         }, 3000)
     },[])
 

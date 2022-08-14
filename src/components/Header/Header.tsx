@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import ButtonLink from '../common/ButtonLink/ButtonLink';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { labels } from 'utils/labels'
 
 import './Header.scss';
@@ -28,7 +30,9 @@ const Header: React.FC<Props> = ({ personData }) => {
                     <div>
                         <img className='avatar' src={require('../../images/avatar.jpg')} alt='' />
                         <span>{personData}</span>
-                        <div className='arrow-down'>▼</div>
+                        <div className='arrow-down'>          
+                            <FontAwesomeIcon icon={faPlay} />
+                        </div>
                     </div>
                     <div className='header-admin__usermenu-list'>
                         <ButtonLink label={labels.buttons.logout} />
