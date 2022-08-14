@@ -32,7 +32,7 @@ const PasswordForm: React.FC = () => {
             <div className='form-login__div'>
                 <div className='form-login__login'>
                     <ButtonLink type='submit'
-                        customClass='form-login__button'
+                        customClass='red-btn'
                         label={labels.buttons.send}
                     />
                 </div>

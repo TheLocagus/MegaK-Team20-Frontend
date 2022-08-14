@@ -101,10 +101,9 @@ section {
   fieldset {
     border: none;
   }
-  .submitStudentRegisterForm {
+  .red-btn {
     @include submit-btn;
     align-self: flex-end;
-    border: none;
     margin: 20px 0;
   }
 }

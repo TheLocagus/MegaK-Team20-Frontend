@@ -133,6 +133,18 @@ module.exports = {
             nameSurname: 'Imię i nazwisko',
             company: 'Firma',
             studentsLimit: 'Maksymalna liczba kandydatów'
+        },
+        candidate: {
+            aboutMe: 'O mnie',
+            grades: 'Oceny',
+            expectations: 'Oczekiwania w stosunku do zatrudnienia',
+            experience: 'Komercyjne doświadczenie w programowaniu',
+            courses: 'Kursy',
+            portfolio: 'Portfolio',
+            scrumProject: 'Projekt w zespole Scrumowym',
+            finalProject: 'Projekt na zaliczenie',
+            edit: 'Edycja danych',
+            backToProfile: 'Powrót do profilu'
         }
     }
 }

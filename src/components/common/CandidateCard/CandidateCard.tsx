@@ -60,7 +60,7 @@ const CandidateCard: React.FC<Props> = ({ student, setActiveStudentsList, setFor
         </div>
         <div className='group-btns'>
           <ButtonLink type='button'
-            customClass='opener'
+            customClass='red-btn'
             label={labels.buttons.reserve}
             onClick={handleReservation}
           />
