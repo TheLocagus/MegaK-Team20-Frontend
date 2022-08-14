@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makiety HTML+CSS - filtrowanie</title>
+    <style>
+        @font-face {
+    font-family: 'Catamaran';
+    src: url('./fonts/Catamaran-VariableFont_wght.ttf');
+}
+    </style>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
+</head>
+<body>
+   
+    <div class="container">
+        <a href="index.html">index</a>
+        <button id="modal_open">open modal</button>
+    
+    <!-- MODAL HERE -->
+    <div class="filter" id="modal">  
+    <header class="filter__header">
+        <h2>Filtrowanie</h2>
+        <button class="filter__header-button">Wyczyść wszystkie</button>
+    </header>
+    <main class="filter__main">
+        <form>
+        <h3>Ocena przejścia kursu</h3>
+        <div class="filter__main-selector">
+            <button>5 <span>★</span></button>
+            <button>4 <span>★</span></button>
+            <button>3 <span>★</span></button>
+            <button>2 <span>★</span></button>
+            <button>1 <span>★</span></button>
+        </div>
+
+        <h3>Ocena aktywności i zaangażowania na kursie</h3>
+        <div class="filter__main-selector">
+            <button>5 <span>★</span></button>
+            <button>4 <span>★</span></button>
+            <button>3 <span>★</span></button>
+            <button>2 <span>★</span></button>
+            <button>1 <span>★</span></button>
+        </div>
+
+        <h3>Ocena kodu w projekcie własnym</h3>
+        <div class="filter__main-selector">
+            <button>5 <span>★</span></button>
+            <button>4 <span>★</span></button>
+            <button>3 <span>★</span></button>
+            <button>2 <span>★</span></button>
+            <button>1 <span>★</span></button>
+        </div>
+
+        <h3>Ocena pracy w zespole w Scrum</h3>
+        <div class="filter__main-selector">
+            <button>5 <span>★</span></button>
+            <button>4 <span>★</span></button>
+            <button>3 <span>★</span></button>
+            <button>2 <span>★</span></button>
+            <button>1 <span>★</span></button>
+        </div>
+
+        <h3>Preferowane miejsce pracy</h3>
+        <div class="filter__main-selector">
+            <button>Praca zdalna</button>
+            <button>Praca w biurze</button>
+        </div>
+
+        <h3>Oczekiwany typ kontraktu</h3>
+        <div class="filter__main-selector">
+            <button>Umowa o pracę</button>
+            <button>B2B</button>
+            <button>Umowa zlecenie</button>
+            <button>Umowa o dzieło</button>
+        </div>
+
+        <h3>Oczekiwane wynagrodzenie miesięczne netto</h3>
+        <div class="filter__main-selector">
+Od <input type="text" value="np. 1000 zł"> Do <input value="np. 10000 zł">
+        </div>
+
+        <h3>Zgoda na odbycie bezpłatnych praktyk / stażu na początek</h3>
+        <div class="filter__main-selector">
+<input type="radio" name="accept" />Tak<br />
+<input type="radio" name="accept" />Nie
+        </div>
+
+        <h3>Ilość miesięcy doświadczenia komercyjnego kandydata w programowaniu</h3>
+        <div class="filter__main-selector">
+            <select class="arrows">
+            <!-- size="2" style="font-size:16px; height:24px; padding:4px;" -->
+                <option value="0">0 miesięcy</option>
+                <option value="1">1 miesięcy</option>
+                <option value="2">2 miesięcy</option>
+                <option value="3">3 miesięcy</option>
+                <option value="4">4 miesięcy</option>
+                <option value="5">5 miesięcy</option>
+                <option value="6">6 miesięcy</option>
+            </select>
+        </div>
+
+        <div class="submit">
+<input class="button-cancel" type="reset" value="Anuluj">
+<input class="button-submit" type="submit" value="Pokaż wyniki" id="modal_close">
+        </div>
+    </form>
+    </main>
+    </div>
+</body>
+</html>

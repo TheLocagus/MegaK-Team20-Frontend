@@ -1,0 +1,9 @@
+@import '_variables';
+@import '_mixins.scss';
+
+section {
+    max-width: 1430px;
+    margin: 0 auto;
+    color: $color-white;
+    @include flex;
+}

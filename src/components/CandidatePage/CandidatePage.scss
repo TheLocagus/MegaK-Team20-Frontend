@@ -1,0 +1,233 @@
+@import '_variables.scss';
+@import '_mixins.scss';
+
+
+p {
+  margin: 0;
+  color: $color-white;
+}
+
+.main {
+  &__cv {
+    svg {
+      color: $color-medium-grey;
+    }
+    .urls-section {
+      .fa-paperclip {
+        transform: rotate(-45deg);
+      }
+      .fa-paperclip, a {
+        color: $color-blue;
+      }
+    }
+  }
+  &__back {
+    display: flex;
+    align-items: center;
+    a {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      color: $color-white;
+      line-height: 1rem;
+      svg {
+        transform: rotate(-90deg);
+      }
+    }
+    span {
+      display: inline-block;
+      font-size: 2rem;
+      line-height: 1.6rem;
+      vertical-align: top;
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      text-align: center;
+      color: $color-white;
+    }
+
+    p {
+      width: 37px;
+      height: 27px;
+      line-height: 1.6rem;
+      vertical-align: top;
+      color: $color-white;
+    }
+  }
+
+  &__cv {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    background-color: $color-grey;
+    max-width: 1430px;
+    margin: 26px auto;
+
+    td {
+      font-size: 16px;
+      color: $color-lighter-grey;
+
+      span.scale {
+        font-weight: bold;
+        color: $color-white;
+      }
+
+      span.star {
+        font-size: 20px;
+        color: $color-medium-grey;
+      }
+
+      span.star span {
+        font-size: 20px;
+        color: $color-red;
+        padding: 0;
+      }
+    }
+  }
+
+  &__personalcard {
+    background-color: $color-dark-grey;
+    padding-top: .6rem;
+    position: relative;
+    & > a {
+      @include flex;
+      width: 26px;
+      height: 24px;
+      position: absolute;
+      top: 6px;
+      right: 4px;
+      svg {
+        font-size: 1.2rem;
+        color: $color-red !important;
+      }
+    }
+  }
+
+  &__personaldata {
+    h3 {
+      display: flex;
+      align-items: center;
+      background-color: $color-dark-grey;
+      color: $color-white;
+      padding: .3rem 1rem;
+      margin: 0;
+      font-size: 1.25rem;
+      height: 60px;
+    }
+    p {
+      padding: .3rem 1rem;
+      margin: 0;
+      line-height: 1.7rem;
+      margin: 17px 0;
+    }
+    &--grades-section {
+      td {
+        width: 25%;
+        padding-bottom: 16px;
+      }
+    }
+    &--expectations-section {
+      td {
+        width: 16.66%;
+      }
+      tbody td {
+        color: $color-white;
+      }
+    }
+    td {
+      border: none;
+      &:not(:last-child) {
+        border-right: 1px solid $color-dark-grey;
+      }
+    }
+  }
+}
+
+.personalcard {
+  &__avatar {
+    @include flex;
+    flex-direction: column;
+    padding-top: 2rem;
+    img {
+      display: block;
+      height: 150px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+    }
+    & > p {
+      font-size: 1.5rem;
+    }
+    p {
+      display: flex;
+      svg {
+        margin-right: 10px;
+      }
+    }
+  }
+  &__avatar-center {
+    margin: 14px 1rem 8px;
+    a {
+      display: flex;
+      padding: 0;
+      margin: 0;
+      svg {
+        font-size: 1.4rem;
+        color: $color-blue;
+      }
+    }
+    &.github {
+      margin-bottom: 14px;
+      a {
+        align-items: center;
+      }
+      p {
+        color: $color-blue;
+      }
+    }
+  }
+
+  &__avatar-contactdata {
+    margin: 14px 1rem 8px;
+    align-self: flex-start;
+  }
+  &__about {
+    margin: .1rem 1rem;
+    margin-bottom: 36px;
+    p {
+      line-height: 1.6rem;
+      white-space: pre-wrap;
+    }
+    h3 {
+      color: $color-medium-grey;
+      margin: 18px 0 10px;
+    }
+  }
+  &__buttons button {
+    display: block;
+    background-color: $color-red;
+    border: 1px solid $color-dark-red;
+    color: $color-white;
+    margin: .5rem auto;
+    padding: .5rem;
+    width: 90%;
+  }
+}
+
+@media (min-width: 600px) {
+  .main__back {
+    position: absolute;
+    left: -87px;
+    top: 0;
+    width: 87px;
+  }
+  .main__cv {
+    flex-direction: row;
+  }
+  .main__personalcard {
+    flex-basis: 250px;
+    margin-right: 4px;
+  }
+  .main__personaldata {
+    flex: 1;
+  }
+}

@@ -1,0 +1,8 @@
+@import '_variables';
+@import '_mixins.scss';
+
+.login-page {
+    height: calc(100vh - 90px);
+    justify-content: center;
+    align-items: center;
+}

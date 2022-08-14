@@ -1,0 +1,13 @@
+@import '_variables.scss';
+@import '_mixins.scss';
+
+.generating-info{
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $color-white;
+   h3 {
+     font-size: 2.5rem;
+   }
+}

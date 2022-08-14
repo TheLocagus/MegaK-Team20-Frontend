@@ -1,0 +1,90 @@
+@import '_variables.scss';
+@import '_mixins.scss';
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h2 {
+        margin: 1.4rem auto 1rem;
+    }
+    &__logo {
+        margin: 0 auto
+    }
+    
+    &__label {
+        input {
+            margin: 8px auto;
+            background-color: $color-dark-grey;
+            color: $color-light-grey;
+            background: $color-dark-grey 0% 0% no-repeat padding-box;
+            border: none;
+            padding: 1rem;
+        }
+    }
+    button {
+        margin: 1rem auto;
+        min-width: 100px;
+    }
+    &__div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 16px;
+    }
+    &__login,
+    &__forgotten-password {
+        display: flex;
+        flex-direction: column;
+        a, button {
+            font-size: .9rem;
+        }
+        p {
+            text-align: center;
+            a {
+            font-weight: 900;
+            }
+        }
+    }
+    &__forgotten-password {
+        button {
+            background-color: transparent;
+            color: $color-white;
+        }
+        a {
+            padding: 0.66rem 0.61rem;
+        }
+    }
+}
+
+@media (min-width: 600px) {
+
+    .form-login {
+        &__input {
+            width: 350px;
+            box-sizing: border-box;
+        }
+        &__button {
+            margin: 8px 0 0;
+            margin-left: auto;
+        }
+        &__div {
+            flex-direction: row-reverse;
+        }
+        div div {
+            padding: 0;
+        }
+        &__login {
+            text-align: right;
+            flex-direction: column-reverse;
+        }
+        &__login p {
+            margin: 1rem 0;
+        }
+        &__forgotten-password {
+            display: flex;
+            justify-content: flex-end;
+            padding: 1rem;
+        }
+    }
+}

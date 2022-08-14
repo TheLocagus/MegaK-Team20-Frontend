@@ -1,0 +1,110 @@
+@import '_variables.scss';
+@import '_mixins.scss';
+
+.registration-form {
+  flex-direction: column;
+  padding-top: 14px;
+}
+.student-register-form_error {
+  text-align: center;
+  font-size: 1.88rem;
+  color: $color-red;
+  margin-top: 3rem;
+}
+
+.student-register-form {
+  display: flex;
+  flex-direction: column;
+  color: $color-white;
+  margin-top: 1.88rem;
+  .form__header {
+    @include form-header;
+    margin-bottom: 20px;
+  }
+  .passwords,
+  &__personal-fields div,
+  .typeWorkAndContract {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__urls {
+    label {
+      margin-bottom: 1.25rem;
+    }
+    .btn {
+      align-self: flex-end;
+    }
+  }
+  .typeWorkAndContract select {
+    max-width: 100%
+  }
+  &__canTakeApprenticeship {
+    &__agree,
+    &__disagree {
+      display: flex;
+      align-items: center;
+      font-size: 0.87rem;
+      input {
+        display: block;
+        border: 1px solid $color-white;
+        border-radius: 50%;
+        height: 16px;
+        width: 16px;
+        background-color: transparent;
+        margin-right: 10px;
+        height: 27px;
+        cursor: pointer;
+      }
+      .yes-label-internship, .no-label-internship {
+        flex-direction: row;
+      }
+    }
+  }
+  label {
+    display: flex;
+    flex-direction: column; 
+    min-width: 47%;
+    span {
+      font-size: 0.87rem;
+      span {
+        color: $color-red;
+      }
+    }
+    input, select {
+      height: 27px;
+      margin: 0.4rem 0 1.25rem;
+    }
+    input, textarea {
+      min-height: 50px;
+      padding: .52rem;
+      background-color: $color-dark-grey;
+      border: none;
+      font-size: 0.9rem;
+      color: $color-white;
+    }
+    textarea {
+      margin: 0.4rem 0 1.25rem;
+    }
+  }
+  legend {
+    font-size: 0.87rem;
+    span {
+      color: $color-red;
+    }
+  }
+  select {
+    background-color: $color-dark-grey;
+    color: $color-light-grey;
+    font-size: 0.75rem;
+    max-width: 110px;
+  }
+  fieldset {
+    border: none;
+  }
+  .red-btn {
+    @include submit-btn;
+    align-self: flex-end;
+    margin: 20px 0;
+  }
+}

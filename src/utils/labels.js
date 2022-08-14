@@ -1,0 +1,151 @@
+module.exports = {
+    labels: {
+        form: {
+            email: 'E-mail',
+            password: 'Hasło',
+            repeatPassword: 'Powtórz hasło',
+            forgottenPassword: 'Zapomniałeś hasło?',
+            resetPassLabel: 'Odzyskiwanie hasła',
+        },
+        buttons: {
+            login: 'Zaloguj się',
+            reserve: 'Zarezerwuj rozmowę',
+            filter: 'Filtrowanie',
+            clearFilters: 'Wyczyść wszystko',
+            showResults: 'Pokaż wyniki',
+            cancel: 'Anuluj',
+            showCV: 'Pokaż CV',
+            notInterested: 'Brak zainteresowania',
+            hired: 'Zatrudniony',
+            account: 'Konto',
+            logout: 'Wyloguj',
+            add: 'Dodaj',
+            confirm: 'Zatwierdź',
+            back: 'Wróć',
+            send: 'Wyślij'
+        },
+        recruiter: {
+            menu: {
+                available: 'Dostępni kursanci',
+                meetings: 'Do rozmowy',
+            },
+            reservation: 'Rezerwacja do'
+        },
+        filters: {
+            inputPlaceholder: 'Szukaj',
+            header: 'Filtrowanie',
+            months: 'miesięcy',
+        },
+        options: {
+            courseRate: 'Ocena przejścia kursu',
+            activityRate: 'Ocena aktywności i zaangażowania na kursie',
+            codeRate: 'Ocena kodu w projekcie własnym',
+            teamWorkRate: 'Ocena pracy w zespole w Scrum',
+            workPlace: {
+                label: 'Preferowany typ pracy',
+                remote: 'Praca zdalna',
+                office: 'Praca w biurze',
+            },
+            workPlaceFilter: {
+                remote: 'remote',
+                stationary: 'stationary'
+            },
+            city: 'Docelowe miasto, gdzie chce pracować kandydat',
+            contractType: {
+                label: 'Oczekiwany typ kontraktu',
+                all: 'Każdy',
+                permContract: 'Umowa o pracę',
+                b2b: 'B2B',
+                tempContract: 'Umowa zlecenie',
+                projectContract: 'Umowa o dzieło',
+            },
+            contractTypeFilters: {
+                contractOfEmployment: 'contractOfEmployment',
+                b2b: 'B2B',
+                contractOfMandate: 'contractOfMandate',
+                contractWork: 'contractWork',
+            },
+            salary: {
+                label: 'Oczekiwane wynagrodzenie miesięczne netto',
+                from: 'Od',
+                to: 'Do',
+                minPlaceholder: 'np. 1000 zł',
+                maxPlaceholder: 'np. 10000 zł',
+                notSpecify: 'Nie podano',
+            },
+            internship: {
+                label: 'Zgoda na odbycie bezpłatnych praktyk / stażu na początek',
+                yes: 'Tak',
+                no: 'Nie'
+            },
+            experience: 'Ilość miesięcy doświadczenia komercyjnego kandydata w programowaniu',
+        },
+        waiting: 'Proszę czekać...',
+        studentRegister: {
+            label: 'Rejestracja kandydata',
+            repeatPassword: 'Powtórz hasło',
+            telNumber: 'Numer telefonu',
+            name: 'Imię',
+            surname: 'Nazwisko',
+            preferedCity: 'Preferowane miasto',
+            githubNickname: 'Nick na Githubie',
+            portfolioLink: 'Linki do portfolio',
+            projectsLink: 'Linki do projektów',
+            aboutMe: 'Napisz coś o sobie',
+            prefJobStyle: {
+                label: 'Preferowany sposób pracy',
+                all: 'Każdy',
+                remote: 'Zdalny',
+                office: 'Stacjonarny',
+                hybrid: 'Hybrydowy',
+                relocation: 'Gotowość do przeprowadzki'
+            },
+            education: 'Edukacja',
+            experience: 'Doświadczenie zawodowe',
+            courses: 'Kursy i certyfikaty',
+            placeholder: {
+                email: 'np. adam@kowalski.pl',
+                password: 'Twoje hasło',
+                name: 'np. Adam',
+                surname: 'np. Kowalski',
+                phone: 'np. 123456789',
+                city: 'np. Kraków',
+                githubNickname: 'np. TheBestProgrammer',
+                links: 'np. https://',
+                aboutMe: 'Kilka słów o mnie..., w programowaniu najbardziej lubię..',
+                months: 'np. 3',
+                education: 'np. Jestem absolwentem...',
+                experience: 'np. Pracowałem/am na stanowisku... w firmie...',
+                courses: 'np. Kursy i szkolenia które ukończyłem/am...'
+            }
+        },
+        generatingData: 'Trwa generowanie listy...',
+        generatingProfile: 'Trwa pobieranie danych...',
+        errorPageMsg: {
+            noPageFound: 'Nie znaleziono strony.',
+            redirect: 'Za chwilę zostaniesz przekierowany do strony głównej.'
+        },
+        adminPage: {
+            header: 'Wybierz co chcesz robić',
+            addRecruiter: 'Dodaj nowego rekrutera',
+            addStudents: 'Dodaj nowych studentów',
+            fillForm: 'Wypełnij formularz',
+            chooseFile: 'Wybierz plik',
+            nameSurname: 'Imię i nazwisko',
+            company: 'Firma',
+            studentsLimit: 'Maksymalna liczba kandydatów'
+        },
+        candidate: {
+            aboutMe: 'O mnie',
+            grades: 'Oceny',
+            expectations: 'Oczekiwania w stosunku do zatrudnienia',
+            experience: 'Komercyjne doświadczenie w programowaniu',
+            courses: 'Kursy',
+            portfolio: 'Portfolio',
+            scrumProject: 'Projekt w zespole Scrumowym',
+            finalProject: 'Projekt na zaliczenie',
+            edit: 'Edycja danych',
+            backToProfile: 'Powrót do profilu'
+        }
+    }
+}

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makiety HTML+CSS - dostępni kursanci</title>
+    <style>
+        @font-face {
+    font-family: 'Catamaran';
+    src: url('./fonts/Catamaran-VariableFont_wght.ttf');
+}
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+   
+    <header class="header-admin">
+        
+    <nav class="header-admin__nav">
+        <a href="index.html"><div class="logo"></div></a>
+        <div class="header-admin__usermenu">
+            <div class="avatar"></div>
+            <p>Mateusz Kowalski</p>
+            <div class="arrow-down">▼</div>
+        </div>
+    </nav>
+    </header>
+
+<main>
+
+    <header>
+<div class="userlist-header__menu">
+<ul>
+    <li><a class="active" href="#">Dostępni kursanci</a></li>
+    <li><a href="do_rozmowy.html">Do rozmowy</a></li>
+</ul>
+</div>
+
+<div>
+        
+    <form action="" class="userlist-header__searchform">
+    
+        <span>
+        <input type="text" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Szukaj">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#666" class="bi bi-search" viewBox="0 0 24 24">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+        </span>
+    
+        <button> <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#4d4d4d" class="bi bi-funnel-fill" viewBox="0 0 16 16">
+            <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
+          </svg>
+          Filtrowanie
+        </button>
+    </span>
+    </form>
+</div>
+
+    </header>
+
+    <div class="userlist-header__list">
+
+<ul>
+    <li>
+    <div class="listElement">
+        <p>Jan K.</p>
+        <div class="opener">
+            <button>Zarezerwuj rozmowę</button>
+            <span class="arrow">⌄</span>
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <td>Ocena przejścia kursu</td>
+                <td>Ocena aktywności i zaangażowania na kursie</td>
+                <td>Ocena kodu w projekcie własnym</td>
+                <td>Ocena pracy w zespole w Scrum</td>
+                <td>Preferowane miejsce pracy</td>
+                <td>Docelowe miasto, gdzie chce pracować kandydat</td>
+                <td>Oczekiwany typ kontraktu</td>
+                <td>Oczekiwane wynagrodzenie netto</td>
+                <td>Zgoda na odbycie bezpłatnych praktyk/stażu na początek</td>
+                <td>Komercyjne doświadczenie w programowaniu</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>5<span>/5</span></td>
+                <td>3<span>/5</span></td>
+                <td>4<span>/5</span></td>
+                <td>5<span>/5</span></td>
+                <td>Biuro</td>
+                <td>Warszawa</td>
+                <td>Umowa o pracę</td>
+                <td>8 000 zł</td>
+                <td>TAK</td>
+                <td>6 miesięcy</td>
+            </tr>
+        </tbody>
+    </table>
+    </li>
+    <li>
+        <div class="listElement">
+            <p>Paweł S.</p>
+            <div class="opener">
+                <button>Zarezerwuj rozmowę</button>
+                <span class="arrow">⌄</span>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="listElement">
+            <p>Mariusz L.</p>
+            <div class="opener">
+                <button>Zarezerwuj rozmowę</button>
+                <span class="arrow">⌄</span>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="listElement">
+            <p>Katarzyna K.</p>
+            <div class="opener">
+                <button>Zarezerwuj rozmowę</button>
+                <span class="arrow">⌄</span>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="listElement">
+            <p>Kamil O.</p>
+            <div class="opener">
+                <button>Zarezerwuj rozmowę</button>
+                <span class="arrow">⌄</span>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="listElement">
+            <p>Aleksandra M.</p>
+            <div class="opener">
+                <button>Zarezerwuj rozmowę</button>
+                <span class="arrow">⌄</span>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="listElement">
+            <p>Marcin P.</p>
+            <div class="opener">
+                <button>Zarezerwuj rozmowę</button>
+                <span class="arrow">⌄</span>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="listElement">
+            <p>Marcin R.</p>
+            <div class="opener">
+                <button>Zarezerwuj rozmowę</button>
+                <span class="arrow">⌄</span>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="listElement">
+            <p>Łukasz S.</p>
+            <div class="opener">
+                <button>Zarezerwuj rozmowę</button>
+                <span class="arrow">⌄</span>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="listElement">
+            <p>Jakub O.</p>
+            <div class="opener">
+                <button>Zarezerwuj rozmowę</button>
+                <span class="arrow">⌄</span>
+            </div>
+        </div>
+    </li>
+</ul>
+
+    </div>
+
+    <footer>
+<p>Ilość elementów</p>
+<select>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+  </select>
+  <p>10 z 90</p>
+  <button class="disabled"><</button> <button>></button>
+    </footer>
+</main>
+    </div>
+</body>
+</html>

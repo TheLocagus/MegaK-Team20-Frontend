@@ -1,0 +1,85 @@
+@import '_variables';
+@import '_mixins.scss';
+
+.btn {
+    padding: 0.66rem 0.61rem;
+    border: none;
+    transition: all .3s ease-out;
+}
+
+.searchform-btn {
+    background-color: $color-grey;
+    padding: .5rem;
+    border: none;
+    color: $color-white; 
+}
+
+.red-btn {
+    background-color: $color-red;
+    border: 1px solid $color-dark-red;
+    color: $color-white;
+    padding: .5rem;
+    transition: all .3s ease-out;
+    &:hover {
+        background-color: $color-white;
+        color: $color-red;
+    } 
+}
+
+.opener-btn {
+    background-color: $color-dark-grey;
+    svg {
+        transform: rotate(180deg);
+        transition: .2s ease-in-out;
+    }
+    &.open svg {
+        transform: rotate(0deg);
+    }
+}
+
+.group-btns {
+    margin-right: 0;
+    margin-left: auto;
+    .red-btn:not(:last-of-type) {
+        margin-right: 28px;
+    }
+}
+
+.menu-btn {
+    @include flex;
+    min-width: 200px;
+    height: 100%;
+    font-size: 1.13rem;
+    color: $color-white;
+    background-color: transparent;
+    border-bottom: 2px solid transparent;
+    text-align: center;
+    &.active {
+        border-bottom: 2px solid $color-red;
+        font-weight: bold;
+    } 
+}
+
+.cancel-btn {
+    background-color: $color-black;
+    color: $color-white;
+    margin-right: 8px;
+    transition: all .3s ease-out;
+    cursor: pointer;
+    &:hover {
+        background-color: $color-white;
+        color: $color-black;
+    } 
+}
+
+.blue-btn {
+    background-color: $color-deep-blue;
+    border: none;
+    color: $color-light-blue;
+    padding: .5rem .63rem;
+    font-size: 14px;
+    &:hover {
+        background-color: $color-light-blue;
+        color: $color-deep-blue;
+    }
+}

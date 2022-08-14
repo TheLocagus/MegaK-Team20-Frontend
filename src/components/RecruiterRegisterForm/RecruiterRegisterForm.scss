@@ -1,0 +1,89 @@
+@import '_variables.scss';
+@import '_mixins.scss';
+
+article {
+  form {
+    @include flex;
+    flex-direction: column;
+    width: 350px;
+    h3 {
+      @include flex;
+      height: 70px;
+      margin: 1rem 0;
+    }
+    input {
+      margin-bottom: 1rem;
+    }
+    button {
+      @include submit-btn;
+      min-width: 100px;
+      align-self: flex-end;
+      margin-top: 10px;
+    }
+  }
+}
+
+.add-recruiter-form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: $color-white;
+  border-right: 2px solid $color-dark-grey;
+}
+
+.add-recruiter-form,
+.register-input {
+  width: 50%;
+  height: 76vh;
+  padding-bottom: 30px;
+}
+
+.register-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-recruiter__input {
+  display: block;
+  height: 50px;
+  width: 100%;
+  font-size: 0.9rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  background-color: $color-dark-grey;
+  color: $color-white;
+}
+
+.register-recruiter__h2 {
+  font-size: 1.38rem;
+}
+
+.register-recruiter__error {
+  text-align: center;
+  font-size: 30px;
+  color: $color-red;
+  margin-top: 30px;
+}
+
+.register-recruiter__create {
+  text-align: center;
+  font-size: 30px;
+  color: $color-green;
+  margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+  .register-recruiter__h2 {
+    font-size: 25px;
+  }
+}
+@media (max-height: 350px) {
+  .register-recruiter__h2 {
+    font-size: 25px;
+  }
+  button {
+    height: 25px;
+  }
+}

@@ -1,0 +1,83 @@
+@import '_variables.scss';
+@import '_mixins.scss';
+
+li {
+    max-height: 70px;
+    transition: max-height .3s ease-out;
+    overflow: hidden;
+    &.open {
+        max-height: 500px;
+    }
+    .listElement {
+        display: flex;
+        align-items: center;
+        min-height: 70px;
+        background-color: $color-dark-grey;
+        border: 1px solid #252627;
+        padding: 0 20px;
+        .reservation-info {
+            @include flex-start-center;
+            flex-direction: column;
+            row-gap: 10px;
+            width: 110px;
+            margin-right: 62px;
+            &__label {
+                font-size: .87rem;
+            }
+            &__date {
+                font-weight: bold;
+            }
+        }
+        .candidate-info {
+            svg {
+                margin-right: 12px;
+            }
+        }
+        p {
+            font-size: 1.13rem;
+        }
+        div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }    
+}
+
+table {
+    width: 100%;
+    border: collapse;
+    border: none;
+    border-spacing: 0;
+    thead {
+        color: $color-lighter-grey;
+        font-size: .7rem;
+        td {
+            font-size: .75rem;
+        }
+    }
+    tbody {
+        color: $color-white;
+        font-size: .8rem;
+        td {
+            font-weight: bold;
+            span {
+                font-weight: normal;
+                padding: .4rem;
+            }
+        }
+        td, span {
+            font-size: .94rem;
+        }
+    }
+    tr, thead, tbody {
+        border: none;
+    }
+    td {
+        padding: .5rem 14px;
+        background-color: $color-grey;
+        border: 0 solid #252627;
+        border-width: 0 1px;
+        vertical-align: top;
+    }
+}
