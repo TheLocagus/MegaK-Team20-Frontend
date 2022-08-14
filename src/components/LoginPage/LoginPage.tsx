@@ -14,9 +14,7 @@ const LoginPage: React.FC = () => {
     const forgottenPassHandler = () => setForgottenPassState(true)
     
     useEffect(() => {
-        setTimeout(() => {
-            navigate('/recruiter', { replace: true })
-        }, 5000)
+
     },[])
 
     

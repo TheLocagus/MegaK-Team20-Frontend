@@ -119,7 +119,7 @@ const CandidatesListPage: React.FC = () => {
       try {
         switch(type){
           case DataTypeEnum.all:
-            await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase);
+            await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase, recruiterId as string);
             setIsGenerated(true);
             break;
           case DataTypeEnum.filtered:
@@ -197,7 +197,7 @@ const CandidatesListPage: React.FC = () => {
       setActiveStudentsList(data)
     } else {
       dispatch(setDataType(DataTypeEnum.all))
-      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', DataTypeEnum.all, actualSearchPhrase)
+      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', DataTypeEnum.all, actualSearchPhrase, recruiterId as string)
     }
 
   }
@@ -207,7 +207,7 @@ const CandidatesListPage: React.FC = () => {
     switch(type){
       case DataTypeEnum.all:
         setNumberOfSearchedPage(numberOfWantedPage)
-        window.location.href = `/recruiter/${numberOfWantedPage}`
+        window.location.href = `/recruiter/${recruiterId}/${numberOfWantedPage}`
         break;
 
       case DataTypeEnum.searched:

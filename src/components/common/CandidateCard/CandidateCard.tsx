@@ -26,7 +26,7 @@ interface Props {
 
 const CandidateCard: React.FC<Props> = ({ student, setActiveStudentsList, setForInterviewStudentsList }: Props) => {
   const [cartState, setCartState] = useState(false);
-  const { numberOfPage } = useParams();
+  const { numberOfPage, recruiterId } = useParams();
   const { type, actualSearchPhrase } = useSelector((store: RootState) => store.students)
   const {
     firstName,
@@ -49,7 +49,7 @@ const CandidateCard: React.FC<Props> = ({ student, setActiveStudentsList, setFor
   }
 
   const handleReservation = async () => {
-    await studentsStatusHandler(RecruiterActionsOfStatusEnum.forInterview, id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase);
+    await studentsStatusHandler(RecruiterActionsOfStatusEnum.forInterview, id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase, recruiterId as string);
   }
 
   return (
