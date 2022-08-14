@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 const RedirectPage = () => {
   
   useEffect(() => {
-    window.location.href = 'http://localhost:3000/recruiter/1'
+    window.location.href = 'http://localhost:3000/'
   }, [])
 
   return (

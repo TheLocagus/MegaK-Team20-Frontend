@@ -12,11 +12,12 @@ export const studentsStatusHandler = async (
   numberOfPage: string,
   type: DataTypeEnum,
   actualSearchPhrase: string,
+  recruiterId: string,
 ) => {
 
   switch(action){
     case `for-interview`:
-      const res = await fetch(`http://localhost:3001/recruiter/${id}`, {
+      const res = await fetch(`http://localhost:3001/recruiter/status/${recruiterId}/${id}`, {
         method: 'PATCH',
         body: JSON.stringify({
           status: RecruiterActionsOfStatusEnum.forInterview
@@ -26,11 +27,11 @@ export const studentsStatusHandler = async (
         }
       })
       console.log(await res.json())
-      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase);
+      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase, recruiterId);
       //@TODO dodano pomyślnie
       break;
     case `no-interested`:
-      await fetch(`http://localhost:3001/recruiter/${id}`, {
+      await fetch(`http://localhost:3001/recruiter/status/${recruiterId}/${id}`, {
         method: 'PATCH',
         body: JSON.stringify({
           status: RecruiterActionsOfStatusEnum.noInterested
@@ -40,12 +41,12 @@ export const studentsStatusHandler = async (
         }
       })
 
-      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage, type, actualSearchPhrase);
+      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage, type, actualSearchPhrase, recruiterId);
       //@TODO dodano pomyślnie
       break;
 
     case 'employed':
-      await fetch(`http://localhost:3001/recruiter/${id}`, {
+      await fetch(`http://localhost:3001/recruiter/status/${recruiterId}/${id}`, {
         method: 'PATCH',
         body: JSON.stringify({
           status: RecruiterActionsOfStatusEnum.employed
@@ -55,7 +56,7 @@ export const studentsStatusHandler = async (
         }
       })
 
-      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage, type, actualSearchPhrase);
+      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage, type, actualSearchPhrase, recruiterId);
       //@TODO dodano pomyślnie
       break;
 
