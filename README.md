@@ -1,6 +1,6 @@
 # MegaK Head Hunter
 
-> MegaK Head Hunter is a final project - website build by MegaK couse students.
+> MegaK Head Hunter is a final project - website build by MegaK course students.
 
 * As a recruiter you can:
   - select developers of your choice.
@@ -98,6 +98,7 @@ You are allowed to use it for both personal and commercial use, but not to claim
 ## Contact
 
 Created by:
+
 [@Wiolinek](https://github.com/Wiolinek) \
 [@TheLocagus](https://github.com/TheLocagus)
 
