@@ -14,7 +14,7 @@ const LoginForm: React.FC<Props> = ({onClick}) => {
 
   const [loginForm, setLoginForm] = useState({
     email: '',
-    password: '',
+    pwd: '',
   })
 
   const handleChange = (key: string, value: any) => {
@@ -30,14 +30,19 @@ const LoginForm: React.FC<Props> = ({onClick}) => {
     try {
       const res = await fetch('http://localhost:3001/auth/login', {
         method: 'POST',
-        body: JSON.stringify(loginForm),
+        body: JSON.stringify({
+          email: loginForm.email,
+          pwd: loginForm.pwd,
+        }),
         headers: {
           'Content-Type': 'application/json'
         }
       });
       const data = await res.json()
 
-      if (!data.success) throw new Error('Something went wrong.')
+      if (!data.success) {
+        console.log(data)
+      }
 
       switch (data.role){
         case 'admin':
@@ -73,11 +78,11 @@ const LoginForm: React.FC<Props> = ({onClick}) => {
 
       <label className='form-login__label'>
         <input className='form-login__input'
-               type='text'
+               type='password'
                id='password'
                placeholder={labels.form.password}
-               value={loginForm.password}
-               onChange={e => handleChange('password', e.target.value)}
+               value={loginForm.pwd}
+               onChange={e => handleChange('pwd', e.target.value)}
         >
         </input>
       </label>
