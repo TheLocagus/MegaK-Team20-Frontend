@@ -60,9 +60,10 @@
                 margin-right: 24px;
                 font-size: 1.12rem;
             }
-            .arrow-down {
+            .arrow-down svg {
                 color: $color-lighter-grey;
                 font-size: .8rem;
+                transform: rotate(90deg);
             }
 
         }

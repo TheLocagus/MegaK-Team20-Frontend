@@ -51,6 +51,13 @@
         padding: .5rem;
         border: none;
         color: $color-white;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        svg {
+            margin-right: 6px;
+            color: $color-medium-grey;
+        }
     }
 }
 
