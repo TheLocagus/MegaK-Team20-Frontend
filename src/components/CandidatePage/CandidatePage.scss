@@ -97,24 +97,40 @@ p {
       font-size: 1.25rem;
       height: 60px;
     }
-
     p {
       padding: .3rem 1rem;
       margin: 0;
       line-height: 27px;
       margin: 17px 0;
     }
-
     table {
       padding: .3rem 1rem;
       margin: 0;
-      height: 110px;
     }
-
+    &--grades-section {
+      td {
+        width: 25%;
+        padding-bottom: 16px;
+      }
+    }
+    &--expectations-section {
+      td {
+        width: 16.66%;
+      }
+      tbody td {
+        color: $color-white;
+      }
+    }
     img {
       font-size: .9rem;
       height: 18px;
       fill: $color-blue;
+    }
+    td {
+      border: none;
+      &:not(:last-child) {
+        border-right: 1px solid $color-dark-grey;
+      }
     }
   }
 }
@@ -130,7 +146,6 @@ p {
     text-align: center;
     font-size: 24px;
     padding: 0;
-
     a {
       font-size: 16px;
       padding: 0;
@@ -141,7 +156,6 @@ p {
   &__avatar-contactdata {
     margin: 18px 1rem 8px;
     text-align: left;
-
     i {
       color: $color-medium-grey;
       margin-right: 1rem;
@@ -153,7 +167,6 @@ p {
     p {
       white-space: pre-wrap;
     }
-
     h3 {
       color: $color-medium-grey;
       font-size: 16px;

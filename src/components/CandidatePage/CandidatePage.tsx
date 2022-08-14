@@ -146,7 +146,7 @@ const CandidatePage: React.FC = () => {
 
     return (
         <>
-            <Header personData='zalogowany rekruter' />
+            <Header personData='zalogowany rekruter lub student' />
             <main className='main__cv'>
                 <div className='main__back'>
                     <ButtonLink
@@ -183,7 +183,7 @@ const CandidatePage: React.FC = () => {
 
                 <div className='main__personaldata'>
                     <h3>Oceny</h3>
-                    <table>
+                    <table className='main__personaldata--grades-section'>
                         <thead>
                         <tr>
                             <td>Ocena przejścia kursu</td>
@@ -204,7 +204,7 @@ const CandidatePage: React.FC = () => {
 
 
                     <h3>Oczekiwania w stosunku do zatrudnienia</h3>
-                    <table>
+                    <table className='main__personaldata--expectations-section'>
                         <thead>
                         <tr>
                             <td>Preferowany typ pracy</td>
@@ -217,9 +217,11 @@ const CandidatePage: React.FC = () => {
                         </thead>
                         <tbody>
                         <tr>
-                            <td>{student && showExpectedTypeWork(student?.expectedTypeWork)}</td>
+                            {/* <td>{student && showExpectedTypeWork(student?.expectedTypeWork)}</td> */}
+                            <td></td>
                             <td>{student?.targetWorkCity}</td>
-                            <td>{student && showExpectedContractType(student.expectedContractType)}</td>
+                            <td></td>
+                            {/* <td>{student && showExpectedContractType(student.expectedContractType)}</td> */}
                             <td>{student?.expectedSalary} zł</td>
                             <td>{student?.canTakeApprenticeship ? labels.options.internship.yes : labels.options.internship.no}</td>
                             <td>{student?.monthsOfCommercialExp} miesięcy</td>

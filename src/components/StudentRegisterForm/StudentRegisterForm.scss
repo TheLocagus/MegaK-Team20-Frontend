@@ -3,7 +3,6 @@
 
 section {
   flex-direction: column;
-  margin: 20px auto;
 }
 .student-register-form_error {
   text-align: center;
@@ -76,10 +75,11 @@ section {
       margin: 0.4rem 0 1.25rem;
     }
     input, textarea {
+      min-height: 50px;
       padding: .52rem;
       background-color: $color-dark-grey;
       border: none;
-      font-size: 0.75rem;
+      font-size: 0.9rem;
       color: $color-white;
     }
     textarea {
