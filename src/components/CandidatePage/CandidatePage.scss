@@ -61,7 +61,7 @@ p {
     position: relative;
     background-color: $color-grey;
     max-width: 1430px;
-    margin: 26px auto 0;
+    margin: 26px auto;
 
     td {
       font-size: 16px;
@@ -104,12 +104,8 @@ p {
     p {
       padding: .3rem 1rem;
       margin: 0;
-      line-height: 27px;
+      line-height: 1.7rem;
       margin: 17px 0;
-    }
-    table {
-      padding: .3rem 1rem;
-      margin: 0;
     }
     &--grades-section {
       td {
@@ -125,11 +121,6 @@ p {
         color: $color-white;
       }
     }
-    img {
-      font-size: .9rem;
-      height: 18px;
-      fill: $color-blue;
-    }
     td {
       border: none;
       &:not(:last-child) {
@@ -140,41 +131,61 @@ p {
 }
 
 .personalcard {
-  &__avatar img {
-    height: 150px;
-    border-radius: 50%;
+  &__avatar {
+    @include flex;
+    flex-direction: column;
+    img {
+      display: block;
+      height: 150px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+    }
+    & > p {
+      font-size: 1.5rem;
+    }
+    p {
+      display: flex;
+      svg {
+        margin-right: 10px;
+      }
+    }
   }
   &__avatar-center {
-    display: block;
-    margin: 9px auto;
-    text-align: center;
-    font-size: 24px;
-    padding: 0;
+    margin: 14px 1rem 8px;
     a {
-      font-size: 16px;
+      display: flex;
       padding: 0;
       margin: 0;
+      svg {
+        font-size: 1.4rem;
+        color: $color-blue;
+      }
+    }
+    &.github {
+      margin-bottom: 14px;
+      a {
+        align-items: center;
+      }
+      p {
+        color: $color-blue;
+      }
     }
   }
 
   &__avatar-contactdata {
-    margin: 18px 1rem 8px;
-    text-align: left;
-    i {
-      color: $color-medium-grey;
-      margin-right: 1rem;
-    }
+    margin: 14px 1rem 8px;
+    align-self: flex-start;
   }
   &__about {
     margin: .1rem 1rem;
     margin-bottom: 36px;
     p {
+      line-height: 1.6rem;
       white-space: pre-wrap;
     }
     h3 {
       color: $color-medium-grey;
-      font-size: 16px;
-      margin-top: 18px;
+      margin: 18px 0 10px;
     }
   }
   &__buttons button {
@@ -182,7 +193,7 @@ p {
     background-color: $color-red;
     border: 1px solid $color-dark-red;
     color: $color-white;
-    margin: .5rem;
+    margin: .5rem auto;
     padding: .5rem;
     width: 90%;
   }

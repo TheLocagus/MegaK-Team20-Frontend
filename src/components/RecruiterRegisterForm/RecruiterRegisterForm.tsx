@@ -101,7 +101,7 @@ export const RecruiterRegisterForm = () => {
                     onChange={e => updateForm('maxReservedStudents', Number(e.target.value))}
                 />
 
-                <button className='btn'>{labels.buttons.add}</button>
+                <button className='red-btn'>{labels.buttons.add}</button>
 
                 {
                     errorMessage.length > 0 &&
@@ -118,7 +118,7 @@ export const RecruiterRegisterForm = () => {
                 <label className="custom-file-upload">
                     <input type='file'></input>
                 </label>
-                <button className='submit-btn btn' type='submit'>{labels.buttons.send}</button>
+                <button className='submit-btn red-btn' type='submit'>{labels.buttons.send}</button>
             </form>
         </article>
     </>

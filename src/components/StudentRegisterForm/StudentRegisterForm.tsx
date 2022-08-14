@@ -425,7 +425,7 @@ const StudentRegisterForm = () => {
                         </label>
                     </div>
                 </fieldset>
-                <button className='submitStudentRegisterForm btn submit-btn' type='submit'>{labels.buttons.confirm}</button>
+                <button className='red-btn submit-btn' type='submit'>{labels.buttons.confirm}</button>
             </form>
         </section>
     )

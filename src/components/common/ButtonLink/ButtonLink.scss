@@ -14,7 +14,7 @@
     color: $color-white; 
 }
 
-.opener {
+.red-btn {
     background-color: $color-red;
     border: 1px solid $color-dark-red;
     color: $color-white;
@@ -40,7 +40,7 @@
 .group-btns {
     margin-right: 0;
     margin-left: auto;
-    .opener:not(:last-of-type) {
+    .red-btn:not(:last-of-type) {
         margin-right: 28px;
     }
 }

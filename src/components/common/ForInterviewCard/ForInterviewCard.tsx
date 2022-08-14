@@ -91,17 +91,17 @@ export const ForInterviewCard: React.FC<Props> = ({ student, setActiveStudentsLi
         <div className='group-btns'>
           <>
             <ButtonLink type='button'
-              customClass='opener'
+              customClass='red-btn'
               label={labels.buttons.showCV}
               onClick={showCv}
             />
             <ButtonLink type='button'
-              customClass='opener'
+              customClass='red-btn'
               label={labels.buttons.notInterested}
               onClick={handleNoInterested}
             />
             <ButtonLink type='button'
-              customClass='opener'
+              customClass='red-btn'
               label={labels.buttons.hired}
               onClick={handleEmployed}
             />

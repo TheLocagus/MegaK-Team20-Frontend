@@ -6,6 +6,7 @@ import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import Icon from 'components/Icon/Icon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope, faPaperclip } from '@fortawesome/free-solid-svg-icons';
+import { brands } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { RecruiterActionsOfStatusEnum } from 'components/CandidatesListPage/CandidatesListPage';
 import { showExpectedContractType, showExpectedTypeWork } from 'utils/displayCorrectPlainInStudentsLists';
 import { Generating } from '../Generating/Generating';
@@ -156,29 +157,37 @@ const CandidatePage: React.FC = () => {
                 </div>
                 <div className='main__personalcard'>
                     <div className='personalcard__avatar'>
-                        <img className='personalcard__avatar-center' src={student?.githubUsername.length !== 0 ? `https://www.github.com/${student?.githubUsername}.png` : '/images/avatar_big.png'} alt=''/>
-                            <p className='personalcard__avatar-center'>{student?.firstName} {student?.lastName}</p>
-                            <p className='personalcard__avatar-center'><a href=''><i
-                                className='bi bi-github'></i>{student?.githubUsername}</a></p>
-                            <p className='personalcard__avatar-contactdata'>
-                                <FontAwesomeIcon icon={faPhone} />
-                                {student?.telephone}
-                            </p>
-                            <p className='personalcard__avatar-contactdata'>
-                                <FontAwesomeIcon icon={faEnvelope} />
-                                {student?.email}
-                            </p>
+                        <img src={student?.githubUsername.length !== 0 ? `https://www.github.com/${student?.githubUsername}.png` : '/images/avatar_big.png'}
+                            alt=''
+                        />
+                        <p className='personalcard__avatar-center'>{student?.firstName} {student?.lastName}</p>
+                        <p className='personalcard__avatar-center github'>
+                            <a href=''>
+                                <FontAwesomeIcon icon={brands('github')} />
+                                {student?.githubUsername}
+                            </a>
+                        </p>
+                        <p className='personalcard__avatar-contactdata'>
+                            <FontAwesomeIcon icon={faPhone} />
+                            {student?.telephone}
+                        </p>
+                        <p className='personalcard__avatar-contactdata'>
+                            <FontAwesomeIcon icon={faEnvelope} />
+                            {student?.email}
+                        </p>
                     </div>
                     <div className='personalcard__about'>
-                        <h3>O mnie</h3>
+                        <h3>{labels.candidate.aboutMe}</h3>
                         <p>{student.bio}</p>
                     </div>
                     <div className='personalcard__buttons'>
                         <ButtonLink type='button'
+                            customClass='red-btn'
                             label={labels.buttons.notInterested}
                             onClick={handleNoInterested}
                         />
                         <ButtonLink type='button'
+                            customClass='red-btn'
                             label={labels.buttons.hired}
                             onClick={handleEmployed}
                         />
@@ -186,82 +195,103 @@ const CandidatePage: React.FC = () => {
                 </div>
 
                 <div className='main__personaldata'>
-                    <h3>Oceny</h3>
+                    <h3>{labels.candidate.grades}</h3>
                     <table className='main__personaldata--grades-section'>
                         <thead>
-                        <tr>
-                            <td>Ocena przejścia kursu</td>
-                            <td>Ocena zaangażowania na kursie</td>
-                            <td>Ocena kodu w projekcie własnym</td>
-                            <td>Ocena w zespole w Scrum</td>
-                        </tr>
+                            <tr>
+                                <td>{labels.options.courseRate}</td>
+                                <td>{labels.options.activityRate}</td>
+                                <td>{labels.options.codeRate}</td>
+                                <td>{labels.options.teamWorkRate}</td>
+                            </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td><span className='scale'>{student?.courseCompletion}</span>/ 5 <span className='star'><span>{generateStars(student?.courseCompletion, 'red')}</span>{generateStars(student?.courseCompletion, 'gray')}</span></td>
-                            <td><span className='scale'>{student?.courseEngagement}</span>/ 5 <span className='star'><span>{generateStars(student?.courseEngagement, 'red')}</span>{generateStars(student?.courseEngagement, 'gray')}</span></td>
-                            <td><span className='scale'>{student?.projectDegree}</span>/ 5 <span className='star'><span>{generateStars(student?.projectDegree, 'red')}</span>{generateStars(student?.projectDegree, 'gray')}</span></td>
-                            <td><span className='scale'>{student?.teamProjectDegree}</span>/ 5 <span className='star'><span>{generateStars(student?.teamProjectDegree, 'red')}</span>{generateStars(student?.teamProjectDegree, 'gray')}</span></td>
+                            <td>
+                                <span className='scale'>{student?.courseCompletion}</span>/ 5 
+                                <span className='star'>
+                                    <span>{generateStars(student?.courseCompletion, 'red')}</span>
+                                    {generateStars(student?.courseCompletion, 'gray')}
+                                </span>
+                            </td>
+                            <td>
+                                <span className='scale'>{student?.courseEngagement}</span>/ 5 
+                                <span className='star'>
+                                    <span>{generateStars(student?.courseEngagement, 'red')}</span>
+                                    {generateStars(student?.courseEngagement, 'gray')}
+                                </span>
+                            </td>
+                            <td>
+                                <span className='scale'>{student?.projectDegree}</span>/ 5 
+                                <span className='star'>
+                                    <span>{generateStars(student?.projectDegree, 'red')}</span>
+                                    {generateStars(student?.projectDegree, 'gray')}
+                                </span>
+                            </td>
+                            <td>
+                                <span className='scale'>{student?.teamProjectDegree}</span>/ 5 
+                                <span className='star'>
+                                    <span>{generateStars(student?.teamProjectDegree, 'red')}</span>
+                                    {generateStars(student?.teamProjectDegree, 'gray')}
+                                </span>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
 
-
-                    <h3>Oczekiwania w stosunku do zatrudnienia</h3>
+                    <h3>{labels.candidate.expectations}</h3>
                     <table className='main__personaldata--expectations-section'>
                         <thead>
-                        <tr>
-                            <td>Preferowany typ pracy</td>
-                            <td>Docelowe miasto, gdzie chce pracować kandydat</td>
-                            <td>Oczekiwany typ kontraktu</td>
-                            <td>Oczekiwane wynagrodzenie netto</td>
-                            <td>Zgoda na odbycie bezpłatnych praktyk/stażu na początek</td>
-                            <td>Komercyjne doświadczenie w programowaniu</td>
-                        </tr>
+                            <tr>
+                                <td>{labels.options.workPlace.label}</td>
+                                <td>{labels.options.city}</td>
+                                <td>{labels.options.contractType.label}</td>
+                                <td>{labels.options.salary.label}</td>
+                                <td>{labels.options.internship.label}</td>
+                                <td>{labels.candidate.experience}</td>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>{student && showExpectedTypeWork(student?.expectedTypeWork)}</td>
-                            <td></td>
-                            <td>{student?.targetWorkCity}</td>
-                            <td></td>
-                            <td>{student && showExpectedContractType(student.expectedContractType)}</td>
-                            <td>{student?.expectedSalary} zł</td>
-                            <td>{student?.canTakeApprenticeship ? labels.options.internship.yes : labels.options.internship.no}</td>
-                            <td>{student?.monthsOfCommercialExp} miesięcy</td>
-                        </tr>
+                            <tr>
+                                <td>{student && showExpectedTypeWork(student?.expectedTypeWork)}</td>
+                                <td>{student?.targetWorkCity}</td>
+                                <td>{student && showExpectedContractType(student.expectedContractType)}</td>
+                                <td>{student?.expectedSalary} zł</td>
+                                <td>{student?.canTakeApprenticeship ? labels.options.internship.yes : labels.options.internship.no}</td>
+                                <td>{student?.monthsOfCommercialExp} miesięcy</td>
+                            </tr>
                         </tbody>
                     </table>
 
                     <div>
-                        <h3>Edukacja</h3>
+                        <h3>{labels.studentRegister.education}</h3>
                         <p>{student?.education}</p> 
                     </div>
                     
                     <div>
-                        <h3>Kursy</h3>
+                        <h3>{labels.candidate.courses}</h3>
                         <p>{student?.courses}</p>
                     </div>
                     
                     <div>
-                        <h3>Doświadczenie zawodowe</h3>
+                        <h3>{labels.studentRegister.experience}</h3>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis repudiandae eos iste laudantium
                         dignissimos, corrupti, numquam rem, optio consequuntur atque mollitia itaque eius officia eum
                         temporibus ratione repellat tempore</p>
                     </div>
                     
                     <div className='urls-section'>
-                        <h3>Portfolio</h3>
+                        <h3>{labels.candidate.portfolio}</h3>
                         <>{student?.portfolioUrls && student.portfolioUrls.map(url => showUrl(url))}</>
                     </div>
                     
                     <div className='urls-section'>
-                        <h3>Projekt w zespole Scrumowym</h3>
+                        <h3>{labels.candidate.scrumProject}</h3>
                         <>{student?.bonusProjectUrls && student.bonusProjectUrls.map(url => showUrl(url))}</>
                     </div>
 
                     <div className='urls-section'>
-                        <h3>Projekt na zaliczenie</h3>
+                        <h3>{labels.candidate.finalProject}</h3>
                         <>{student?.projectUrls && student.projectUrls.map(url => showUrl(url))}</>
                     </div>
 

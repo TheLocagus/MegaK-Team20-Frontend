@@ -22,10 +22,7 @@
             padding: 1rem;
         }
     }
-    &__button {
-        @include flex;
-        background-color: $color-red;
-        color: $color-white;
+    button {
         margin: 1rem auto;
         min-width: 100px;
     }
