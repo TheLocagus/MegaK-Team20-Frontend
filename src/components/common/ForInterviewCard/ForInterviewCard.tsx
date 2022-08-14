@@ -29,7 +29,7 @@ export const ForInterviewCard: React.FC<Props> = ({ student, setActiveStudentsLi
   const [cartState, setCartState] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const candidates = searchParams.get('candidates');
-  const { numberOfPage } = useParams();
+  const { numberOfPage, recruiterId } = useParams();
   const { type, actualSearchPhrase } = useSelector((store: RootState) => store.students)
 
   useEffect(() => {
@@ -60,15 +60,15 @@ export const ForInterviewCard: React.FC<Props> = ({ student, setActiveStudentsLi
   }
 
   const handleNoInterested = async () => {
-    await studentsStatusHandler(RecruiterActionsOfStatusEnum.noInterested, id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase);
+    await studentsStatusHandler(RecruiterActionsOfStatusEnum.noInterested, id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase, recruiterId as string);
   }
 
   const handleEmployed = async () => {
-    await studentsStatusHandler(RecruiterActionsOfStatusEnum.employed, id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase);
+    await studentsStatusHandler(RecruiterActionsOfStatusEnum.employed, id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase, recruiterId as string);
   }
 
   const showCv = async () => {
-    window.location.href = `http://localhost:3000/recruiter/cv/${id}`
+    window.location.href = `http://localhost:3000/recruiter/${recruiterId}/cv/${id}`
   }
 
   return (

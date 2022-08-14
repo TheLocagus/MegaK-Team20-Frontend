@@ -45,7 +45,7 @@ export interface StudentCvInterface {
 const CandidatePage: React.FC = () => {
     const [isGenerated, setIsGenerated] = useState<boolean>(false)
     const dispatch = useDispatch();
-    const { id } = useParams()
+    const { id, recruiterId } = useParams()
     const [student, setStudent] = useState<StudentCvInterface>({
         bio: '',
         firstName: '',
@@ -74,9 +74,7 @@ const CandidatePage: React.FC = () => {
     useEffect(()=>{
        (async () => {
            try {
-               console.log(id)
-
-               const res = await fetch(`http://localhost:3001/recruiter/cv/${id}`)
+               const res = await fetch(`http://localhost:3001/recruiter/${recruiterId}/cv/${id}`)
                const data = await res.json()
                setStudent(data)
                setIsGenerated(true)
@@ -119,7 +117,7 @@ const CandidatePage: React.FC = () => {
             }
         })
 
-        window.location.href = 'http://localhost:3000/recruiter'
+        window.location.href = `/recruiter/${recruiterId}/1`
     }
 
     const handleEmployed = async () => {
@@ -132,7 +130,7 @@ const CandidatePage: React.FC = () => {
                 'Content-Type': 'application/json'
             }
         })
-        window.location.href = 'http://localhost:3000/recruiter'
+        window.location.href = `/recruiter/${recruiterId}/1`
     }
 
     const showUrl = (url: string) => {
@@ -145,12 +143,12 @@ const CandidatePage: React.FC = () => {
 
     return (
         <>
-            <Header personData='zalogowany rekruter lub student' />
+            <Header personData={localStorage.getItem('full name') ?? 'Rekruter'} />
             <main className='main__cv'>
                 <div className='main__back'>
                     <ButtonLink
                         label={labels.buttons.back} 
-                        target='/recruiter'
+                        target={`/recruiter/${recruiterId}/1`}
                         icon={<Icon.ArrowUp/>}
                     />
                 </div>
@@ -221,11 +219,9 @@ const CandidatePage: React.FC = () => {
                         </thead>
                         <tbody>
                         <tr>
-                            <td>{student && showExpectedTypeWork(student?.expectedTypeWork)}</td>
-                            <td></td>
+                            <td>{student.expectedTypeWork.length !== 0 && showExpectedTypeWork(student?.expectedTypeWork)}</td>
                             <td>{student?.targetWorkCity}</td>
-                            <td></td>
-                            <td>{student && showExpectedContractType(student.expectedContractType)}</td>
+                            <td>{student.expectedContractType.length !== 0 && showExpectedContractType(student?.expectedContractType)}</td>
                             <td>{student?.expectedSalary} zł</td>
                             <td>{student?.canTakeApprenticeship ? labels.options.internship.yes : labels.options.internship.no}</td>
                             <td>{student?.monthsOfCommercialExp} miesięcy</td>
