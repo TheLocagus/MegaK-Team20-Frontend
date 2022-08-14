@@ -1,22 +1,51 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Rating from '../Rating/Rating';
 import ButtonLink from '../ButtonLink/ButtonLink';
 
-import { labels } from 'utils/labels'
+import {labels} from 'utils/labels'
 
 import './FiltersModal.scss';
+import {
+    ActiveStudentsData,
+    ForInterviewStudentToListResponseInterface
+} from "../../CandidatesListPage/CandidatesListPage";
+import {useDispatch, useSelector} from "react-redux";
+import {DataTypeEnum, setDataType, setSavedFilters} from "../../../actions/students";
+import {RootState} from "../../../store";
+import {useSearchParams} from "react-router-dom";
 
 //modal pojawiający się po wciśnieciu przycisku Filtrowanie
 
 
 interface Props {
     onClick: () => void;
+    setActive: React.Dispatch<React.SetStateAction<ActiveStudentsData>>;
+    setForInterview: React.Dispatch<React.SetStateAction<ForInterviewStudentToListResponseInterface[]>>;
+    setNumberOfSearchedPage: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export interface FilterInterface {
+    courseRate: number[],
+    activityRate: number[],
+    codeRate: number[],
+    teamWorkRate: number[],
+    workPlace: string[],
+    contractType: string[],
+    salary: number[]
+    internship: boolean | string | null,
+    experience: number | string,
 }
 
 const MONTHS_COUNT = 6
 
 
-const FiltersModal: React.FC<Props> = ({ onClick }) => {
+const FiltersModal: React.FC<Props> = ({ onClick, setForInterview, setActive, setNumberOfSearchedPage }) => {
+    const {savedFilters} = useSelector((store: RootState) => store.students)
+    const dispatch = useDispatch();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const candidates = searchParams.get('candidates');
+
+
     const [filterData, setFilterData] = useState({
         courseRate: [],
         activityRate: [],
@@ -24,7 +53,7 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
         teamWorkRate: [],
         workPlace: [],
         contractType: [],
-        salary: [0, ''],
+        salary: [0],
         internship: '',
         experience: '',
     })
@@ -37,7 +66,7 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
             teamWorkRate: [],
             workPlace: [],
             contractType: [],
-            salary: ['', ''],
+            salary: [0],
             internship: '',
             experience: '',
         })
@@ -77,17 +106,41 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
         })
     )};
 
-    const filtersHandler = (e: React.SyntheticEvent) => {
+    const filtersHandler = async (e: React.SyntheticEvent) => {
         e.preventDefault()
-        // const requestPost = {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify({ filterData })
-        // };
-        // fetch(`http://localhost:3030/filter`, requestPost)
-        // .then(res => res.json())
-        // .then(result => setStudentsData(result))
-        // .catch(error => console.log(`error ${error}`))
+
+        const dataObj: FilterInterface = {
+            activityRate: filterData.activityRate.map(item => Number(item)),
+            codeRate: filterData.codeRate.map(item => Number(item)),
+            courseRate: filterData.courseRate.map(item => Number(item)),
+            teamWorkRate: filterData.teamWorkRate.map(item => Number(item)),
+            contractType: filterData.contractType,
+            experience: filterData.experience === '' ? 0 : Number(filterData.experience),
+            internship: filterData.internship === '' ? null : filterData.internship === 'Tak',
+            salary: filterData.salary.map(item => Number(item)),
+            workPlace: filterData.workPlace,
+        }
+
+        try {
+            const res = await fetch(`http://localhost:3001/recruiter/${1}/filter`, {
+                method: 'POST',
+                body: JSON.stringify(dataObj),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const filtered = await res.json()
+
+            dispatch(setSavedFilters(dataObj))
+            dispatch(setDataType(DataTypeEnum.filtered))
+
+            setNumberOfSearchedPage(1)
+            setActive(filtered);
+        } catch(e){
+            throw new Error('Something went weird.')
+        }
+
+        // const data =
         onClick()
     };
 
@@ -166,17 +219,17 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
                                 type='button'
                                 className='filters-btn'
                                 name='workPlace'
-                                value={labels.options.workPlace.remote}
+                                value={labels.options.workPlaceFilter.remote}
                                 onClick={btnFilterHandler}
                             />
                         </label>
-                        <label className={filterData.workPlace.find(el => el === labels.options.workPlace.office) ? 'active' : ''}>
+                        <label className={filterData.workPlace.find(el => el === labels.options.workPlaceFilter.stationary) ? 'active' : ''}>
                             {labels.options.workPlace.office}
                             <input
                                 type='button'
                                 className='filters-btn'
                                 name='workPlace'
-                                value={labels.options.workPlace.office}
+                                value={labels.options.workPlaceFilter.stationary}
                                 onClick={btnFilterHandler}
                             />
                         </label>
@@ -186,13 +239,13 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
                 <fieldset>
                     <legend>{labels.options.contractType.label}</legend>
                     <div className='filter__main-selector buttons'>
-                        <label className={filterData.contractType.find(el => el === labels.options.contractType.permContract) ? 'active' : ''}>
+                        <label className={filterData.contractType.find(el => el === labels.options.contractTypeFilters.contractOfEmployment) ? 'active' : ''}>
                             {labels.options.contractType.permContract}
                             <input
                                 type='button'
                                 className='filters-btn'
                                 name='contractType'
-                                value={labels.options.contractType.permContract}
+                                value={labels.options.contractTypeFilters.contractOfEmployment}
                                 onClick={btnFilterHandler} 
                             />
                         </label>
@@ -206,23 +259,24 @@ const FiltersModal: React.FC<Props> = ({ onClick }) => {
                                 onClick={btnFilterHandler} 
                             />
                         </label>
-                        <label className={filterData.contractType.find(el => el === labels.options.contractType.tempContract) ? 'active' : ''}>
+                        <label className={filterData.contractType.find(el => el === labels.options.contractTypeFilters.contractOfMandate) ? 'active' : ''}>
                             {labels.options.contractType.tempContract}
+
                             <input
                                 type='button'
                                 className='filters-btn'
                                 name='contractType'
-                                value={labels.options.contractType.tempContract}
+                                value={labels.options.contractTypeFilters.contractOfMandate}
                                 onClick={btnFilterHandler} 
                             />
                         </label>
-                        <label className={filterData.contractType.find(el => el === labels.options.contractType.projectContract) ? 'active' : ''}>
+                        <label className={filterData.contractType.find(el => el === labels.options.contractTypeFilters.contractWork) ? 'active' : ''}>
                             {labels.options.contractType.projectContract}
                             <input
                                 type='button'
                                 className='filters-btn'
                                 name='contractType'
-                                value={labels.options.contractType.projectContract}
+                                value={labels.options.contractTypeFilters.contractWork}
                                 onClick={btnFilterHandler} 
                             />
                         </label>

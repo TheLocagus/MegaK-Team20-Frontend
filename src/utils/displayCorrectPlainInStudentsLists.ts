@@ -1,5 +1,4 @@
 export const showExpectedContractType = (contractType: string) => {
-  console.log(contractType)
   let contract = '';
   switch (contractType) {
     case 'noPreference':

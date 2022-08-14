@@ -18,7 +18,7 @@ const Header: React.FC<Props> = () => {
     return (
         <header className='header-admin'>
             <nav className='header-admin__nav'>
-                <a href='index.html'>
+                <a href='/'>
                     <div className='logo'></div>
                 </a>
                 <div className={`header-admin__usermenu ${menuDropdownState && 'open'}`}

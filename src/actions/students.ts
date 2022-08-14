@@ -1,6 +1,7 @@
 import { StudentsAction } from "action-types/students";
 import { ForInterviewStudentToListResponseInterface } from "components/CandidatesListPage/CandidatesListPage";
 import {StudentsState} from "../reducers/students-reducers";
+import {FilterInterface} from "../components/common/FiltersModal/FiltersModal";
 
 export enum DataTypeEnum {
   all = 'all',
@@ -26,4 +27,9 @@ export const setDataType = (type: DataTypeEnum) => ({
 export const setActualSearchPhrase = (phrase: string) => ({
   type: StudentsAction.SET_ACTUAL_SEARCH_PHRASE,
   payload: phrase,
+})
+
+export const setSavedFilters = (filters: FilterInterface) => ({
+  type: StudentsAction.SET_SAVED_FILTERS,
+  payload: filters,
 })
