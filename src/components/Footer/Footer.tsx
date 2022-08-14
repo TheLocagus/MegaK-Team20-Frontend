@@ -9,7 +9,7 @@ const Footer = () => {
 
     return (
         <footer>
-            <p>{`Copyright \u00A9 ${year} kursanci MegaK. All Rights Reserved`}</p>
+            <p>{`Copyright \u00A9 ${year} MegaK students. All Rights Reserved`}</p>
         </footer>
     )
 }

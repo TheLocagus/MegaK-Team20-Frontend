@@ -1,8 +1,9 @@
 @import '_variables.scss';
 @import '_mixins.scss';
 
-section {
+.registration-form {
   flex-direction: column;
+  padding-top: 14px;
 }
 .student-register-form_error {
   text-align: center;

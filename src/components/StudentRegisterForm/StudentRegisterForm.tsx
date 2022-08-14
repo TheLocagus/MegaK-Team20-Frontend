@@ -162,7 +162,7 @@ const StudentRegisterForm = () => {
 
 
     return (
-        <section>
+        <section className='registration-form'>
             <img className='form-login__logo' src={require('../../images/logo-mk.png')} alt='' width='124' height='76' />
             {
                 errorMessage.length > 0 &&
