@@ -1,6 +1,7 @@
 import { StudentsAction } from "action-types/students";
 import { AvailableStudentToListResponseInterface, ForInterviewStudentToListResponseInterface } from "components/CandidatesListPage/CandidatesListPage";
 import {DataTypeEnum} from "../actions/students";
+import {FilterInterface} from "../components/common/FiltersModal/FiltersModal";
 
 export interface StudentsState {
   activeStudents: {
@@ -10,7 +11,8 @@ export interface StudentsState {
   };
   forInterviewStudents: ForInterviewStudentToListResponseInterface[];
   type: DataTypeEnum;
-  actualSearchPhrase: string
+  actualSearchPhrase: string;
+  savedFilters: FilterInterface;
 }
 
 const initialState: StudentsState = {
@@ -22,6 +24,17 @@ const initialState: StudentsState = {
   forInterviewStudents: [],
   type: DataTypeEnum.all,
   actualSearchPhrase: '',
+  savedFilters: {
+    courseRate: [],
+    activityRate: [],
+    codeRate: [],
+    teamWorkRate: [],
+    workPlace: [],
+    contractType: [],
+    salary: [0],
+    internship: null,
+    experience: '',
+  }
 }
 
 interface SetActiveStudents {
@@ -44,7 +57,12 @@ interface SetActualSearchPhrase {
   payload: string;
 }
 
-type Action = SetActiveStudents | SetForInterviewStudents | SetDataType | SetActualSearchPhrase;
+interface SetSavedFilters {
+  type: StudentsAction.SET_SAVED_FILTERS;
+  payload: FilterInterface;
+}
+
+type Action = SetActiveStudents | SetForInterviewStudents | SetDataType | SetActualSearchPhrase | SetSavedFilters;
 
 export default (state: StudentsState = initialState, action: Action) => {
   switch(action.type){
@@ -70,6 +88,12 @@ export default (state: StudentsState = initialState, action: Action) => {
       return {
         ...state,
         actualSearchPhrase: action.payload,
+      }
+    }
+    case StudentsAction.SET_SAVED_FILTERS: {
+      return {
+        ...state,
+        savedFilters: action.payload,
       }
     }
     default: return state;

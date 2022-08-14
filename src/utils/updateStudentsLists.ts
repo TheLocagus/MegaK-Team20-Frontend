@@ -7,10 +7,8 @@ export const updateStudentsLists = async (
   type: DataTypeEnum,
   actualSearchPhrase: string,
 ) => {
-  console.log(numberOfPage)
 
   if (type === DataTypeEnum.all){
-    console.log(numberOfPage)
     const resAllStudents = await fetch(`http://localhost:3001/recruiter/${Number(numberOfPage)}`)
     const dataAllStudents = await resAllStudents.json();
     setActiveStudentsList(dataAllStudents)
@@ -25,8 +23,6 @@ export const updateStudentsLists = async (
 
 
   setForInterviewStudentsList(dataForInterviewStudents)
-  // dispatch(setActiveStudents(dataAllStudents))
-  // dispatch(setForInterviewStudents(dataForInterviewStudents))
 
 
 }

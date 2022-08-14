@@ -46,6 +46,10 @@ module.exports = {
                 remote: 'Praca zdalna',
                 office: 'Praca w biurze',
             },
+            workPlaceFilter: {
+                remote: 'remote',
+                stationary: 'stationary'
+            },
             city: 'Docelowe miasto, gdzie chce pracować kandydat',
             contractType: {
                 label: 'Oczekiwany typ kontraktu',
@@ -54,6 +58,12 @@ module.exports = {
                 b2b: 'B2B',
                 tempContract: 'Umowa zlecenie',
                 projectContract: 'Umowa o dzieło',
+            },
+            contractTypeFilters: {
+                contractOfEmployment: 'contractOfEmployment',
+                b2b: 'B2B',
+                contractOfMandate: 'contractOfMandate',
+                contractWork: 'contractWork',
             },
             salary: {
                 label: 'Oczekiwane wynagrodzenie miesięczne netto',

@@ -10,18 +10,10 @@ import {
 } from "./components/CheckingBeforeStudentRegistryForm/CheckingBeforeStudentRegistryForm";
 
 import './App.scss';
-import {useSelector} from "react-redux";
-import {RootState} from "./store";
 import RedirectPage from "./components/RedirectPage/RedirectPage";
 import StudentRegisterForm from "./components/StudentRegisterForm/StudentRegisterForm";
 
 export const App = () => {
-  const {actualSearchPhrase} = useSelector((store: RootState) => store.students)
-  const searchPhraseInLS = localStorage.getItem('searchPhraseInMemory')
-
-  if(!searchPhraseInLS){
-    localStorage.setItem('searchPhraseInMemory', actualSearchPhrase)
-  }
 
   return (
     <BrowserRouter>

@@ -78,7 +78,7 @@ export enum RecruiterActionsOfStatusEnum {
 
 
 const CandidatesListPage: React.FC = () => {
-  const {type, actualSearchPhrase} = useSelector((store: RootState) => store.students)
+  const {type, actualSearchPhrase, savedFilters} = useSelector((store: RootState) => store.students)
   const dispatch = useDispatch();
   const [isGenerated, setIsGenerated] = useState<boolean>(false)
   const [modalState, setModalState] = useState(false);
@@ -98,7 +98,6 @@ const CandidatesListPage: React.FC = () => {
   const modalHandler = () => {
     setModalState(!modalState)
   }
-  console.log(type)
   useEffect(() => {
     setSearchParams({candidates: 'available'})
   }, [])
@@ -109,13 +108,12 @@ const CandidatesListPage: React.FC = () => {
       try {
         switch(type){
           case DataTypeEnum.all:
-            console.log('czy wchodzi do alla')
             await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase);
             setIsGenerated(true);
             break;
           case DataTypeEnum.filtered:
             //fetch z przefiltrowanymi danymi + trzeba zrobić w reduxie stan dla ustawionych filtrów
-            const res = await fetch(`http://localhost:3001/recruiter/${numberOfPage}/filter`)
+            const res = await fetch(`http://localhost:3001/recruiter/${numberOfSearchedPage}/filter`)
             setActiveStudentsList(await res.json())
             break;
           case DataTypeEnum.searched:
@@ -153,7 +151,6 @@ const CandidatesListPage: React.FC = () => {
       valuesToMap = [currentPage, 2, '...', total]
     } else if (total > 6 && currentPage === 2) {
       valuesToMap = [1, currentPage, 3, '...', total]
-      console.log(valuesToMap)
     } else if (total > 6 && currentPage === 3) {
       valuesToMap = [1, 2, currentPage, 4, '...', total]
     } else if (total > 6 && currentPage + 1 === total) {
@@ -166,8 +163,6 @@ const CandidatesListPage: React.FC = () => {
       valuesToMap = [1, '...', previous, currentPage, next, '...', total]
     }
     return valuesToMap.map((value, i) => {
-      console.log(numberOfPage)
-
       if (value === (type === DataTypeEnum.all ? Number(numberOfPage) : numberOfSearchedPage)) {
         return <span key={i} className='active' onClick={() => handleChangePage(Number(type === DataTypeEnum.all ? numberOfPage : numberOfSearchedPage))}>{(type === DataTypeEnum.all ? numberOfPage : numberOfSearchedPage)}</span>
       }
@@ -184,14 +179,14 @@ const CandidatesListPage: React.FC = () => {
     if(searchValue.length !== 0){
       dispatch(setDataType(DataTypeEnum.searched))
       dispatch(setActualSearchPhrase(searchValue))
-      localStorage.setItem('searchPhraseInMemory', actualSearchPhrase)
+      setNumberOfSearchedPage(1)
       const res = await fetch(`http://localhost:3001/recruiter/1/${searchValue}`)
       const data = await res.json()
 
       setActiveStudentsList(data)
     } else {
       dispatch(setDataType(DataTypeEnum.all))
-      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase)
+      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', DataTypeEnum.all, actualSearchPhrase)
     }
 
   }
@@ -200,6 +195,7 @@ const CandidatesListPage: React.FC = () => {
     console.log(type)
     switch(type){
       case DataTypeEnum.all:
+        setNumberOfSearchedPage(numberOfWantedPage)
         window.location.href = `/recruiter/${numberOfWantedPage}`
         break;
 
@@ -208,6 +204,17 @@ const CandidatesListPage: React.FC = () => {
         setNumberOfSearchedPage(numberOfWantedPage)
         setActiveStudentsList(await resSearched.json())
         break;
+      case DataTypeEnum.filtered:
+        const res = await fetch(`http://localhost:3001/recruiter/${numberOfWantedPage}/filter`, {
+          method: 'POST',
+          body: JSON.stringify(savedFilters),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        const resFiltered = await res.json();
+        setNumberOfSearchedPage(numberOfWantedPage)
+        setActiveStudentsList(resFiltered)
     }
   }
 
@@ -266,7 +273,7 @@ const CandidatesListPage: React.FC = () => {
             && <GenericSection children={createPageNumbers(numberOfPage as string, activeStudentsList.totalPages)} customClass='pages'/>
         }
       </main>
-      {modalState && <FiltersModal onClick={modalHandler} />}
+      {modalState && <FiltersModal setNumberOfSearchedPage={setNumberOfSearchedPage} setActive={setActiveStudentsList} setForInterview={setForInterviewStudentsList} onClick={modalHandler}/>}
     </>
 
   )
