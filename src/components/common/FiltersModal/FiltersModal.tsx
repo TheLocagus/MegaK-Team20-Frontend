@@ -213,7 +213,7 @@ const FiltersModal: React.FC<Props> = ({ onClick, setForInterview, setActive, se
                 <fieldset>
                     <legend>{labels.options.workPlace.label}</legend>
                     <div className='filter__main-selector buttons'>
-                        <label className={filterData.workPlace.find(el => el === labels.options.workPlace.remote) ? 'active' : ''}>
+                        <label className={filterData.workPlace.find(el => el === labels.options.workPlaceFilter.remote) ? 'active' : ''}>
                             {labels.options.workPlace.remote}
                             <input
                                 type='button'

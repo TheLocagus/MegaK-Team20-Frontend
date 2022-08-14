@@ -12,6 +12,7 @@ import RedirectPage from "./components/RedirectPage/RedirectPage";
 import StudentRegisterForm from "./components/StudentRegisterForm/StudentRegisterForm";
 
 import './App.scss';
+import {RecruiterPasswordForm} from "./RecruiterPasswordForm/RecruiterPasswordForm";
 
 
 export const App = () => {
@@ -22,9 +23,10 @@ export const App = () => {
         <Route path='/student/register/:id/:token/' element={<CheckingBeforeStudentRegistryForm/>}/>
         <Route path='/student/register/:id/:token/form' element={<StudentRegisterForm/>}/>
         <Route path='/' element={<LoginPage/>}/>
-        <Route path='/recruiter/:numberOfPage' element={<CandidatesListPage/>}/>
-        <Route path='/recruiter/cv/:id' element={<CandidatePage/>}/>
-        <Route path='/recruiter' element={<RedirectPage/>}/>
+        <Route path='/register/:recruiterId/:registerToken/form' element={<RecruiterPasswordForm/>}/>
+        <Route path='/recruiter/:recruiterId/:numberOfPage' element={<CandidatesListPage/>}/>
+        <Route path='/recruiter/:recruiterId/cv/:id' element={<CandidatePage/>}/>
+        <Route path='/recruiter/:recruiterId' element={<RedirectPage/>}/>
         <Route path='/admin' element={<AdminPage/>}/>
         <Route path='*' element={<ErrorPage/>}/>
       </Routes>
