@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from './components/LoginPage/LoginPage';
 import CandidatesListPage from './components/CandidatesListPage/CandidatesListPage';
 import CandidatePage from './components/CandidatePage/CandidatePage';
@@ -23,16 +23,16 @@ export const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path='/' element={<LoginPage />} />
+        <Route path='/student/:id' element={<CandidatePage />}/>
         <Route path='/student/register/:id/:token/' element={<CheckingBeforeStudentRegistryForm/>} />
         <Route path='/student/register/:id/:token/form' element={<StudentRegisterForm/>} />
-        <Route path='/' element={<LoginPage />} />
-        <Route path='/recruiter/register/:recruiterId/:registerToken/' element={<CheckingBeforeRecruiterRegistryForm/>} />
-        <Route path='/recruiter/register/:recruiterId/:registerToken/form' element={<RecruiterPasswordForm/>} /> ????
+        <Route path='/student/edit/:id' element={<StudentRegisterForm />} />
+        <Route path='/recruiter/:recruiterId' element={<RedirectPage />} />
         <Route path='/recruiter/:recruiterId/:numberOfPage' element={<CandidatesListPage/>} />
         <Route path='/recruiter/:recruiterId/cv/:id' element={<CandidatePage/>}/>
-        <Route path='/recruiter/:recruiterId' element={<RedirectPage />} />
-        <Route path='/student/:id' element={<CandidatePage />}/>
-        <Route path='/student/edit/:id' element={<StudentRegisterForm />} />
+        <Route path='/recruiter/register/:recruiterId/:registerToken/' element={<CheckingBeforeRecruiterRegistryForm/>} />
+        <Route path='/recruiter/register/:recruiterId/:registerToken/form' element={<RecruiterPasswordForm/>} />
         <Route path='/admin' element={<AdminPage />} />
         <Route path='*' element={<ErrorPage />} />
       </Routes>
