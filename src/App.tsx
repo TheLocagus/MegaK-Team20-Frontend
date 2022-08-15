@@ -10,12 +10,12 @@ import {
 } from './components/CheckingBeforeStudentRegistryForm/CheckingBeforeStudentRegistryForm';
 import RedirectPage from './components/RedirectPage/RedirectPage';
 import StudentRegisterForm from './components/StudentRegisterForm/StudentRegisterForm';
-
-import './App.scss';
-import { RecruiterPasswordForm } from './RecruiterPasswordForm/RecruiterPasswordForm';
+import RecruiterPasswordForm from './RecruiterPasswordForm/RecruiterPasswordForm';
 import {
   CheckingBeforeRecruiterRegistryForm
 } from './CheckingBeforeRecruiterRegistryForm/CheckingBeforeRecruiterRegistryForm';
+
+import './App.scss';
 
 
 export const App = () => {

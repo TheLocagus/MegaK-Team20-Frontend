@@ -13,7 +13,7 @@ const PasswordForm: React.FC = () => {
             <h2>{labels.form.resetPassLabel}</h2>
             <label className='form-login__label'>
                 <input className='form-login__input'
-                    type='text'
+                    type='password'
                     id='password'
                     placeholder={labels.form.password}
                 >
@@ -22,7 +22,7 @@ const PasswordForm: React.FC = () => {
                           
             <label className='form-login__label'>
                 <input className='form-login__input'
-                    type='text'
+                    type='password'
                     id='password'
                     placeholder={labels.form.repeatPassword}
                 >
