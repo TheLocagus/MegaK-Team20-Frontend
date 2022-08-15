@@ -55,6 +55,7 @@ export const RecruiterRegisterForm = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(form),
+            credentials: 'include',
         })
         const data = await res.json()
 

@@ -16,7 +16,17 @@ interface Props {
 const Header: React.FC<Props> = ({ personData }) => {
     const [menuDropdownState, setMenuDropdownState] = useState(false)
 
-
+    const logout = async () => {
+        const res = await fetch('http://localhost:3001/auth/logout', {
+            credentials: 'include'
+        })
+        const data = await res.json()
+        console.log(data)
+        if (data.success) {
+            localStorage.clear();
+            window.location.href = '/'
+        }
+    }
     return (
         <header className='header-admin'>
             <nav className='header-admin__nav'>
@@ -35,7 +45,7 @@ const Header: React.FC<Props> = ({ personData }) => {
                         </div>
                     </div>
                     <div className='header-admin__usermenu-list'>
-                        <ButtonLink label={labels.buttons.logout} />
+                        <ButtonLink type='button' label={labels.buttons.logout} onClick={logout} />
                     </div>
                 </div>
             </nav>

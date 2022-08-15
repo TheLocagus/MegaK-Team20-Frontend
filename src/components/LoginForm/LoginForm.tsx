@@ -36,11 +36,12 @@ const LoginForm: React.FC<Props> = ({onClick}) => {
         }),
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        credentials: "include"
       });
       const data = await res.json()
-
-      if (!data.success) {
+      console.log(data)
+      if (!data.ok) {
         console.log(data)
       }
 
@@ -52,7 +53,7 @@ const LoginForm: React.FC<Props> = ({onClick}) => {
           window.location.href = '/student'
           break;
         case 'recruiter':
-          window.location.href = '/recruiter'
+          window.location.href = '/recruiter/1'
           break;
       }
 

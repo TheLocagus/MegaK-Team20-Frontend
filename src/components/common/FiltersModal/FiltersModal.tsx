@@ -127,7 +127,8 @@ const FiltersModal: React.FC<Props> = ({ onClick, setForInterview, setActive, se
                 body: JSON.stringify(dataObj),
                 headers: {
                     'Content-Type': 'application/json'
-                }
+                },
+                credentials: 'include',
             });
             const filtered = await res.json()
 

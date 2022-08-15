@@ -49,7 +49,7 @@ const CandidateCard: React.FC<Props> = ({ student, setActiveStudentsList, setFor
   }
 
   const handleReservation = async () => {
-    await studentsStatusHandler(RecruiterActionsOfStatusEnum.forInterview, id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase, recruiterId as string);
+    await studentsStatusHandler(RecruiterActionsOfStatusEnum.forInterview, id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase);
   }
 
   return (

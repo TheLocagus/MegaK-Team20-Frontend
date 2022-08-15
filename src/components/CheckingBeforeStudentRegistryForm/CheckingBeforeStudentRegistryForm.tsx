@@ -9,7 +9,9 @@ export const CheckingBeforeStudentRegistryForm = () => {
 
     useEffect(() => {
         (async () => {
-            const res = await fetch(`http://localhost:3001/student/register/${id}/${token}`)
+            const res = await fetch(`http://localhost:3001/student/register/${id}/${token}`, {
+                credentials: 'include',
+            })
             const data = await res.json();
 
             if (data.success){
