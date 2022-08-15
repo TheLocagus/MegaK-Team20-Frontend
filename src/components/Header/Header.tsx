@@ -20,24 +20,27 @@ const Header: React.FC<Props> = ({ personData }) => {
     return (
         <header className='header-admin'>
             <nav className='header-admin__nav'>
-                <a href='/'>
+                <a href='/' aria-label={labels.aria.backToHP}>
                     <div className='logo'></div>
                 </a>
-                <div className={`header-admin__usermenu ${menuDropdownState && 'open'}`}
-                    onMouseEnter={() => setMenuDropdownState(true)}
-                    onMouseLeave={() => setMenuDropdownState(false)}
-                    >
-                    <div>
-                        <img className='avatar' src={require('../../images/avatar.jpg')} alt='' />
-                        <span>{personData}</span>
-                        <div className='arrow-down'>          
-                            <FontAwesomeIcon icon={faPlay} />
+                {
+                    personData && 
+                        <div className={`header-admin__usermenu ${menuDropdownState && 'open'}`}
+                            onMouseEnter={() => setMenuDropdownState(true)}
+                            onMouseLeave={() => setMenuDropdownState(false)}
+                            >
+                            <div>
+                                <img className='avatar' src={require('../../images/avatar.jpg')} alt='' />
+                                <span>{personData}</span>
+                                <div className='arrow-down'>          
+                                    <FontAwesomeIcon icon={faPlay} />
+                                </div>
+                            </div>
+                            <div className='header-admin__usermenu-list'>
+                                <ButtonLink label={labels.buttons.logout} />
+                            </div>
                         </div>
-                    </div>
-                    <div className='header-admin__usermenu-list'>
-                        <ButtonLink label={labels.buttons.logout} />
-                    </div>
-                </div>
+                }
             </nav>
         </header>
     )

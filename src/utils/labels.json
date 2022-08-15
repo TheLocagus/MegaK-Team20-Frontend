@@ -145,5 +145,12 @@
         "finalProject":"Projekt na zaliczenie",
         "edit":"Edycja danych",
         "backToProfile":"Powrót do profilu"
+    },
+    "aria": {
+        "backToHP": "Powrót do listy kandydatów",
+        "backToList": "Powrót do strony głównej",
+        "githubLink": "Profil na Github",
+        "editProfile": "Edycja danych profilu",
+        "chooseFile": "Wybierz plik z komputera"
     }
  }

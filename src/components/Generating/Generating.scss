@@ -1,12 +1,13 @@
 @import '_variables.scss';
 @import '_mixins.scss';
 
-.generating-info{
+.generating-info {
   height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
   color: $color-white;
+  background-color: transparent;
    h3 {
      font-size: 2.5rem;
    }

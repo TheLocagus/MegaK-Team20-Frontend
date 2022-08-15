@@ -29,6 +29,9 @@ article {
   flex-direction: column;
   color: $color-white;
   border-right: 2px solid $color-dark-grey;
+  label {
+    width: 100%;
+  }
 }
 
 .add-recruiter-form,

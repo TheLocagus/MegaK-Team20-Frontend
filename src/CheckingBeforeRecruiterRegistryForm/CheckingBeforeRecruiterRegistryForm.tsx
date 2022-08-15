@@ -1,7 +1,11 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import GenericSection from 'components/common/GenericSection/GenericSection';
+import Header from 'components/Header/Header';
+import Generating from 'components/Generating/Generating';
 import labels from 'utils/labels.json'
 
-import {useParams} from 'react-router-dom';
+
 
 export const CheckingBeforeRecruiterRegistryForm = () => {
   const { recruiterId, registerToken } = useParams()
@@ -22,6 +26,9 @@ export const CheckingBeforeRecruiterRegistryForm = () => {
   }, [])
 
   return (
-    <div className='waiting-info'>{labels.waiting}</div>
+      <>
+        <Header personData='' />
+        <GenericSection children={<Generating message={labels.waiting} />}/>
+      </>
   )
 }
