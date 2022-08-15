@@ -6,12 +6,12 @@ import Navigation from 'components/Navigation/Navigation';
 import GenericSection from 'components/common/GenericSection/GenericSection';
 import CandidateCard from 'components/common/CandidateCard/CandidateCard';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
-import Icon from 'components/Icon/Icon';
 import FiltersModal from 'components/common/FiltersModal/FiltersModal';
 import Generating from 'components/Generating/Generating';
+import { ReactComponent as Search } from 'icons/search-icon.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
-import { labels } from 'utils/labels'
+import labels from 'utils/labels.json'
 import { ForInterviewCard } from '../common/ForInterviewCard/ForInterviewCard';
 import { updateStudentsLists } from 'utils/updateStudentsLists';
 import { RootState } from 'store';
@@ -232,7 +232,7 @@ const CandidatesListPage: React.FC = () => {
   const filters: React.ReactNode = <>
     <div className='userlist-header__searchform'>
       <div>
-        <Icon.Search/>
+        <Search />
         <form onSubmit={handleSearchForm}>
           <input
             placeholder={labels.filters.inputPlaceholder}

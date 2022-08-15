@@ -4,13 +4,13 @@ import { useDispatch } from 'react-redux';
 import Header from 'components/Header/Header';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import Generating from 'components/Generating/Generating';
-import Icon from 'components/Icon/Icon';
+import { ReactComponent as ArrowUp }  from 'icons/arrow-up.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faGear, faPaperclip, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { brands } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { RecruiterActionsOfStatusEnum } from 'components/CandidatesListPage/CandidatesListPage';
 import { showExpectedContractType, showExpectedTypeWork } from 'utils/displayCorrectPlainInStudentsLists';
-import { labels } from 'utils/labels';
+import labels from 'utils/labels.json'
 
 import './CandidatePage.scss';
 
@@ -158,7 +158,7 @@ const CandidatePage: React.FC = () => {
                     <ButtonLink
                         label={labels.buttons.back} 
                         target={`/recruiter/${recruiterId}/1`}
-                        icon={<Icon.ArrowUp/>}
+                        icon={<ArrowUp />}
                     />  
                 }
                 </div>

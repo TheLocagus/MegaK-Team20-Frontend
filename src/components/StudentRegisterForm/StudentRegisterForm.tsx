@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
-import { labels } from 'utils/labels';
+import labels from 'utils/labels.json'
 
 import './StudentRegisterForm.scss';
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { labels } from 'utils/labels'
+import labels from 'utils/labels.json'
 
 import './CheckingBeforeStudentRegistryForm.scss';
 import { useParams } from 'react-router-dom';

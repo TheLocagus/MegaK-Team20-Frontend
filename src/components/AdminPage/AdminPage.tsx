@@ -1,7 +1,7 @@
 import Header from 'components/Header/Header';
 import GenericSection from 'components/common/GenericSection/GenericSection';
 import { RecruiterRegisterForm } from 'components/RecruiterRegisterForm/RecruiterRegisterForm';
-import { labels } from 'utils/labels';
+import labels from 'utils/labels.json'
 
 import './AdminPage.scss';
 

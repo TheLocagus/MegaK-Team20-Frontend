@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
-import Icon from 'components/Icon/Icon';
+import { ReactComponent as ArrowUp }  from 'icons/arrow-up.svg'
+import { ReactComponent as AvatarDef }  from 'icons/avatar-default.svg'
 import TableHeader from 'components/common/TableHeader/TableHeader';
-import { labels } from 'utils/labels'
+import labels from 'utils/labels.json'
 import {
   ForInterviewStudentToListResponseInterface,
   RecruiterActionsOfStatusEnum
@@ -82,7 +83,7 @@ export const ForInterviewCard: React.FC<Props> = ({ student, setActiveStudentsLi
         }
         <div className='candidate-info'>
           {
-            githubUsername.length !== 0 || githubUsername ? <img className='gh-avatar' src={`https://www.github.com/${githubUsername}.png`} alt=''/> : <Icon.AvatarDef/>
+            githubUsername.length !== 0 || githubUsername ? <img className='gh-avatar' src={`https://www.github.com/${githubUsername}.png`} alt=''/> : <AvatarDef />
           //  póki co będzie wywalać błąd 404 w consoli jeśli githubUsername nie jest prawdziwy
           }
 
@@ -108,7 +109,7 @@ export const ForInterviewCard: React.FC<Props> = ({ student, setActiveStudentsLi
           </>
           <ButtonLink type='button'
             customClass={`opener-btn ${cartState ? 'open' : ''}`}
-            icon={<Icon.ArrowUp/>}
+            icon={<ArrowUp />}
             onClick={openCardHandler}
           />
         </div>

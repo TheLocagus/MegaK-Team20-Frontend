@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ButtonLink from '../common/ButtonLink/ButtonLink';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
-import { labels } from 'utils/labels'
+import labels from 'utils/labels.json'
 
 import './Header.scss';
 

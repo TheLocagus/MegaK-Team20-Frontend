@@ -1,5 +1,5 @@
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
-import { labels } from 'utils/labels'
+import labels from 'utils/labels.json'
 
 import 'components/LoginForm/LoginForm.scss';
 

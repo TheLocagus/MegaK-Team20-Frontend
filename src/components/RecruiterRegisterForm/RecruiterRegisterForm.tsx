@@ -1,5 +1,5 @@
 import React, { useState, SyntheticEvent } from 'react';
-import { labels } from 'utils/labels';
+import labels from 'utils/labels.json'
 
 import './RecruiterRegisterForm.scss'
 
