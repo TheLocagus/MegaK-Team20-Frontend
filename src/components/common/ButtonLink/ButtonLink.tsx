@@ -13,7 +13,7 @@ interface Props {
     img?: string;
     name?: string;
     aria?: string;
-    onClick?: () => void;
+    onClick?: any;
 }
 
 
