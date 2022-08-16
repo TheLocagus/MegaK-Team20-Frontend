@@ -201,26 +201,30 @@ const StudentRegisterForm = () => {
                 }
                     
                 </div>
-                <fieldset className='passwords'>
-                    <label className='student-register-form__password'>
-                        <span>{labels.form.password}<span> *</span></span>
-                        <input type='password'
-                            placeholder={labels.studentRegister.placeholder.password}
-                            value={userData.pwd}
-                            onChange={e => handleChange('pwd', e.target.value)}
-                            required
-                        />
-                    </label>
-                    <label className='student-register-form__repeat-password'>
-                        <span>{labels.studentRegister.repeatPassword}<span> *</span></span>
-                        <input type='password'
-                            placeholder={labels.studentRegister.placeholder.password}
-                            value={repeatPassword}
-                            onChange={e => setRepeatPassword(e.target.value)}
-                            required
-                        />
-                    </label>
-                </fieldset>
+
+                { pathname.includes('register') &&
+                    <fieldset className='passwords'>
+                        <label className='student-register-form__password'>
+                            <span>{labels.form.password}<span> *</span></span>
+                            <input type='password'
+                                placeholder={labels.studentRegister.placeholder.password}
+                                value={userData.pwd}
+                                onChange={e => handleChange('pwd', e.target.value)}
+                                required
+                            />
+                        </label>
+                        <label className='student-register-form__repeat-password'>
+                            <span>{labels.studentRegister.repeatPassword}<span> *</span></span>
+                            <input type='password'
+                                placeholder={labels.studentRegister.placeholder.password}
+                                value={repeatPassword}
+                                onChange={e => setRepeatPassword(e.target.value)}
+                                required
+                            />
+                        </label>
+                    </fieldset>
+                }
+                
                 <fieldset className='student-register-form__personal-fields'>
                     <div>
                         <label className='student-register-form__firstName'>
