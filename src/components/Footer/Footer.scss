@@ -1,11 +1,11 @@
 @import '_variables.scss';
-@import '_mixins.scss';
+
 
 footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #1e1e1f;
+    background-color: $color-grey;
     padding: 1rem 0;
     color: $color-white;
     p {

@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from "react";
+import { SyntheticEvent, useState } from 'react';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import labels from 'utils/labels.json'
 
@@ -39,10 +39,6 @@ const LoginForm: React.FC<Props> = ({ onClick }) => {
         }
       });
       const data = await res.json()
-
-      if (!data.success) {
-        console.log(data)
-      }
 
       switch (data.role){
         case 'admin':

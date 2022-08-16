@@ -135,7 +135,6 @@ const CandidatePage: React.FC = () => {
         })
         window.location.href = `/recruiter/${recruiterId}/1`
     }
-    console.log(student)
 
     const showUrl = (url: string) => (
         <div key={url}>

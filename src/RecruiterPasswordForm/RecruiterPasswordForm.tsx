@@ -27,7 +27,6 @@ const RecruiterPasswordForm = () => {
     })
 
     const data = await res.json();
-    console.log(data)
 
     if(data.success){
       window.location.href = `http://localhost:3000/recruiter/${recruiterId}/1`

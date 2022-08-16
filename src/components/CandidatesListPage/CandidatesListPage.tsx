@@ -130,7 +130,6 @@ const CandidatesListPage: React.FC = () => {
           case DataTypeEnum.searched:
             const resSearched = await fetch(`http://localhost:3001/recruiter/1/${actualSearchPhrase}`)
             //fetch z wyszukanymi
-            console.log('czy wchodzi do searched')
             setActiveStudentsList(await resSearched.json())
             break;
         }
@@ -203,7 +202,6 @@ const CandidatesListPage: React.FC = () => {
   }
 
   const handleChangePage = async (numberOfWantedPage: number) => {
-    console.log(type)
     switch(type){
       case DataTypeEnum.all:
         setNumberOfSearchedPage(numberOfWantedPage)

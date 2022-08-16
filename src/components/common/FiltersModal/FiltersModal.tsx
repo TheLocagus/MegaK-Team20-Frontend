@@ -39,7 +39,7 @@ const MONTHS_COUNT = 6
 
 
 const FiltersModal: React.FC<Props> = ({ onClick, setForInterview, setActive, setNumberOfSearchedPage }) => {
-    const {savedFilters} = useSelector((store: RootState) => store.students)
+    const { savedFilters } = useSelector((store: RootState) => store.students)
     const dispatch = useDispatch();
     const [searchParams, setSearchParams] = useSearchParams();
     const candidates = searchParams.get('candidates');
