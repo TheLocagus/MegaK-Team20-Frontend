@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import GenericSection from 'components/common/GenericSection/GenericSection';
 import LoginForm from 'components/LoginForm/LoginForm';
 import PasswordForm from 'components/PasswordForm/PasswordForm';

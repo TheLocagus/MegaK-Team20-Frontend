@@ -75,7 +75,7 @@ export const ForInterviewCard: React.FC<Props> = ({ student, setActiveStudentsLi
 
   return (
     <li className={cartState ? 'open' : ''}>
-      <div className='listElement'>
+      <div className='listElement meetings'>
         {candidates === 'meetings' &&
             <div className='reservation-info'>
                 <span className='reservation-info__label'>{labels.recruiter.reservation}</span>
@@ -115,23 +115,23 @@ export const ForInterviewCard: React.FC<Props> = ({ student, setActiveStudentsLi
           />
         </div>
       </div>
-      <table>
+      <div className='table'>
         <TableHeader />
-          <tbody>
-          <tr>
-            <td>{courseCompletion}<span> / 5</span></td>
-            <td>{courseEngagement}<span> / 5</span></td>
-            <td>{projectDegree}<span> / 5</span></td>
-            <td>{teamProjectDegree}<span> / 5</span></td>
-            <td>{showExpectedTypeWork(expectedTypeWork)}</td>
-            <td>{targetWorkCity}</td>
-            <td>{showExpectedContractType(expectedContractType)}</td>
-            <td>{expectedSalary}</td>
-            <td>{canTakeApprenticeship ? labels.options.internship.yes : labels.options.internship.no}</td>
-            <td>{monthsOfCommercialExp}</td>
-          </tr>
-          </tbody>
-      </table>
+          <div className='tbody'>
+          <div className='tr'>
+            <div className='td'>{courseCompletion}<span> / 5</span></div>
+            <div className='td'>{courseEngagement}<span> / 5</span></div>
+            <div className='td'>{projectDegree}<span> / 5</span></div>
+            <div className='td'>{teamProjectDegree}<span> / 5</span></div>
+            <div className='td'>{showExpectedTypeWork(expectedTypeWork)}</div>
+            <div className='td'>{targetWorkCity}</div>
+            <div className='td'>{showExpectedContractType(expectedContractType)}</div>
+            <div className='td'>{expectedSalary}</div>
+            <div className='td'>{canTakeApprenticeship ? labels.options.internship.yes : labels.options.internship.no}</div>
+            <div className='td'>{monthsOfCommercialExp}</div>
+          </div>
+          </div>
+      </div>
     </li>
   )
 }

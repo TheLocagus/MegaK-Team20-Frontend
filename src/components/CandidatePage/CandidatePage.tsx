@@ -1,20 +1,20 @@
-import {useEffect, useState} from 'react';
-import {useLocation, useParams} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import Header from 'components/Header/Header';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import Generating from 'components/Generating/Generating';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faEnvelope, faGear, faPaperclip, faPhone} from '@fortawesome/free-solid-svg-icons';
-import {brands} from '@fortawesome/fontawesome-svg-core/import.macro';
-import {RecruiterActionsOfStatusEnum} from 'components/CandidatesListPage/CandidatesListPage';
-import {showExpectedContractType, showExpectedTypeWork} from 'utils/displayCorrectPlainInStudentsLists';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faGear, faPaperclip, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { brands } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { RecruiterActionsOfStatusEnum } from 'components/CandidatesListPage/CandidatesListPage';
+import { showExpectedContractType, showExpectedTypeWork} from 'utils/displayCorrectPlainInStudentsLists';
 import { ReactComponent as ArrowUp }  from 'icons/arrow-up.svg'
 import labels from 'utils/labels.json'
 
 
 import './CandidatePage.scss';
-import {apiUrl} from "../../config/api";
+import {apiUrl} from '../../config/api';
 
 
 //strona profilu kandydata
@@ -172,19 +172,13 @@ const CandidatePage: React.FC = () => {
   }
 
 
-  if (!isGenerated) return <Generating message='Trwa generowanie...'/>
-
-
-
   return (
         <>
             <Header personData={localStorage.getItem('full name') ?? 'Rekruter'} />
                 <main className={isGenerated ? 'main__cv black' : 'main__cv trans'}>
                 {
                 isGenerated ?
-
                 <>
-
                     <div className='main__back'>
                     { pathname.includes('student') ? null :
                         <ButtonLink
@@ -207,21 +201,24 @@ const CandidatePage: React.FC = () => {
                             <img src={student?.githubUsername.length !== 0 ? `https://www.github.com/${student?.githubUsername}.png` : '/images/avatar_big.png'}
                                 alt=''
                             />
-                            <p className='personalcard__avatar-center'>{student?.firstName} {student?.lastName}</p>
-                            <p className='personalcard__avatar-center github'>
-                                <a href={`https://www.github.com/${student?.githubUsername}`} aria-label={labels.aria.githubLink}>
-                                    <FontAwesomeIcon icon={brands('github')} />
-                                    <span>{student?.githubUsername}</span>
-                                </a>
-                            </p>
-                            <p className='personalcard__avatar-contactdata'>
-                                <FontAwesomeIcon icon={faPhone} />
-                                <span>{student?.telephone}</span>
-                            </p>
-                            <p className='personalcard__avatar-contactdata'>
-                                <FontAwesomeIcon icon={faEnvelope} />
-                                <span>{student?.email}</span>
-                            </p>
+                            <div>
+                              <p className='personalcard__avatar-center'>{student?.firstName} {student?.lastName}</p>
+                              <p className='personalcard__avatar-center github'>
+                                  <a href={`https://www.github.com/${student?.githubUsername}`} aria-label={labels.aria.githubLink}>
+                                      <FontAwesomeIcon icon={brands('github')} />
+                                      <span>{student?.githubUsername}</span>
+                                  </a>
+                              </p>
+                              <p className='personalcard__avatar-contactdata'>
+                                  <FontAwesomeIcon icon={faPhone} />
+                                  <span>{student?.telephone}</span>
+                              </p>
+                              <p className='personalcard__avatar-contactdata'>
+                                  <FontAwesomeIcon icon={faEnvelope} />
+                                  <span>{student?.email}</span>
+                              </p>
+                            </div>
+                            
                         </div>
                         <div className='personalcard__about'>
                             <h3>{labels.candidate.aboutMe}</h3>
@@ -243,72 +240,72 @@ const CandidatePage: React.FC = () => {
 
                     <div className='main__personaldata'>
                         <h3>{labels.candidate.grades}</h3>
-                        <table className='main__personaldata--grades-section'>
-                            <thead>
-                                <tr>
-                                    <td>{labels.options.courseRate}</td>
-                                    <td>{labels.options.activityRate}</td>
-                                    <td>{labels.options.codeRate}</td>
-                                    <td>{labels.options.teamWorkRate}</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>
+                        <div className='main__personaldata--grades-section table'>
+                            <div className='thead'>
+                                <div className='tr'>
+                                    <div className='td'>{labels.options.courseRate}</div>
+                                    <div className='td'>{labels.options.activityRate}</div>
+                                    <div className='td'>{labels.options.codeRate}</div>
+                                    <div className='td'>{labels.options.teamWorkRate}</div>
+                                </div>
+                            </div>
+                            <div className='tbody'>
+                            <div className='tr'>
+                                <div className='td'>
                                     <span className='scale'>{student?.courseCompletion}</span>/ 5 
                                     <span className='star'>
                                         <span>{generateStars(student?.courseCompletion, 'red')}</span>
                                         {generateStars(student?.courseCompletion, 'gray')}
                                     </span>
-                                </td>
-                                <td>
+                                </div>
+                                <div className='td'>
                                     <span className='scale'>{student?.courseEngagement}</span>/ 5 
                                     <span className='star'>
                                         <span>{generateStars(student?.courseEngagement, 'red')}</span>
                                         {generateStars(student?.courseEngagement, 'gray')}
                                     </span>
-                                </td>
-                                <td>
+                                </div>
+                                <div className='td'>
                                     <span className='scale'>{student?.projectDegree}</span>/ 5 
                                     <span className='star'>
                                         <span>{generateStars(student?.projectDegree, 'red')}</span>
                                         {generateStars(student?.projectDegree, 'gray')}
                                     </span>
-                                </td>
-                                <td>
+                                </div>
+                                <div className='td'>
                                     <span className='scale'>{student?.teamProjectDegree}</span>/ 5 
                                     <span className='star'>
                                         <span>{generateStars(student?.teamProjectDegree, 'red')}</span>
                                         {generateStars(student?.teamProjectDegree, 'gray')}
                                     </span>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
 
                         <h3>{labels.candidate.expectations}</h3>
-                        <table className='main__personaldata--expectations-section'>
-                            <thead>
-                                <tr>
-                                    <td>{labels.options.workPlace.label}</td>
-                                    <td>{labels.options.city}</td>
-                                    <td>{labels.options.contractType.label}</td>
-                                    <td>{labels.options.salary.label}</td>
-                                    <td>{labels.options.internship.label}</td>
-                                    <td>{labels.candidate.experience}</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>{student.expectedTypeWork.length !== 0 && showExpectedTypeWork(student?.expectedTypeWork)}</td>
-                                <td>{student?.targetWorkCity}</td>
-                                <td>{student.expectedContractType.length !== 0 && showExpectedContractType(student?.expectedContractType)}</td>
-                                <td>{student?.expectedSalary} zł</td>
-                                <td>{student?.canTakeApprenticeship ? labels.options.internship.yes : labels.options.internship.no}</td>
-                                <td>{student?.monthsOfCommercialExp} miesięcy</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div className='main__personaldata--expectations-section table'>
+                            <div className='thead'>
+                                <div className='tr'>
+                                    <div className='td'>{labels.options.workPlace.label}</div>
+                                    <div className='td'>{labels.options.city}</div>
+                                    <div className='td'>{labels.options.contractType.label}</div>
+                                    <div className='td'>{labels.options.salary.label}</div>
+                                    <div className='td'>{labels.options.internship.label}</div>
+                                    <div className='td'>{labels.candidate.experience}</div>
+                                </div>
+                            </div>
+                            <div className='tbody'>
+                            <div className='tr'>
+                                <div className='td'>{student.expectedTypeWork.length !== 0 && showExpectedTypeWork(student?.expectedTypeWork)}</div>
+                                <div className='td'>{student?.targetWorkCity}</div>
+                                <div className='td'>{student.expectedContractType.length !== 0 && showExpectedContractType(student?.expectedContractType)}</div>
+                                <div className='td'>{student?.expectedSalary} zł</div>
+                                <div className='td'>{student?.canTakeApprenticeship ? labels.options.internship.yes : labels.options.internship.no}</div>
+                                <div className='td'>{student?.monthsOfCommercialExp} miesięcy</div>
+                            </div>
+                            </div>
+                        </div>
 
                         <div>
                             <h3>{labels.studentRegister.education}</h3>

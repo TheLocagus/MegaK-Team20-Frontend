@@ -12,7 +12,7 @@ import { RootState } from '../../../store';
 import { useSearchParams } from 'react-router-dom';
 
 import './FiltersModal.scss';
-import {apiUrl} from "../../../config/api";
+import { apiUrl } from '../../../config/api';
 
 //modal pojawiający się po wciśnieciu przycisku Filtrowanie
 

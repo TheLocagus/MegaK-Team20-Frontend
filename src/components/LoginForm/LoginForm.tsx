@@ -3,7 +3,7 @@ import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import labels from 'utils/labels.json'
 
 import './LoginForm.scss';
-import {apiUrl} from "../../config/api";
+import { apiUrl } from '../../config/api';
 
 
 interface Props {
@@ -38,7 +38,7 @@ const LoginForm: React.FC<Props> = ({ onClick }) => {
         headers: {
           'Content-Type': 'application/json'
         },
-        credentials: "include"
+        credentials: 'include'
       });
       const data = await res.json()
 

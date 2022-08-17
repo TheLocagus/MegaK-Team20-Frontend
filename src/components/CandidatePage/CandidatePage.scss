@@ -63,7 +63,7 @@ p {
     position: relative;
     max-width: 1430px;
     margin: 26px auto;
-    td {
+    .td {
       font-size: 16px;
       color: $color-lighter-grey;
       span.scale {
@@ -118,20 +118,20 @@ p {
       margin: 17px 0;
     }
     &--grades-section {
-      td {
+      .td {
         width: 25%;
         padding-bottom: 16px;
       }
     }
     &--expectations-section {
-      td {
+      .td {
         width: 16.66%;
       }
-      tbody td {
+      .tbody .td {
         color: $color-white;
       }
     }
-    td {
+    .td {
       border: none;
       &:not(:last-child) {
         border-right: 1px solid $color-dark-grey;
@@ -151,13 +151,15 @@ p {
       border-radius: 50%;
       margin: 0 auto 20px;
     }
-    & > p {
-      font-size: 1.5rem;
-    }
-    p {
-      display: flex;
-      svg {
-        margin-right: 10px;
+    div {
+      & > p {
+        font-size: 1.5rem;
+      }
+      p {
+        display: flex;
+        svg {
+          margin-right: 10px;
+        }
       }
     }
   }
@@ -243,5 +245,70 @@ p {
   }
   .main__personaldata {
     flex: 1;
+  }
+}
+
+@media (max-width: 992px) {
+  .main__cv {
+    flex-direction: column;
+    .main__personalcard {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-end;
+      width: 100%;
+      padding-top: 10px;
+      .personalcard__about {
+        max-width: 40vw;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .main__cv {
+    flex-direction: column;
+    .main__personalcard {
+      display: flex;
+      flex-direction: column;
+      .personalcard__avatar {
+        flex-direction: row;
+        gap: 5vw;
+        margin: 0 auto 0 1rem;
+      }
+      .personalcard__about {
+        max-width: 100%;
+      }
+      .personalcard__buttons {
+        display: flex;
+        width: 100%;
+        button {
+          max-width: 46vw;
+        }
+      }
+    }
+    .table {
+      display: flex;
+      flex-direction: row;
+      .thead, .tbody {
+        display: flex;
+        flex-direction: row;
+        .tr {
+          display: flex;
+          flex-direction: column;
+        }
+        .td {
+          width: 100%;
+          min-height: 54px;
+          padding: 0 1rem;
+          display: flex;
+          align-items: center;
+          border-right: 1px solid $color-dark-grey;
+          &:not(:last-child) {
+            border-bottom: 1px solid $color-dark-grey;
+          }
+        }
+      }
+    }
   }
 }

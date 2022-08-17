@@ -4,7 +4,7 @@ import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import labels from 'utils/labels.json'
 
 import './StudentRegisterForm.scss';
-import {apiUrl} from "../../config/api";
+import { apiUrl } from '../../config/api';
 
 
 enum TypeWork {

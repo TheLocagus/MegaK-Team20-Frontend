@@ -91,3 +91,16 @@ article {
     height: 25px;
   }
 }
+
+@media (max-width: 992px) {
+  .register-form {
+    flex-direction: column !important;
+  }
+  .add-recruiter-form {
+    border-bottom: 2px solid #292a2b;
+  }
+  .add-recruiter-form, .register-input {
+    width: 100%;
+    height: auto;
+  }
+}

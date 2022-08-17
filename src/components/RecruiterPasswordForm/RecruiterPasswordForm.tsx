@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import labels from 'utils/labels.json'
 
-import '../components/LoginForm/LoginForm.scss';
-import {apiUrl} from "../config/api";
+import 'components/LoginForm/LoginForm.scss';
+import { apiUrl } from '../../config/api';
 
 
 const RecruiterPasswordForm = () => {
@@ -20,7 +20,7 @@ const RecruiterPasswordForm = () => {
     if (password !== repeatPassword) throw new Error('Podane hasła nie są jednakowe.')
 
     const res = await fetch(`${apiUrl}/recruiter/register/${recruiterId}/${registerToken}`, {
-      method: "PATCH",
+      method: 'PATCH',
       body: JSON.stringify({password}),
       headers: {
         'Content-Type': 'application/json'
@@ -39,7 +39,7 @@ const RecruiterPasswordForm = () => {
   return (
     <section className='login-page'>
       <form className='form-login' onSubmit={handleForm}>
-          <img className='form-login__logo' src={require('../images/logo-mk.png')} alt='' width='124' height='76' />
+          <img className='form-login__logo' src={require('../../images/logo-mk.png')} alt='' width='124' height='76' />
           <h2>{labels.form.resetPassLabel}</h2>
           <label className='form-login__label'>
               <input className='form-login__input'

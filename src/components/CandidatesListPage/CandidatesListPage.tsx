@@ -18,7 +18,7 @@ import { RootState } from 'store';
 import { DataTypeEnum, setActualSearchPhrase, setDataType } from 'actions/students';
 
 import './CandidatesListPage.scss';
-import {apiUrl} from "../../config/api";
+import { apiUrl } from '../../config/api';
 
 //strona z listą kandydatów 
 
@@ -95,11 +95,13 @@ const CandidatesListPage: React.FC = () => {
     totalPages: 1,
     availableStudents: []
   })
+
   const [forInterviewStudentsList, setForInterviewStudentsList] = useState<ForInterviewStudentToListResponseInterface[]>([])
 
   const modalHandler = () => {
     setModalState(!modalState)
   }
+  
   useEffect(() => {
     setSearchParams({candidates: 'available'})
   }, [])

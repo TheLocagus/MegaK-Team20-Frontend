@@ -2,7 +2,7 @@ import React, { useState, SyntheticEvent } from 'react';
 import labels from 'utils/labels.json'
 
 import './RecruiterRegisterForm.scss'
-import {apiUrl} from "../../config/api";
+import { apiUrl } from '../../config/api';
 
 
 interface CreateRecruiterResponse {
@@ -151,7 +151,7 @@ export const RecruiterRegisterForm = () => {
             <form onSubmit={handleImportStudents}>
                 <h3>{labels.adminPage.addStudents}</h3>
 
-                <label className="custom-file-upload">
+                <label className='custom-file-upload'>
                     <input
                       type='file'
                       onChange={e => {

@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 // import { labels } from 'utils/labels'
 import './Header.scss';
-import {useLocation} from "react-router-dom";
-import {apiUrl} from "../../config/api";
+import { useLocation } from 'react-router-dom';
+import { apiUrl } from '../../config/api';
 
 // top pasek - miejsce na logo i info o zalogowanym użytkowniku
 

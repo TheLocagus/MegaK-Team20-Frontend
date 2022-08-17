@@ -11,3 +11,11 @@
         height: 100%;
     }
 }
+
+@media (max-width: 576px) {
+    .userlist-header__menu {
+        ul .menu-btn {
+            min-width: 50vw;
+        }
+    }
+}
