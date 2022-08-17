@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import labels from 'utils/labels.json'
 
-import '../components/LoginForm/LoginForm.scss';
+import 'components/LoginForm/LoginForm.scss';
+import { apiUrl } from '../../config/api';
 
 
 const RecruiterPasswordForm = () => {
@@ -18,8 +19,8 @@ const RecruiterPasswordForm = () => {
     if (password.length < 6) throw new Error('Hasło powinno być dłuższe niż 5 znaków')
     if (password !== repeatPassword) throw new Error('Podane hasła nie są jednakowe.')
 
-    const res = await fetch(`http://localhost:3001/recruiter/register/${recruiterId}/${registerToken}`, {
-      method: "PATCH",
+    const res = await fetch(`${apiUrl}/recruiter/register/${recruiterId}/${registerToken}`, {
+      method: 'PATCH',
       body: JSON.stringify({password}),
       headers: {
         'Content-Type': 'application/json'
@@ -30,14 +31,15 @@ const RecruiterPasswordForm = () => {
     const data = await res.json();
 
     if(data.success){
-      window.location.href = `http://localhost:3000/`
+      window.location.href = `https://megakheadhunters-team20.networkmanager.pl/`
+      // window.location.href = `http://localhost:3000`
     }
   }
 
   return (
     <section className='login-page'>
       <form className='form-login' onSubmit={handleForm}>
-          <img className='form-login__logo' src={require('../images/logo-mk.png')} alt='' width='124' height='76' />
+          <img className='form-login__logo' src={require('../../images/logo-mk.png')} alt='' width='124' height='76' />
           <h2>{labels.form.resetPassLabel}</h2>
           <label className='form-login__label'>
               <input className='form-login__input'

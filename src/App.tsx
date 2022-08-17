@@ -10,7 +10,7 @@ import {
 } from './components/CheckingBeforeStudentRegistryForm/CheckingBeforeStudentRegistryForm';
 import RedirectPage from './components/RedirectPage/RedirectPage';
 import StudentRegisterForm from './components/StudentRegisterForm/StudentRegisterForm';
-import RecruiterPasswordForm from './RecruiterPasswordForm/RecruiterPasswordForm';
+import RecruiterPasswordForm from './components/RecruiterPasswordForm/RecruiterPasswordForm';
 import {
   CheckingBeforeRecruiterRegistryForm
 } from './CheckingBeforeRecruiterRegistryForm/CheckingBeforeRecruiterRegistryForm';
@@ -25,17 +25,15 @@ export const App = () => {
       <Routes>
         <Route path='/' element={<LoginPage />} />
         <Route path='/student/:id' element={<CandidatePage />}/>
-        <Route path='/student/register/:id/:token/' element={<CheckingBeforeStudentRegistryForm/>} />
-        <Route path='/student/register/:id/:token/form' element={<StudentRegisterForm/>} />
-        <Route path='/' element={<LoginPage />} />
-        <Route path='/recruiter/register/:recruiterId/:registerToken/' element={<CheckingBeforeRecruiterRegistryForm/>} />
-        <Route path='/recruiter/register/:recruiterId/:registerToken/form' element={<RecruiterPasswordForm/>} />
-        <Route path='/recruiter/:numberOfPage' element={<CandidatesListPage/>} />
-        <Route path='/recruiter/cv/:id' element={<CandidatePage/>}/>
+        <Route path='/student/register/:id/:token/' element={<CheckingBeforeStudentRegistryForm />} />
+        <Route path='/student/register/:id/:token/form' element={<StudentRegisterForm />} />
+        <Route path='/recruiter/register/:recruiterId/:registerToken/' element={<CheckingBeforeRecruiterRegistryForm />} />
+        <Route path='/recruiter/register/:recruiterId/:registerToken/form' element={<RecruiterPasswordForm />} />
+        <Route path='/recruiter/:numberOfPage' element={<CandidatesListPage />} />
+        <Route path='/recruiter/cv/:id' element={<CandidatePage />}/>
         {/*<Route path='/recruiter/:recruiterId' element={<RedirectPage />} />*/}
         <Route path='/student' element={<CandidatePage />}/>
         <Route path='/student/edit/:id' element={<StudentRegisterForm />} />
-
         <Route path='/admin' element={<AdminPage />} />
         <Route path='*' element={<ErrorPage />} />
       </Routes>

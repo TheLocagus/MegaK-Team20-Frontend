@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 // import { labels } from 'utils/labels'
 import './Header.scss';
-import {useLocation} from "react-router-dom";
+import { useLocation } from 'react-router-dom';
+import { apiUrl } from '../../config/api';
 
 // top pasek - miejsce na logo i info o zalogowanym użytkowniku
 
@@ -18,7 +19,7 @@ const Header: React.FC<Props> = ({ personData }) => {
     const {pathname} = useLocation();
 
     const logout = async () => {
-        const res = await fetch('http://localhost:3001/auth/logout', {
+        const res = await fetch(`${apiUrl}/auth/logout`, {
             credentials: 'include'
         })
         const data = await res.json()

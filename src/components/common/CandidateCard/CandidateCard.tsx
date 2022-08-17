@@ -71,23 +71,23 @@ const CandidateCard: React.FC<Props> = ({ student, setActiveStudentsList, setFor
           />
         </div>
       </div>
-      <table>
+      <div className='table'>
         <TableHeader />
-        <tbody>
-          <tr>
-            <td>{courseCompletion}<span> / 5</span></td>
-            <td>{courseEngagement}<span> / 5</span></td>
-            <td>{projectDegree}<span> / 5</span></td>
-            <td>{teamProjectDegree}<span> / 5</span></td>
-            <td>{showExpectedTypeWork(expectedTypeWork)}</td>
-            <td>{targetWorkCity}</td>
-            <td>{showExpectedContractType(expectedContractType)}</td>
-            <td>{expectedSalary !== 0 ? `${expectedSalary} zł` : labels.options.salary.notSpecify}</td>
-            <td>{canTakeApprenticeship ? labels.options.internship.yes : labels.options.internship.no}</td>
-            <td>{monthsOfCommercialExp}</td>
-          </tr>
-        </tbody>
-      </table>
+        <div className='tbody'>
+          <div className='tr'>
+              <div className='td'>{courseCompletion}<span> / 5</span></div>
+              <div className='td'>{courseEngagement}<span> / 5</span></div>
+              <div className='td'>{projectDegree}<span> / 5</span></div>
+              <div className='td'>{teamProjectDegree}<span> / 5</span></div>
+              <div className='td'>{showExpectedTypeWork(expectedTypeWork)}</div>
+              <div className='td'>{targetWorkCity}</div>
+              <div className='td'>{showExpectedContractType(expectedContractType)}</div>
+              <div className='td'>{expectedSalary !== 0 ? `${expectedSalary} zł` : labels.options.salary.notSpecify}</div>
+              <div className='td'>{canTakeApprenticeship ? labels.options.internship.yes : labels.options.internship.no}</div>
+              <div className='td'>{monthsOfCommercialExp}</div>
+          </div>
+        </div>
+      </div>
     </li>
   )
 }

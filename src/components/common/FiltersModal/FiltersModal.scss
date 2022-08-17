@@ -9,7 +9,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 3;
     background-color: $color-filter-back;
     form {
         background-color: $color-black;
@@ -144,6 +144,7 @@
         justify-content: flex-end;
         .submit-btn {
             @include submit-btn;
+            width: 120px;
         }
     }
     
