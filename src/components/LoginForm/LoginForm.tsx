@@ -1,8 +1,8 @@
+import { SyntheticEvent, useState } from 'react';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
-import {labels} from 'utils/labels'
+import labels from 'utils/labels.json'
 
 import './LoginForm.scss';
-import {SyntheticEvent, useState} from "react";
 
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 }
 
 
-const LoginForm: React.FC<Props> = ({onClick}) => {
+const LoginForm: React.FC<Props> = ({ onClick }) => {
 
   const [loginForm, setLoginForm] = useState({
     email: '',
@@ -36,13 +36,15 @@ const LoginForm: React.FC<Props> = ({onClick}) => {
         }),
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        credentials: "include"
       });
       const data = await res.json()
 
-      if (!data.success) {
-        console.log(data)
+      if (!data.ok) {
+        console.log('Błąd')
       }
+
 
       switch (data.role){
         case 'admin':
@@ -52,12 +54,12 @@ const LoginForm: React.FC<Props> = ({onClick}) => {
           window.location.href = '/student'
           break;
         case 'recruiter':
-          window.location.href = '/recruiter'
+          window.location.href = '/recruiter/1'
           break;
       }
 
     } catch (e){
-      console.log(e)
+      console.log('Problem z logowaniem')
     }
 
   }

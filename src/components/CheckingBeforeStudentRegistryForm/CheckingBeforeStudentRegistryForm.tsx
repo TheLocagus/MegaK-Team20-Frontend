@@ -1,15 +1,19 @@
 import React, { useEffect } from 'react';
-import { labels } from 'utils/labels'
-
-import './CheckingBeforeStudentRegistryForm.scss';
 import { useParams } from 'react-router-dom';
+import GenericSection from 'components/common/GenericSection/GenericSection';
+import Header from 'components/Header/Header';
+import Generating from 'components/Generating/Generating';
+import labels from 'utils/labels.json'
+
 
 export const CheckingBeforeStudentRegistryForm = () => {
     const { id, token } = useParams()
 
     useEffect(() => {
         (async () => {
-            const res = await fetch(`http://localhost:3001/student/register/${id}/${token}`)
+            const res = await fetch(`http://localhost:3001/student/register/${id}/${token}`, {
+                credentials: 'include',
+            })
             const data = await res.json();
 
             if (data.success){
@@ -21,6 +25,9 @@ export const CheckingBeforeStudentRegistryForm = () => {
     }, [])
 
     return (
-        <div className='waiting-info'>{labels.waiting}</div>
+        <>
+            <Header personData='' />
+            <GenericSection children={<Generating message={labels.waiting} />}/>
+        </>
     )
 }

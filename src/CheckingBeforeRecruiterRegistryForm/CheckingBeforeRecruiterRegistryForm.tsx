@@ -1,7 +1,11 @@
-import React, {useEffect} from 'react';
-import {labels} from 'utils/labels'
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import GenericSection from 'components/common/GenericSection/GenericSection';
+import Header from 'components/Header/Header';
+import Generating from 'components/Generating/Generating';
+import labels from 'utils/labels.json'
 
-import {useParams} from 'react-router-dom';
+
 
 export const CheckingBeforeRecruiterRegistryForm = () => {
   const { recruiterId, registerToken } = useParams()
@@ -10,7 +14,9 @@ export const CheckingBeforeRecruiterRegistryForm = () => {
     (async () => {
 
 
-      const res = await fetch(`http://localhost:3001/recruiter/register/${recruiterId}/${registerToken}`)
+      const res = await fetch(`http://localhost:3001/recruiter/register/${recruiterId}/${registerToken}`, {
+        credentials: 'include',
+      })
       const data = await res.json();
 
       if (data.success){
@@ -22,6 +28,9 @@ export const CheckingBeforeRecruiterRegistryForm = () => {
   }, [])
 
   return (
-    <div className='waiting-info'>{labels.waiting}</div>
+      <>
+        <Header personData='' />
+        <GenericSection children={<Generating message={labels.waiting} />}/>
+      </>
   )
 }

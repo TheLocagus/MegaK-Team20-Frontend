@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
-import Icon from 'components/Icon/Icon';
+import { ReactComponent as ArrowUp }  from 'icons/arrow-up.svg'
 import TableHeader from 'components/common/TableHeader/TableHeader';
-import { labels } from 'utils/labels'
+import labels from 'utils/labels.json'
 import {
   AvailableStudentToListResponseInterface,
   RecruiterActionsOfStatusEnum
@@ -49,7 +49,7 @@ const CandidateCard: React.FC<Props> = ({ student, setActiveStudentsList, setFor
   }
 
   const handleReservation = async () => {
-    await studentsStatusHandler(RecruiterActionsOfStatusEnum.forInterview, id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase, recruiterId as string);
+    await studentsStatusHandler(RecruiterActionsOfStatusEnum.forInterview, id, setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase);
   }
 
   return (
@@ -66,7 +66,7 @@ const CandidateCard: React.FC<Props> = ({ student, setActiveStudentsList, setFor
           />
           <ButtonLink type='button'
             customClass={`opener-btn ${cartState ? 'open' : ''}`}
-            icon={<Icon.ArrowUp/>}
+            icon={<ArrowUp />}
             onClick={openCardHandler}
           />
         </div>

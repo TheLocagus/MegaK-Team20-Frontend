@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import Rating from '../Rating/Rating';
 import ButtonLink from '../ButtonLink/ButtonLink';
-
-import { labels} from 'utils/labels'
-
-import './FiltersModal.scss';
+import labels from 'utils/labels.json'
 import {
     ActiveStudentsData,
     ForInterviewStudentToListResponseInterface
@@ -13,6 +10,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DataTypeEnum, setDataType, setSavedFilters} from '../../../actions/students';
 import { RootState } from '../../../store';
 import { useSearchParams } from 'react-router-dom';
+
+import './FiltersModal.scss';
 
 //modal pojawiający się po wciśnieciu przycisku Filtrowanie
 
@@ -40,7 +39,7 @@ const MONTHS_COUNT = 6
 
 
 const FiltersModal: React.FC<Props> = ({ onClick, setForInterview, setActive, setNumberOfSearchedPage }) => {
-    const {savedFilters} = useSelector((store: RootState) => store.students)
+    const { savedFilters } = useSelector((store: RootState) => store.students)
     const dispatch = useDispatch();
     const [searchParams, setSearchParams] = useSearchParams();
     const candidates = searchParams.get('candidates');
@@ -127,7 +126,8 @@ const FiltersModal: React.FC<Props> = ({ onClick, setForInterview, setActive, se
                 body: JSON.stringify(dataObj),
                 headers: {
                     'Content-Type': 'application/json'
-                }
+                },
+                credentials: 'include',
             });
             const filtered = await res.json()
 

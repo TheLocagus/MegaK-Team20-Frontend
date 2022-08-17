@@ -1,5 +1,5 @@
 @import '_variables.scss';
-@import '_mixins.scss';
+
 
 .form-login {
     display: flex;
@@ -9,7 +9,7 @@
         margin: 1.4rem auto 1rem;
     }
     &__logo {
-        margin: 0 auto
+        margin: 0 auto;
     }
     
     &__label {
@@ -42,7 +42,7 @@
         p {
             text-align: center;
             a {
-            font-weight: 900;
+                font-weight: 900;
             }
         }
     }

@@ -1,5 +1,5 @@
 @import '_variables.scss';
-@import '_mixins.scss';
+
 
 .header-admin {
     position: sticky;
@@ -77,10 +77,11 @@
             background-color: $color-grey;
             padding: 16px 16px 0;
 
-            a {
+            button {
                 display: flex;
                 align-items: center;
                 color: $color-white;
+                background-color: $color-grey;
                 width: 100%;
                 min-height: 40px;
             }

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './Rating.scss';
-
 // pojedynczy item z nazwą za co jest ocena oraz ilością gwiazdek
 
 interface Props {

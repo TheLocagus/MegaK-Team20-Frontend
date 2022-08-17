@@ -1,6 +1,7 @@
 @import '_variables.scss';
 @import '_mixins.scss';
 
+
 .registration-form {
   flex-direction: column;
   padding-top: 14px;
@@ -29,6 +30,20 @@
     justify-content: space-between;
   }
   &__urls {
+    .urls {
+      display: flex;
+      flex-direction: column;
+      span {
+        span {
+          color: $color-light-grey;
+          margin-right: 10px;
+        }
+        .red-btn {
+          margin: 4px 0;
+          padding: 0 5px;
+        }
+      }
+    }
     label {
       margin-bottom: 1.25rem;
     }
