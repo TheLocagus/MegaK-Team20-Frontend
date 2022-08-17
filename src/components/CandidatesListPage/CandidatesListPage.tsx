@@ -134,7 +134,6 @@ const CandidatesListPage: React.FC = () => {
               credentials: 'include',
             })
             //fetch z wyszukanymi
-            console.log('czy wchodzi do searched')
             setActiveStudentsList(await resSearched.json())
             break;
         }
@@ -209,7 +208,6 @@ const CandidatesListPage: React.FC = () => {
   }
 
   const handleChangePage = async (numberOfWantedPage: number) => {
-    console.log(type)
     switch(type){
       case DataTypeEnum.all:
         setNumberOfSearchedPage(numberOfWantedPage)

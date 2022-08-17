@@ -151,7 +151,6 @@ const CandidatePage: React.FC = () => {
     })
     window.location.href = `/recruiter/1`
   }
-  console.log(student)
 
   const showUrl = (url: string) => (
     <div key={url}>
@@ -218,18 +217,22 @@ const CandidatePage: React.FC = () => {
                 <h3>{labels.candidate.aboutMe}</h3>
                 <p>{student.bio}</p>
               </div>
-              <div className='personalcard__buttons'>
-                <ButtonLink type='button'
-                            customClass='red-btn'
-                            label={labels.buttons.notInterested}
-                            onClick={handleNoInterested}
-                />
-                <ButtonLink type='button'
-                            customClass='red-btn'
-                            label={labels.buttons.hired}
-                            onClick={handleEmployed}
-                />
-              </div>
+              {
+                pathname.includes('/student') ? null
+                  : <div className='personalcard__buttons'>
+                    <ButtonLink type='button'
+                                customClass='red-btn'
+                                label={labels.buttons.notInterested}
+                                onClick={handleNoInterested}
+                    />
+                    <ButtonLink type='button'
+                                customClass='red-btn'
+                                label={labels.buttons.hired}
+                                onClick={handleEmployed}
+                    />
+                  </div>
+              }
+
             </div>
 
             <div className='main__personaldata'>

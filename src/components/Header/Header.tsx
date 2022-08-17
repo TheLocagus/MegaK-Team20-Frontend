@@ -21,7 +21,6 @@ const Header: React.FC<Props> = ({ personData }) => {
             credentials: 'include'
         })
         const data = await res.json()
-        console.log(data)
         if (data.success) {
             localStorage.clear();
             window.location.href = '/'

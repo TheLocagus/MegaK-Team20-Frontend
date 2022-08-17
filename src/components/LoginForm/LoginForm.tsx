@@ -40,9 +40,8 @@ const LoginForm: React.FC<Props> = ({onClick}) => {
         credentials: "include"
       });
       const data = await res.json()
-      console.log(data)
       if (!data.ok) {
-        console.log(data)
+        console.log('Błąd')
       }
 
       switch (data.role){
@@ -58,7 +57,7 @@ const LoginForm: React.FC<Props> = ({onClick}) => {
       }
 
     } catch (e){
-      console.log(e)
+      console.log('Problem z logowaniem')
     }
 
   }

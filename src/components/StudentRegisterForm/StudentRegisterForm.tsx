@@ -106,10 +106,8 @@ const StudentRegisterForm = () => {
         })
 
         const data = await res.json()
-        console.log(userData)
-        console.log(data)
         if (data.success){
-            window.location.href = `http://localhost:3000/student/${id}`;
+            window.location.href = `http://localhost:3000/`;
         } else {
             throw new Error('Something went wrong. Try again later.')
         }

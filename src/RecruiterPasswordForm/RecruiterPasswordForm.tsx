@@ -6,7 +6,6 @@ export const RecruiterPasswordForm = () => {
   const [password, setPassword] = useState<string>('');
   const [repeatPassword, setRepeatPassword] = useState<string>('');
   const {recruiterId, registerToken} = useParams();
-  console.log(recruiterId, registerToken)
 
   const handleForm = async (e: SyntheticEvent) => {
     e.preventDefault();
@@ -24,10 +23,9 @@ export const RecruiterPasswordForm = () => {
     })
 
     const data = await res.json();
-    console.log(data)
 
     if(data.success){
-      window.location.href = `http://localhost:3000/recruiter/1`
+      window.location.href = `http://localhost:3000/`
     }
   }
 

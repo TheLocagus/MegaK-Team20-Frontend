@@ -26,7 +26,7 @@ export const studentsStatusHandler = async (
         },
         credentials: 'include',
       })
-      console.log(await res.json())
+
       await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase);
       //@TODO dodano pomyślnie
       break;

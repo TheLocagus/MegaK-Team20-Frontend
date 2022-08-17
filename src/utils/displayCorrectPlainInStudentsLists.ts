@@ -25,7 +25,6 @@ export const showExpectedContractType = (contractType: string) => {
 
 export const showExpectedTypeWork = (typeWork: string) => {
   let work = '';
-  console.log(typeWork)
   switch (typeWork) {
     case 'stationary':
       work = 'Stacjonarny';
