@@ -9,6 +9,9 @@ p {
 
 .main {
   &__cv {
+    .generating-info {
+      width: 100%;
+    }
     svg {
       color: $color-medium-grey;
     }
@@ -45,7 +48,6 @@ p {
       text-align: center;
       color: $color-white;
     }
-
     p {
       width: 37px;
       height: 27px;
@@ -59,24 +61,19 @@ p {
     display: flex;
     align-items: flex-start;
     position: relative;
-    background-color: $color-grey;
     max-width: 1430px;
     margin: 26px auto;
-
     td {
       font-size: 16px;
       color: $color-lighter-grey;
-
       span.scale {
         font-weight: bold;
         color: $color-white;
       }
-
       span.star {
         font-size: 20px;
         color: $color-medium-grey;
       }
-
       span.star span {
         font-size: 20px;
         color: $color-red;
@@ -213,13 +210,13 @@ p {
   }
 }
 
-.urls-section div {
-  padding: 10px 0;
+.black {
+  background-color: $color-grey;
+}
 
-  a {
-    margin-left: 10px;
-  }
-
+.trans {
+  @include flex;
+  margin: 0 auto;
 }
 
 @media (min-width: 600px) {

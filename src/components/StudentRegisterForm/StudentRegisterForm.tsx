@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
-import { labels } from 'utils/labels';
+import labels from 'utils/labels.json'
 
 import './StudentRegisterForm.scss';
 
@@ -122,22 +122,45 @@ const StudentRegisterForm = () => {
 
     const addUrlToPortfolio = (url: string) => {
         const prevPortfolioUrlsValue = userData.portfolioUrls;
-        setUserData(prev => ({
-            ...prev,
-            portfolioUrls: [...prevPortfolioUrlsValue, url]
-        }))
-
+        url &&
+            (setUserData(prev => ({
+                ...prev,
+                portfolioUrls: [...prevPortfolioUrlsValue, url]
+            }))
+        )
         setInputPortfolio('')
     }
 
     const addUrlToProjects = (url: string) => {
         const prevProjectsUrlsValue = userData.projectUrls;
+        url &&
+            (setUserData(prev => ({
+                ...prev,
+                projectUrls: [...prevProjectsUrlsValue, url]
+            }))
+        )
+        setInputProjects('')
+    }
+
+    const deleteUrlHandler = (field: string, arr: string[], url: string) => {
+        const newData = arr.filter((item: string) => item !== url)
         setUserData(prev => ({
             ...prev,
-            projectUrls: [...prevProjectsUrlsValue, url]
+            [field]: newData
         }))
-        setInputProjects('')
+    }
 
+    const urlListHandler = (field: string, arr: string[]) => {
+        return arr.map((url, i) =>
+            <span key={`url-${i}`}>
+                <span>{url}</span>
+                <ButtonLink type='button'
+                    customClass='red-btn'
+                    label='x'
+                    onClick={() => deleteUrlHandler(field, arr, url)}
+                />
+            </span> 
+        )
     }
 
     const resetFormHandler = () => {
@@ -200,26 +223,30 @@ const StudentRegisterForm = () => {
                 }
                     
                 </div>
-                <fieldset className='passwords'>
-                    <label className='student-register-form__password'>
-                        <span>{labels.form.password}<span> *</span></span>
-                        <input type='password'
-                            placeholder={labels.studentRegister.placeholder.password}
-                            value={userData.pwd}
-                            onChange={e => handleChange('pwd', e.target.value)}
-                            required
-                        />
-                    </label>
-                    <label className='student-register-form__repeat-password'>
-                        <span>{labels.studentRegister.repeatPassword}<span> *</span></span>
-                        <input type='password'
-                            placeholder={labels.studentRegister.placeholder.password}
-                            value={repeatPassword}
-                            onChange={e => setRepeatPassword(e.target.value)}
-                            required
-                        />
-                    </label>
-                </fieldset>
+
+                { pathname.includes('register') &&
+                    <fieldset className='passwords'>
+                        <label className='student-register-form__password'>
+                            <span>{labels.form.password}<span> *</span></span>
+                            <input type='password'
+                                placeholder={labels.studentRegister.placeholder.password}
+                                value={userData.pwd}
+                                onChange={e => handleChange('pwd', e.target.value)}
+                                required
+                            />
+                        </label>
+                        <label className='student-register-form__repeat-password'>
+                            <span>{labels.studentRegister.repeatPassword}<span> *</span></span>
+                            <input type='password'
+                                placeholder={labels.studentRegister.placeholder.password}
+                                value={repeatPassword}
+                                onChange={e => setRepeatPassword(e.target.value)}
+                                required
+                            />
+                        </label>
+                    </fieldset>
+                }
+                
                 <fieldset className='student-register-form__personal-fields'>
                     <div>
                         <label className='student-register-form__firstName'>
@@ -275,6 +302,12 @@ const StudentRegisterForm = () => {
                 <fieldset className='student-register-form__urls'>
                     <label className='student-register-form__portfolioUrls'>
                         <span>{labels.studentRegister.portfolioLink}</span>
+                        {
+                            userData?.projectUrls && 
+                            <div className='urls'>
+                                {urlListHandler('portfolioUrls', userData.portfolioUrls)}
+                            </div>
+                        }
                         <input type='text'
                             placeholder={labels.studentRegister.placeholder.links}
                             value={inputPortfolio}
@@ -288,6 +321,12 @@ const StudentRegisterForm = () => {
                     </label>
                     <label className='student-register-form__projectUrls'>
                         <span>{labels.studentRegister.projectsLink}<span></span></span>
+                        {
+                            userData?.projectUrls && 
+                            <div className='urls'>
+                                {urlListHandler('projectUrls', userData.projectUrls)}
+                            </div>
+                        }
                         <input type='text'
                             placeholder={labels.studentRegister.placeholder.links}
                             value={inputProjects}

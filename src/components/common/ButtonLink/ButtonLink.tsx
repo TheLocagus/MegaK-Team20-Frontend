@@ -12,23 +12,24 @@ interface Props {
     icon?: React.SVGProps<SVGSVGElement>;
     img?: string;
     name?: string;
-    onClick?: () => void;
+    aria?: string;
+    onClick?: any;
 }
 
 
-const ButtonLink: React.FC<Props> = ({ customClass, label, type, target, icon, img, name, onClick }) => {
+const ButtonLink: React.FC<Props> = ({ customClass, label, type, target, icon, img, name, aria, onClick }) => {
 
 
     return (
         type === 'button' || type === 'submit' ? 
-            <button className={`btn ${customClass || ''}`} type={type} name={name} onClick={onClick}>
+            <button className={`btn ${customClass || ''}`} type={type} name={name} aria-label={aria} onClick={onClick}>
                 <>
                     {label}
                     {icon}
                     {img && <span>{img}</span>}
                 </>
             </button> : 
-            <NavLink to={target || '/'} className={customClass || ''}>
+            <NavLink to={target || '/'} className={customClass || ''} aria-label={aria} >
                 <>
                     {label && <p>{label}</p>}
                     {icon}

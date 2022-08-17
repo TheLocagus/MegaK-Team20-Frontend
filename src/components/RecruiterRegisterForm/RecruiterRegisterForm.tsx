@@ -1,5 +1,5 @@
 import React, { useState, SyntheticEvent } from 'react';
-import { labels } from 'utils/labels';
+import labels from 'utils/labels.json'
 
 import './RecruiterRegisterForm.scss'
 
@@ -92,40 +92,48 @@ export const RecruiterRegisterForm = () => {
         <article className='add-recruiter-form'>
             <form action='' onSubmit={sendForm}>
                 <h3>{labels.adminPage.addRecruiter}</h3>
+                <label htmlFor='email' className='invisible-content'>{labels.form.email}</label>
                 <input
                     className='register-recruiter__input'
                     type='email'
+                    id='email'
                     name='login'
                     value={form.email}
                     placeholder={labels.form.email}
                     onChange={e => updateForm('email', e.target.value)}
                 />
+                <label htmlFor='fullName' className='invisible-content'>{labels.adminPage.nameSurname}</label>
                 <input
                     className='register-recruiter__input'
                     type='text'
+                    id='fullName'
                     name='fullName'
                     value={form.fullName}
                     placeholder={labels.adminPage.nameSurname}
                     onChange={e => updateForm('fullName', e.target.value)}
                 />
+                <label htmlFor='company' className='invisible-content'>{labels.adminPage.company}</label>
                 <input
                     className='register-recruiter__input'
                     type='text'
+                    id='company'
                     name='company'
                     value={form.company}
                     placeholder={labels.adminPage.company}
                     onChange={e => updateForm('company', e.target.value)}
                 />
+                <label htmlFor='limit' className='invisible-content'>{labels.adminPage.studentsLimit}</label>
                 <input
                     className='register-recruiter__input'
                     type='number'
+                    id='limit'
                     name='maxReservedStudents'
                     value={form.maxReservedStudents}
                     placeholder={labels.adminPage.studentsLimit}
                     min='0'
                     onChange={e => updateForm('maxReservedStudents', Number(e.target.value))}
                 />
-
+                
                 <button className='red-btn'>{labels.buttons.add}</button>
 
                 {
@@ -141,6 +149,7 @@ export const RecruiterRegisterForm = () => {
             <div style={{color: isSuccess ? 'green' : 'red'}}>{message.length !== 0 ? message : null}</div>
             <form onSubmit={handleImportStudents}>
                 <h3>{labels.adminPage.addStudents}</h3>
+
                 <label className="custom-file-upload">
                     <input
                       type='file'
@@ -149,6 +158,9 @@ export const RecruiterRegisterForm = () => {
                       } }
                     />
                 </label>
+                // <label className='custom-file-upload'>
+                //   <span className='invisible-content'>{labels.aria.chooseFile}</span>
+                //  <input type='file' />
                 <button className='submit-btn red-btn' type='submit'>{labels.buttons.send}</button>
             </form>
         </article>

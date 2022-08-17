@@ -1,8 +1,0 @@
-@import '_variables.scss';
-@import '_mixins.scss';
-
-.waiting-info {
-  @include flex;
-  font-size: 30px;
-  color: $color-lighter-grey;
-}
