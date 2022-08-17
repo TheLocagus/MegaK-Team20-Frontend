@@ -108,7 +108,7 @@ const CandidatesListPage: React.FC = () => {
     (async () => {
 
       // CHWILOWO TUTAJ, TRZEBA BĘDZIE PRZENIEŚĆ W INNE MIEJSCE, ŻEBY WRZUCAŁO PO ZALOGOWANIU
-      const loggedRecruiterRes = await fetch(`http://localhost:3001/recruiter/data`, {
+      const loggedRecruiterRes = await fetch(`http://localhost:3001/api/recruiter/data`, {
         credentials: 'include',
       })
       const loggedRecruiterData = await loggedRecruiterRes.json();
@@ -124,13 +124,13 @@ const CandidatesListPage: React.FC = () => {
             break;
           case DataTypeEnum.filtered:
             //fetch z przefiltrowanymi danymi + trzeba zrobić w reduxie stan dla ustawionych filtrów
-            const res = await fetch(`http://localhost:3001/recruiter/${numberOfSearchedPage}/filter`, {
+            const res = await fetch(`http://localhost:3001/api/recruiter/${numberOfSearchedPage}/filter`, {
               credentials: 'include',
             })
             setActiveStudentsList(await res.json())
             break;
           case DataTypeEnum.searched:
-            const resSearched = await fetch(`http://localhost:3001/recruiter/1/${actualSearchPhrase}`, {
+            const resSearched = await fetch(`http://localhost:3001/api/recruiter/1/${actualSearchPhrase}`, {
               credentials: 'include',
             })
             //fetch z wyszukanymi
@@ -194,7 +194,7 @@ const CandidatesListPage: React.FC = () => {
       dispatch(setDataType(DataTypeEnum.searched))
       dispatch(setActualSearchPhrase(searchValue))
       setNumberOfSearchedPage(1)
-      const res = await fetch(`http://localhost:3001/recruiter/1/${searchValue}`, {
+      const res = await fetch(`http://localhost:3001/api/recruiter/1/${searchValue}`, {
         credentials: 'include',
       })
       const data = await res.json()
@@ -215,14 +215,14 @@ const CandidatesListPage: React.FC = () => {
         break;
 
       case DataTypeEnum.searched:
-        const resSearched = await fetch(`http://localhost:3001/recruiter/${numberOfWantedPage}/${actualSearchPhrase}`, {
+        const resSearched = await fetch(`http://localhost:3001/api/recruiter/${numberOfWantedPage}/${actualSearchPhrase}`, {
           credentials: 'include',
         })
         setNumberOfSearchedPage(numberOfWantedPage)
         setActiveStudentsList(await resSearched.json())
         break;
       case DataTypeEnum.filtered:
-        const res = await fetch(`http://localhost:3001/recruiter/${numberOfWantedPage}/filter`, {
+        const res = await fetch(`http://localhost:3001/api/recruiter/${numberOfWantedPage}/filter`, {
           method: 'POST',
           body: JSON.stringify(savedFilters),
           headers: {

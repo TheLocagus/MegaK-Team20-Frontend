@@ -88,7 +88,7 @@ const CandidatePage: React.FC = () => {
     }
     (async () => {
       try {
-        const res = await fetch(`http://localhost:3001/${path()}`, {
+        const res = await fetch(`http://localhost:3001/api/${path()}`, {
           credentials: 'include',
         })
         const data: StudentCvInterface = await res.json();
@@ -127,7 +127,7 @@ const CandidatePage: React.FC = () => {
   }
 
   const handleNoInterested = async () => {
-    const res = await fetch(`http://localhost:3001/recruiter/status/${id}`, {
+    const res = await fetch(`http://localhost:3001/api/recruiter/status/${id}`, {
       method: 'PATCH',
       body: JSON.stringify({
         status: RecruiterActionsOfStatusEnum.noInterested
@@ -142,7 +142,7 @@ const CandidatePage: React.FC = () => {
   }
 
   const handleEmployed = async () => {
-    await fetch(`http://localhost:3001/recruiter/status/${id}`, {
+    await fetch(`http://localhost:3001/api/recruiter/status/${id}`, {
       method: 'PATCH',
       body: JSON.stringify({
         status: RecruiterActionsOfStatusEnum.employed

@@ -18,7 +18,7 @@ const Header: React.FC<Props> = ({ personData }) => {
     const {pathname} = useLocation();
 
     const logout = async () => {
-        const res = await fetch('http://localhost:3001/auth/logout', {
+        const res = await fetch('http://localhost:3001/api/auth/logout', {
             credentials: 'include'
         })
         const data = await res.json()

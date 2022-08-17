@@ -49,7 +49,7 @@ export const RecruiterRegisterForm = () => {
             throw new Error('Podaj max liczbę rezerwacji');
         }
 
-        const res = await fetch('http://localhost:3001/admin/import-recruiters', {
+        const res = await fetch('http://localhost:3001/api/admin/import-recruiters', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ export const RecruiterRegisterForm = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('file', file)
-        const res = await fetch('http://localhost:3001/admin/import-students', {
+        const res = await fetch('http://localhost:3001/api/admin/import-students', {
             method: 'POST',
             body: formData,
             credentials: 'include',

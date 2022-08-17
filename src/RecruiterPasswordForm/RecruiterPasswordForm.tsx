@@ -18,7 +18,7 @@ const RecruiterPasswordForm = () => {
     if (password.length < 6) throw new Error('Hasło powinno być dłuższe niż 5 znaków')
     if (password !== repeatPassword) throw new Error('Podane hasła nie są jednakowe.')
 
-    const res = await fetch(`http://localhost:3001/recruiter/register/${recruiterId}/${registerToken}`, {
+    const res = await fetch(`http://localhost:3001/api/recruiter/register/${recruiterId}/${registerToken}`, {
       method: "PATCH",
       body: JSON.stringify({password}),
       headers: {

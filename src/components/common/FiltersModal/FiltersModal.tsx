@@ -121,7 +121,7 @@ const FiltersModal: React.FC<Props> = ({ onClick, setForInterview, setActive, se
         }
 
         try {
-            const res = await fetch(`http://localhost:3001/recruiter/${1}/filter`, {
+            const res = await fetch(`http://localhost:3001/api/recruiter/${1}/filter`, {
                 method: 'POST',
                 body: JSON.stringify(dataObj),
                 headers: {

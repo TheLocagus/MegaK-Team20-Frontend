@@ -28,7 +28,7 @@ const LoginForm: React.FC<Props> = ({ onClick }) => {
     e.preventDefault();
 
     try {
-      const res = await fetch('http://localhost:3001/auth/login', {
+      const res = await fetch('http://localhost:3001/api/auth/login', {
         method: 'POST',
         body: JSON.stringify({
           email: loginForm.email,

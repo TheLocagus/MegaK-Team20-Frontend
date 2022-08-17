@@ -96,7 +96,7 @@ const StudentRegisterForm = () => {
             throw new Error('No required fields')
         }
 
-        const res = await fetch(`http://localhost:3001/student/`, {
+        const res = await fetch(`http://localhost:3001/api/student/`, {
             method: 'POST',
             body: JSON.stringify(userData),
             headers: {
