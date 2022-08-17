@@ -96,7 +96,7 @@ const CandidatePage: React.FC = () => {
 
         setStudent(data)
         if (pathname.includes('/student')) {
-          localStorage.setItem('User name', `${data.firstName} ${data.lastName}`)
+          localStorage.setItem('full name', `${data.firstName} ${data.lastName}`)
         }
         setIsGenerated(true)
       } catch (e) {
