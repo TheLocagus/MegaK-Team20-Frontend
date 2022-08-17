@@ -3,6 +3,7 @@ import {
 } from "../components/CandidatesListPage/CandidatesListPage";
 import {updateStudentsLists} from "./updateStudentsLists";
 import {DataTypeEnum} from "../actions/students";
+import {apiUrl} from "../config/api";
 
 export const studentsStatusHandler = async (
   action: RecruiterActionsOfStatusEnum,
@@ -16,7 +17,7 @@ export const studentsStatusHandler = async (
 
   switch(action){
     case `for-interview`:
-      const res = await fetch(`http://localhost:3001/api/recruiter/status/${id}`, {
+      const res = await fetch(`${apiUrl}/recruiter/status/${id}`, {
         method: 'PATCH',
         body: JSON.stringify({
           status: RecruiterActionsOfStatusEnum.forInterview
@@ -31,7 +32,7 @@ export const studentsStatusHandler = async (
       //@TODO dodano pomyślnie
       break;
     case `no-interested`:
-      await fetch(`http://localhost:3001/api/recruiter/status/${id}`, {
+      await fetch(`${apiUrl}/recruiter/status/${id}`, {
         method: 'PATCH',
         body: JSON.stringify({
           status: RecruiterActionsOfStatusEnum.noInterested
@@ -47,7 +48,7 @@ export const studentsStatusHandler = async (
       break;
 
     case 'employed':
-      const resEmployed = await fetch(`http://localhost:3001/api/recruiter/status/${id}`, {
+      const resEmployed = await fetch(`${apiUrl}/recruiter/status/${id}`, {
         method: 'PATCH',
         body: JSON.stringify({
           status: RecruiterActionsOfStatusEnum.employed

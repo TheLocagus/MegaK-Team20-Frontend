@@ -14,6 +14,7 @@ import labels from 'utils/labels.json'
 
 
 import './CandidatePage.scss';
+import {apiUrl} from "../../config/api";
 
 
 //strona profilu kandydata
@@ -88,7 +89,7 @@ const CandidatePage: React.FC = () => {
     }
     (async () => {
       try {
-        const res = await fetch(`http://localhost:3001/api/${path()}`, {
+        const res = await fetch(`${apiUrl}/${path()}`, {
           credentials: 'include',
         })
         const data: StudentCvInterface = await res.json();
@@ -127,7 +128,7 @@ const CandidatePage: React.FC = () => {
   }
 
   const handleNoInterested = async () => {
-    const res = await fetch(`http://localhost:3001/api/recruiter/status/${id}`, {
+    const res = await fetch(`${apiUrl}/recruiter/status/${id}`, {
       method: 'PATCH',
       body: JSON.stringify({
         status: RecruiterActionsOfStatusEnum.noInterested
@@ -142,7 +143,7 @@ const CandidatePage: React.FC = () => {
   }
 
   const handleEmployed = async () => {
-    await fetch(`http://localhost:3001/api/recruiter/status/${id}`, {
+    await fetch(`${apiUrl}/recruiter/status/${id}`, {
       method: 'PATCH',
       body: JSON.stringify({
         status: RecruiterActionsOfStatusEnum.employed

@@ -12,6 +12,7 @@ import { RootState } from '../../../store';
 import { useSearchParams } from 'react-router-dom';
 
 import './FiltersModal.scss';
+import {apiUrl} from "../../../config/api";
 
 //modal pojawiający się po wciśnieciu przycisku Filtrowanie
 
@@ -121,7 +122,7 @@ const FiltersModal: React.FC<Props> = ({ onClick, setForInterview, setActive, se
         }
 
         try {
-            const res = await fetch(`http://localhost:3001/api/recruiter/${1}/filter`, {
+            const res = await fetch(`${apiUrl}/recruiter/${1}/filter`, {
                 method: 'POST',
                 body: JSON.stringify(dataObj),
                 headers: {

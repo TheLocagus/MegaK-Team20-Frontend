@@ -3,6 +3,7 @@ import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import labels from 'utils/labels.json'
 
 import './LoginForm.scss';
+import {apiUrl} from "../../config/api";
 
 
 interface Props {
@@ -26,9 +27,9 @@ const LoginForm: React.FC<Props> = ({ onClick }) => {
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
-
+    console.log(apiUrl)
     try {
-      const res = await fetch('http://localhost:3001/api/auth/login', {
+      const res = await fetch(`${apiUrl}/auth/login`, {
         method: 'POST',
         body: JSON.stringify({
           email: loginForm.email,

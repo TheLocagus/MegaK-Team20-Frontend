@@ -4,6 +4,7 @@ import GenericSection from 'components/common/GenericSection/GenericSection';
 import Header from 'components/Header/Header';
 import Generating from 'components/Generating/Generating';
 import labels from 'utils/labels.json'
+import {apiUrl} from "../../config/api";
 
 
 export const CheckingBeforeStudentRegistryForm = () => {
@@ -11,13 +12,14 @@ export const CheckingBeforeStudentRegistryForm = () => {
 
     useEffect(() => {
         (async () => {
-            const res = await fetch(`http://localhost:3001/api/student/register/${id}/${token}`, {
+            const res = await fetch(`${apiUrl}/student/register/${id}/${token}`, {
                 credentials: 'include',
             })
             const data = await res.json();
 
             if (data.success){
-                window.location.href = `http://localhost:3000/student/register/${id}/${token}/form`
+                window.location.href = `https://megakheadhunters-team20.networkmanager.pl/student/register/${id}/${token}/form`
+                // window.location.href = `http://localhost:3000/student/register/${id}/${token}/form`
             } else {
                 throw new Error('Wrong data.')
             }
