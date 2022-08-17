@@ -23,13 +23,14 @@ const RecruiterPasswordForm = () => {
       body: JSON.stringify({password}),
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      credentials: 'include',
     })
 
     const data = await res.json();
 
     if(data.success){
-      window.location.href = `http://localhost:3000/recruiter/${recruiterId}/1`
+      window.location.href = `http://localhost:3000/`
     }
   }
 

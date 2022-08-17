@@ -108,27 +108,31 @@ const CandidatesListPage: React.FC = () => {
     (async () => {
 
       // CHWILOWO TUTAJ, TRZEBA BĘDZIE PRZENIEŚĆ W INNE MIEJSCE, ŻEBY WRZUCAŁO PO ZALOGOWANIU
-      const loggedRecruiterRes = await fetch(`http://localhost:3001/recruiter/${recruiterId}/data`)
+      const loggedRecruiterRes = await fetch(`http://localhost:3001/recruiter/data`, {
+        credentials: 'include',
+      })
       const loggedRecruiterData = await loggedRecruiterRes.json();
 
-      localStorage.setItem('recruiterId', loggedRecruiterData.id)
       localStorage.setItem('full name', loggedRecruiterData.fullName)
-      localStorage.setItem('recruitersStudents', JSON.stringify(loggedRecruiterData.studentsReserved))
       //
 
       try {
         switch(type){
           case DataTypeEnum.all:
-            await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase, recruiterId as string);
+            await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase);
             setIsGenerated(true);
             break;
           case DataTypeEnum.filtered:
             //fetch z przefiltrowanymi danymi + trzeba zrobić w reduxie stan dla ustawionych filtrów
-            const res = await fetch(`http://localhost:3001/recruiter/${numberOfSearchedPage}/filter`)
+            const res = await fetch(`http://localhost:3001/recruiter/${numberOfSearchedPage}/filter`, {
+              credentials: 'include',
+            })
             setActiveStudentsList(await res.json())
             break;
           case DataTypeEnum.searched:
-            const resSearched = await fetch(`http://localhost:3001/recruiter/1/${actualSearchPhrase}`)
+            const resSearched = await fetch(`http://localhost:3001/recruiter/1/${actualSearchPhrase}`, {
+              credentials: 'include',
+            })
             //fetch z wyszukanymi
             setActiveStudentsList(await resSearched.json())
             break;
@@ -190,13 +194,15 @@ const CandidatesListPage: React.FC = () => {
       dispatch(setDataType(DataTypeEnum.searched))
       dispatch(setActualSearchPhrase(searchValue))
       setNumberOfSearchedPage(1)
-      const res = await fetch(`http://localhost:3001/recruiter/1/${searchValue}`)
+      const res = await fetch(`http://localhost:3001/recruiter/1/${searchValue}`, {
+        credentials: 'include',
+      })
       const data = await res.json()
 
       setActiveStudentsList(data)
     } else {
       dispatch(setDataType(DataTypeEnum.all))
-      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', DataTypeEnum.all, actualSearchPhrase, recruiterId as string)
+      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', DataTypeEnum.all, actualSearchPhrase)
     }
 
   }
@@ -205,11 +211,13 @@ const CandidatesListPage: React.FC = () => {
     switch(type){
       case DataTypeEnum.all:
         setNumberOfSearchedPage(numberOfWantedPage)
-        window.location.href = `/recruiter/${recruiterId}/${numberOfWantedPage}`
+        window.location.href = `/recruiter/${numberOfWantedPage}`
         break;
 
       case DataTypeEnum.searched:
-        const resSearched = await fetch(`http://localhost:3001/recruiter/${numberOfWantedPage}/${actualSearchPhrase}`)
+        const resSearched = await fetch(`http://localhost:3001/recruiter/${numberOfWantedPage}/${actualSearchPhrase}`, {
+          credentials: 'include',
+        })
         setNumberOfSearchedPage(numberOfWantedPage)
         setActiveStudentsList(await resSearched.json())
         break;
@@ -219,7 +227,8 @@ const CandidatesListPage: React.FC = () => {
           body: JSON.stringify(savedFilters),
           headers: {
             'Content-Type': 'application/json'
-          }
+          },
+          credentials: 'include',
         })
         const resFiltered = await res.json();
         setNumberOfSearchedPage(numberOfWantedPage)

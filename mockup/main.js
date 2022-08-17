@@ -4,12 +4,10 @@ const modal_close = document.getElementById("modal_close")
 
 const open = () => {
     modal.classList.add("modal")
-    console.log("open")
 }
 
 const close = () => {
     modal.classList.remove("modal")
-    console.log("closed")
 }
 
 

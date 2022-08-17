@@ -14,7 +14,9 @@ export const CheckingBeforeRecruiterRegistryForm = () => {
     (async () => {
 
 
-      const res = await fetch(`http://localhost:3001/recruiter/register/${recruiterId}/${registerToken}`)
+      const res = await fetch(`http://localhost:3001/recruiter/register/${recruiterId}/${registerToken}`, {
+        credentials: 'include',
+      })
       const data = await res.json();
 
       if (data.success){

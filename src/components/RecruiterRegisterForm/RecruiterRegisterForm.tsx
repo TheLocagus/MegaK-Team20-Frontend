@@ -55,6 +55,7 @@ export const RecruiterRegisterForm = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(form),
+            credentials: 'include',
         })
         const data = await res.json()
 
@@ -63,7 +64,31 @@ export const RecruiterRegisterForm = () => {
         if(data.message === 'Recruiter modified') setErrorMessage('email jest zajęty')
     }
 
+    const [file, setFile] = useState<any>(null)
+    const [isSuccess, setIsSuccess] = useState<boolean | null>(null)
+    const [message, setMessage] = useState('')
+
+    const handleImportStudents = async (e: SyntheticEvent) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('file', file)
+        const res = await fetch('http://localhost:3001/admin/import-students', {
+            method: 'POST',
+            body: formData,
+            credentials: 'include',
+        })
+        const data = await res.json()
+        if(data.success){
+            setIsSuccess(true)
+            setMessage(data.message)
+        } else {
+            setIsSuccess(false)
+            setMessage(data.message)
+        }
+    }
+
     return <>
+
         <article className='add-recruiter-form'>
             <form action='' onSubmit={sendForm}>
                 <h3>{labels.adminPage.addRecruiter}</h3>
@@ -121,12 +146,21 @@ export const RecruiterRegisterForm = () => {
             </form>
         </article>
         <article className='register-input'>
-            <form>
+            <div style={{color: isSuccess ? 'green' : 'red'}}>{message.length !== 0 ? message : null}</div>
+            <form onSubmit={handleImportStudents}>
                 <h3>{labels.adminPage.addStudents}</h3>
-                <label className='custom-file-upload'>
-                    <span className='invisible-content'>{labels.aria.chooseFile}</span>
-                    <input type='file' />
+
+                <label className="custom-file-upload">
+                    <input
+                      type='file'
+                      onChange={e => {
+                          return setFile(((e.target.files as FileList)[0] ))
+                      } }
+                    />
                 </label>
+                // <label className='custom-file-upload'>
+                //   <span className='invisible-content'>{labels.aria.chooseFile}</span>
+                //  <input type='file' />
                 <button className='submit-btn red-btn' type='submit'>{labels.buttons.send}</button>
             </form>
         </article>

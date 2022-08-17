@@ -12,51 +12,52 @@ export const studentsStatusHandler = async (
   numberOfPage: string,
   type: DataTypeEnum,
   actualSearchPhrase: string,
-  recruiterId: string,
 ) => {
 
   switch(action){
     case `for-interview`:
-      const res = await fetch(`http://localhost:3001/recruiter/status/${recruiterId}/${id}`, {
+      const res = await fetch(`http://localhost:3001/recruiter/status/${id}`, {
         method: 'PATCH',
         body: JSON.stringify({
           status: RecruiterActionsOfStatusEnum.forInterview
         }),
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        credentials: 'include',
       })
-      console.log(await res.json())
-      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase, recruiterId);
+
+      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage || '1', type, actualSearchPhrase);
       //@TODO dodano pomyślnie
       break;
     case `no-interested`:
-      await fetch(`http://localhost:3001/recruiter/status/${recruiterId}/${id}`, {
+      await fetch(`http://localhost:3001/recruiter/status/${id}`, {
         method: 'PATCH',
         body: JSON.stringify({
           status: RecruiterActionsOfStatusEnum.noInterested
         }),
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        credentials: 'include',
       })
 
-      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage, type, actualSearchPhrase, recruiterId);
+      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage, type, actualSearchPhrase);
       //@TODO dodano pomyślnie
       break;
 
     case 'employed':
-      const resEmployed = await fetch(`http://localhost:3001/recruiter/status/${recruiterId}/${id}`, {
+      const resEmployed = await fetch(`http://localhost:3001/recruiter/status/${id}`, {
         method: 'PATCH',
         body: JSON.stringify({
           status: RecruiterActionsOfStatusEnum.employed
         }),
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        credentials: 'include',
       })
-      console.log(await resEmployed.json())
-      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage, type, actualSearchPhrase, recruiterId);
+      await updateStudentsLists(setActiveStudentsList, setForInterviewStudentsList, numberOfPage, type, actualSearchPhrase);
       //@TODO dodano pomyślnie
       break;
 

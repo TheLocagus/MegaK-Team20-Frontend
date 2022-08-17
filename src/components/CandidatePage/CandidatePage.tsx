@@ -1,16 +1,18 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import {useEffect, useState} from 'react';
+import {useLocation, useParams} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 import Header from 'components/Header/Header';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import Generating from 'components/Generating/Generating';
+import Icon from 'components/Icon/Icon';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faEnvelope, faGear, faPaperclip, faPhone} from '@fortawesome/free-solid-svg-icons';
+import {brands} from '@fortawesome/fontawesome-svg-core/import.macro';
+import {RecruiterActionsOfStatusEnum} from 'components/CandidatesListPage/CandidatesListPage';
+import {showExpectedContractType, showExpectedTypeWork} from 'utils/displayCorrectPlainInStudentsLists';
 import { ReactComponent as ArrowUp }  from 'icons/arrow-up.svg'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faGear, faPaperclip, faPhone } from '@fortawesome/free-solid-svg-icons';
-import { brands } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { RecruiterActionsOfStatusEnum } from 'components/CandidatesListPage/CandidatesListPage';
-import { showExpectedContractType, showExpectedTypeWork } from 'utils/displayCorrectPlainInStudentsLists';
 import labels from 'utils/labels.json'
+
 
 import './CandidatePage.scss';
 
@@ -18,37 +20,38 @@ import './CandidatePage.scss';
 //strona profilu kandydata
 
 export interface StudentCvInterface {
-    firstName: string;
-    lastName: string;
-    bio: string;
-    githubUsername: string;
-    courseCompletion: number;
-    courseEngagement: number;
-    projectDegree: number;
-    teamProjectDegree: number;
-    bonusProjectUrls: string[];
-    projectUrls: string[];
-    portfolioUrls: string[] | null;
-    expectedTypeWork: string;
-    targetWorkCity: string;
-    expectedContractType: string;
-    expectedSalary: string | number;
-    canTakeApprenticeship: boolean;
-    monthsOfCommercialExp: number;
-    education: string;
-    workExperience: string;
-    courses: string;
-    email: string;
-    telephone: string;
+  firstName: string;
+  lastName: string;
+  bio: string;
+  githubUsername: string;
+  courseCompletion: number;
+  courseEngagement: number;
+  projectDegree: number;
+  teamProjectDegree: number;
+  bonusProjectUrls: string[];
+  projectUrls: string[];
+  portfolioUrls: string[] | null;
+  expectedTypeWork: string;
+  targetWorkCity: string;
+  expectedContractType: string;
+  expectedSalary: string | number;
+  canTakeApprenticeship: boolean;
+  monthsOfCommercialExp: number;
+  education: string;
+  workExperience: string;
+  courses: string;
+  email: string;
+  telephone: string;
 }
 
 
 const CandidatePage: React.FC = () => {
-    const [isGenerated, setIsGenerated] = useState<boolean>(true)
-    const dispatch = useDispatch();
-    const { id, recruiterId } = useParams()
-    const { pathname } = useLocation();
-    
+
+  const [isGenerated, setIsGenerated] = useState<boolean>(true)
+  const dispatch = useDispatch();
+  const {id} = useParams()
+  const {pathname} = useLocation();
+
     const [student, setStudent] = useState<StudentCvInterface>({
         bio: '',
         firstName: '',
@@ -74,77 +77,106 @@ const CandidatePage: React.FC = () => {
         teamProjectDegree: 0,
     })
 
-    useEffect(()=>{
-       (async () => {
-           try {
-               const res = await fetch(`http://localhost:3001/recruiter/${recruiterId}/cv/${id}`)
-               const data = await res.json()
-               setStudent(data)
-               setIsGenerated(true)
-           } catch (e){
-               throw new Error('Something went wrong')
-           }
-       })()
-   }, [])
 
-    const generateStars = (value: number, type: string) => {
-        switch(type){
-            case 'red':{
-                let redStars = '';
-                for (let i = 0; i < value; i++) {
-                    redStars += '★'
-                }
-                return redStars;
-            }
-            case 'gray': {
-                let grayStars = '';
-                for (let i = 0; i < (5 - value); i++) {
-                    grayStars += '★'
-                }
-                return grayStars;
-            }
-            default: {
-                throw new Error('Something went wrong.')
-            }
+  useEffect(() => {
+
+    const path = () => {
+      if (pathname.includes('/student')) {
+        return 'student'
+      } else {
+        return `recruiter/cv/${id}`
+      }
+    }
+    (async () => {
+      try {
+        const res = await fetch(`http://localhost:3001/${path()}`, {
+          credentials: 'include',
+        })
+        const data: StudentCvInterface = await res.json();
+
+        setStudent(data)
+        if (pathname.includes('/student')) {
+          localStorage.setItem('User name', `${data.firstName} ${data.lastName}`)
         }
+        setIsGenerated(true)
+      } catch (e) {
+        throw new Error('Something went wrong')
+      }
+    })()
+  }, [])
+
+  const generateStars = (value: number, type: string) => {
+    switch (type) {
+      case 'red': {
+        let redStars = '';
+        for (let i = 0; i < value; i++) {
+          redStars += '★'
+        }
+        return redStars;
+      }
+      case 'gray': {
+        let grayStars = '';
+        for (let i = 0; i < (5 - value); i++) {
+          grayStars += '★'
+        }
+        return grayStars;
+      }
+      default: {
+        throw new Error('Something went wrong.')
+      }
     }
+  }
 
-    const handleNoInterested = async () => {
-        const res = await fetch(`http://localhost:3001/recruiter/${id}`, {
-            method: 'PATCH',
-            body: JSON.stringify({
-                status: RecruiterActionsOfStatusEnum.noInterested
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+  const handleNoInterested = async () => {
+    const res = await fetch(`http://localhost:3001/recruiter/status/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        status: RecruiterActionsOfStatusEnum.noInterested
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+    })
 
-        window.location.href = `/recruiter/${recruiterId}/1`
+    window.location.href = `/recruiter/1`
+  }
+
+  const handleEmployed = async () => {
+    await fetch(`http://localhost:3001/recruiter/status/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        status: RecruiterActionsOfStatusEnum.employed
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+    })
+    window.location.href = `/recruiter/1`
+  }
+
+  const showUrl = (url: string) => (
+    <div key={url}>
+      <FontAwesomeIcon icon={faPaperclip}/>
+      <a href={url}>{url}</a>
+    </div>
+  )
+
+  const getUserName = () => {
+    if (pathname.includes('student')) {
+      return localStorage.getItem('User name') ?? 'Użytkownik'
+    } else {
+      return localStorage.getItem('full name') ?? 'Rekruter'
     }
-
-    const handleEmployed = async () => {
-        await fetch(`http://localhost:3001/recruiter/${id}`, {
-            method: 'PATCH',
-            body: JSON.stringify({
-                status: RecruiterActionsOfStatusEnum.employed
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        window.location.href = `/recruiter/${recruiterId}/1`
-    }
-
-    const showUrl = (url: string) => (
-        <div key={url}>
-            <FontAwesomeIcon icon={faPaperclip} />
-            <a href={url}>{url}</a>
-        </div>
-    )
+  }
 
 
-    return (
+  if (!isGenerated) return <Generating message='Trwa generowanie...'/>
+
+
+
+  return (
         <>
             <Header personData={localStorage.getItem('full name') ?? 'Rekruter'} />
                 <main className={isGenerated ? 'main__cv black' : 'main__cv trans'}>
