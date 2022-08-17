@@ -4,6 +4,7 @@ import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import labels from 'utils/labels.json'
 
 import '../components/LoginForm/LoginForm.scss';
+import {apiUrl} from "../config/api";
 
 
 const RecruiterPasswordForm = () => {
@@ -18,7 +19,7 @@ const RecruiterPasswordForm = () => {
     if (password.length < 6) throw new Error('Hasło powinno być dłuższe niż 5 znaków')
     if (password !== repeatPassword) throw new Error('Podane hasła nie są jednakowe.')
 
-    const res = await fetch(`http://localhost:3001/recruiter/register/${recruiterId}/${registerToken}`, {
+    const res = await fetch(`${apiUrl}/recruiter/register/${recruiterId}/${registerToken}`, {
       method: "PATCH",
       body: JSON.stringify({password}),
       headers: {
@@ -30,7 +31,8 @@ const RecruiterPasswordForm = () => {
     const data = await res.json();
 
     if(data.success){
-      window.location.href = `http://localhost:3000/`
+      window.location.href = `https://megakheadhunters-team20.networkmanager.pl/`
+      // window.location.href = `http://localhost:3000`
     }
   }
 

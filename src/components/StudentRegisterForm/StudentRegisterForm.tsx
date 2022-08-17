@@ -4,6 +4,7 @@ import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import labels from 'utils/labels.json'
 
 import './StudentRegisterForm.scss';
+import {apiUrl} from "../../config/api";
 
 
 enum TypeWork {
@@ -96,7 +97,7 @@ const StudentRegisterForm = () => {
             throw new Error('No required fields')
         }
 
-        const res = await fetch(`http://localhost:3001/student/`, {
+        const res = await fetch(`${apiUrl}/student/`, {
             method: 'POST',
             body: JSON.stringify(userData),
             headers: {
@@ -107,7 +108,9 @@ const StudentRegisterForm = () => {
 
         const data = await res.json()
         if (data.success){
-            window.location.href = `http://localhost:3000/`;
+            // window.location.href = `http://localhost:3000/`;
+            window.location.href = `https://megakheadhunters-team20.networkmanager.pl/`
+
         } else {
             throw new Error('Something went wrong. Try again later.')
         }
