@@ -4,7 +4,6 @@ import {useDispatch} from 'react-redux';
 import Header from 'components/Header/Header';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import Generating from 'components/Generating/Generating';
-import Icon from 'components/Icon/Icon';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faEnvelope, faGear, faPaperclip, faPhone} from '@fortawesome/free-solid-svg-icons';
 import {brands} from '@fortawesome/fontawesome-svg-core/import.macro';
@@ -47,7 +46,7 @@ export interface StudentCvInterface {
 
 const CandidatePage: React.FC = () => {
 
-  const [isGenerated, setIsGenerated] = useState<boolean>(true)
+  const [isGenerated, setIsGenerated] = useState<boolean>(false)
   const dispatch = useDispatch();
   const {id} = useParams()
   const {pathname} = useLocation();
@@ -189,7 +188,7 @@ const CandidatePage: React.FC = () => {
                     { pathname.includes('student') ? null :
                         <ButtonLink
                             label={labels.buttons.back} 
-                            target={`/recruiter/${recruiterId}/1`}
+                            target={`/recruiter/1`}
                             icon={<ArrowUp />}
                             aria={labels.aria.backToList}
                         />  

@@ -158,9 +158,9 @@ export const RecruiterRegisterForm = () => {
                       } }
                     />
                 </label>
-                // <label className='custom-file-upload'>
-                //   <span className='invisible-content'>{labels.aria.chooseFile}</span>
-                //  <input type='file' />
+                {/*// <label className='custom-file-upload'>*/}
+                {/*//   <span className='invisible-content'>{labels.aria.chooseFile}</span>*/}
+                {/*//  <input type='file' />*/}
                 <button className='submit-btn red-btn' type='submit'>{labels.buttons.send}</button>
             </form>
         </article>
