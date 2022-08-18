@@ -18,7 +18,7 @@ import { RootState } from 'store';
 import { DataTypeEnum, setActualSearchPhrase, setDataType } from 'actions/students';
 
 import './CandidatesListPage.scss';
-import { apiUrl } from '../../config/api';
+import { apiUrl } from 'config/api';
 
 //strona z listą kandydatów 
 

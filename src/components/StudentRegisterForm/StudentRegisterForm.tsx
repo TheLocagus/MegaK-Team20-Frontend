@@ -1,10 +1,10 @@
 import React, { SyntheticEvent, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
-import labels from 'utils/labels.json'
+import labels from 'utils/labels.json';
+import { apiUrl } from 'config/api';
 
 import './StudentRegisterForm.scss';
-import { apiUrl } from '../../config/api';
 
 
 enum TypeWork {

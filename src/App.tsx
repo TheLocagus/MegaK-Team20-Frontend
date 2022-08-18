@@ -14,11 +14,12 @@ import RecruiterPasswordForm from './components/RecruiterPasswordForm/RecruiterP
 import {
   CheckingBeforeRecruiterRegistryForm
 } from './CheckingBeforeRecruiterRegistryForm/CheckingBeforeRecruiterRegistryForm';
+import CheckingBeforeUserChangePassword from 'components/CheckingBeforeUserChangePassword/CheckingBeforeUserChangePassword';
+import PasswordForm from 'components/PasswordForm/PasswordForm';
+import GenericSection from 'components/common/GenericSection/GenericSection';
 
 import './App.scss';
-import {CheckingBeforeUserChangePassword} from "./CheckingBeforeUserChangePassword/CheckingBeforeUserChangePassword";
-import PasswordForm from "./components/PasswordForm/PasswordForm";
-import GenericSection from "./components/common/GenericSection/GenericSection";
+
 
 
 export const App = () => {

@@ -4,7 +4,7 @@ import LoginForm from 'components/LoginForm/LoginForm';
 import PasswordForm from 'components/PasswordForm/PasswordForm';
 
 import './LoginPage.scss';
-import RecoverPassword from "../../RecoverPassword/RecoverPassword";
+import RecoverPassword from 'components/RecoverPassword/RecoverPassword';
 
 
 const LoginPage: React.FC = () => {

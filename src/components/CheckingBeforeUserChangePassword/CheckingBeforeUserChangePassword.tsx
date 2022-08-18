@@ -4,11 +4,10 @@ import GenericSection from 'components/common/GenericSection/GenericSection';
 import Header from 'components/Header/Header';
 import Generating from 'components/Generating/Generating';
 import labels from 'utils/labels.json'
-import {apiUrl} from "../config/api";
+import { apiUrl } from 'config/api';
 
 
-
-export const CheckingBeforeUserChangePassword = () => {
+const CheckingBeforeUserChangePassword = () => {
   const { id, registerToken } = useParams()
 
   useEffect(() => {
@@ -35,3 +34,5 @@ export const CheckingBeforeUserChangePassword = () => {
     </>
   )
 }
+
+export default CheckingBeforeUserChangePassword;

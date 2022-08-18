@@ -1,7 +1,7 @@
-import { StudentsAction } from "action-types/students";
-import { AvailableStudentToListResponseInterface, ForInterviewStudentToListResponseInterface } from "components/CandidatesListPage/CandidatesListPage";
-import {DataTypeEnum} from "../actions/students";
-import {FilterInterface} from "../components/common/FiltersModal/FiltersModal";
+import { StudentsAction } from 'action-types/students';
+import { AvailableStudentToListResponseInterface, ForInterviewStudentToListResponseInterface } from 'components/CandidatesListPage/CandidatesListPage';
+import { DataTypeEnum } from 'actions/students';
+import { FilterInterface } from 'components/common/FiltersModal/FiltersModal';
 
 export interface StudentsState {
   activeStudents: {
@@ -39,7 +39,7 @@ const initialState: StudentsState = {
 
 interface SetActiveStudents {
   type: StudentsAction.SET_ACTIVE_STUDENTS;
-  payload: StudentsState["activeStudents"];
+  payload: StudentsState['activeStudents'];
 }
 
 interface SetForInterviewStudents {

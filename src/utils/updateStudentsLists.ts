@@ -1,5 +1,5 @@
-import {DataTypeEnum} from "actions/students";
-import {apiUrl} from "../config/api";
+import { DataTypeEnum } from 'actions/students';
+import { apiUrl } from 'config/api';
 
 export const updateStudentsLists = async (
   setActiveStudentsList: any,
