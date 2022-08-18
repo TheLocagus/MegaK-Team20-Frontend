@@ -4,6 +4,7 @@ import LoginForm from 'components/LoginForm/LoginForm';
 import PasswordForm from 'components/PasswordForm/PasswordForm';
 
 import './LoginPage.scss';
+import RecoverPassword from "../../RecoverPassword/RecoverPassword";
 
 
 const LoginPage: React.FC = () => {
@@ -16,7 +17,7 @@ const LoginPage: React.FC = () => {
         <main>
             {forgottenPassState ?
                 <GenericSection customClass='login-page'
-                    children={<PasswordForm />}
+                    children={<RecoverPassword />}
                 />
             :
                 <GenericSection customClass='login-page'

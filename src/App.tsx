@@ -16,6 +16,9 @@ import {
 } from './CheckingBeforeRecruiterRegistryForm/CheckingBeforeRecruiterRegistryForm';
 
 import './App.scss';
+import {CheckingBeforeUserChangePassword} from "./CheckingBeforeUserChangePassword/CheckingBeforeUserChangePassword";
+import PasswordForm from "./components/PasswordForm/PasswordForm";
+import GenericSection from "./components/common/GenericSection/GenericSection";
 
 
 export const App = () => {
@@ -24,6 +27,8 @@ export const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<LoginPage />} />
+        <Route path='/check-user/:id/:registerToken' element={<CheckingBeforeUserChangePassword/>}/>
+        <Route path='/change-password/:id/:registerToken/:role' element={<GenericSection children={<PasswordForm />}/>}/>
         <Route path='/student/:id' element={<CandidatePage />}/>
         <Route path='/student/register/:id/:token/' element={<CheckingBeforeStudentRegistryForm />} />
         <Route path='/student/register/:id/:token/form' element={<StudentRegisterForm />} />

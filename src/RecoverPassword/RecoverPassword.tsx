@@ -3,19 +3,16 @@ import labels from 'utils/labels.json'
 
 import 'components/LoginForm/LoginForm.scss';
 import React, {SyntheticEvent, useEffect, useState} from "react";
-import {apiUrl} from "../../config/api";
-import {useParams} from "react-router-dom";
+import {apiUrl} from "../config/api";
 
 
-const PasswordForm: React.FC = () => {
+const RecoverPassword: React.FC = () => {
 
-  const [pwd, setPwd] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState<null | boolean>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [display, setDisplay] = useState<'none' | 'block'>('none')
-  const {id, registerToken, role} = useParams();
 
   useEffect(() => {
     if (message !== '') {
@@ -24,7 +21,7 @@ const PasswordForm: React.FC = () => {
     if (isSuccess !== null) {
       setIsSuccess(null)
     }
-  }, [pwd, repeatPassword])
+  }, [email])
 
   useEffect(() => {
     if (isLoading) {
@@ -36,68 +33,47 @@ const PasswordForm: React.FC = () => {
 
   const handleForm = async (e: SyntheticEvent) => {
     e.preventDefault();
-
-    if (pwd !== repeatPassword) {
-      setMessage('Niepoprawne hasła');
-      throw new Error('Niepoprawne hasła');
-    }
     setIsLoading(true)
-
-    const res = await fetch(`${apiUrl}/auth/change-password`, {
+    const res = await fetch(`${apiUrl}/auth/forgot-password`, {
       method: 'POST',
-      body: JSON.stringify({
-        pwd,
-        id,
-        token: registerToken,
-        role
-      }),
+      body: JSON.stringify({email}),
       headers: {
         'Content-Type': 'application/json'
       },
       credentials: 'include',
     })
+
     const data = await res.json()
-    console.log(data)
+
     if (data.success) {
-      setMessage('Hasło zostało zmienione pomyślnie.')
       setIsSuccess(true)
       setIsLoading(false)
+      setMessage('Na podany adres email został wysłany link weryfikacyjny.')
     } else {
-      setMessage('Coś poszło nie tak.')
       setIsSuccess(false)
       setIsLoading(false)
+      setMessage('Coś poszło nie tak.')
     }
   }
 
   return (
-    <>
+    <section className='login-page'>
       <form className='form-login' onSubmit={handleForm}>
-        <img className='form-login__logo' src={require('../../images/logo-mk.png')} alt='' width='124' height='76'/>
+        <img className='form-login__logo' src={require('../images/logo-mk.png')} alt='' width='124' height='76'/>
+        <h2>{labels.form.resetPassLabel}</h2>
         {
           <div style={{
             color: isSuccess ? 'green' : 'red',
             margin: '10px 0'
           }}>{message.length !== 0 ? message : null} </div>
         }
-        <h2>{labels.form.resetPassLabel}</h2>
         <label className='form-login__label'>
           <input className='form-login__input'
-                 type='password'
-                 id='password'
-                 placeholder={labels.form.password}
-                 value={pwd}
-                 onChange={e => setPwd(e.target.value)}
-          >
-          </input>
-        </label>
-
-        <label className='form-login__label'>
-          <input className='form-login__input'
-                 type='password'
-                 id='password'
-                 placeholder={labels.form.repeatPassword}
-                 value={repeatPassword}
-                 onChange={e => setRepeatPassword(e.target.value)}
+                 type='email'
+                 id='email'
+                 placeholder={labels.form.email}
+                 value={email}
+                 onChange={e => setEmail(e.target.value)}
           >
           </input>
         </label>
@@ -114,8 +90,9 @@ const PasswordForm: React.FC = () => {
       <div className='waiting-for-data' style={{display: `${display}`}}>
         <h1>Trwa przetwarzanie danych...</h1>
       </div>
-    </>
+    </section>
+
   )
 }
 
-export default PasswordForm;
+export default RecoverPassword;

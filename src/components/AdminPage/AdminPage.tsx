@@ -4,6 +4,7 @@ import { RecruiterRegisterForm } from 'components/RecruiterRegisterForm/Recruite
 import labels from 'utils/labels.json'
 
 import './AdminPage.scss';
+import React from "react";
 
 
 const AdminPage: React.FC = () => {

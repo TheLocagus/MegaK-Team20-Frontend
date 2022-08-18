@@ -1,8 +1,9 @@
-import React, { useState, SyntheticEvent } from 'react';
+import React, {useState, SyntheticEvent, useEffect} from 'react';
 import labels from 'utils/labels.json'
 
 import './RecruiterRegisterForm.scss'
 import { apiUrl } from '../../config/api';
+import Generating from "../Generating/Generating";
 
 
 interface CreateRecruiterResponse {
@@ -14,7 +15,11 @@ interface CreateRecruiterResponse {
 
 
 export const RecruiterRegisterForm = () => {
-    
+    const [file, setFile] = useState<any>(null);
+    const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
+    const [message, setMessage] = useState('');
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [display, setDisplay] = useState<'none' | 'block'>('none')
     const [form, setForm] = useState<CreateRecruiterResponse>({
         email: '',
         fullName: '',
@@ -22,6 +27,14 @@ export const RecruiterRegisterForm = () => {
         maxReservedStudents: '',
     })
     const [errorMessage, setErrorMessage] = useState<string>('');
+
+    useEffect(()=>{
+        if(isLoading){
+            setDisplay('block')
+        } else {
+            setDisplay('none')
+        }
+    }, [isLoading])
 
     const updateForm = (key: string, value: any) => {
         setForm(form => ({
@@ -32,7 +45,7 @@ export const RecruiterRegisterForm = () => {
 
     const sendForm = async (e: SyntheticEvent) => {
         e.preventDefault();
-        
+        setIsLoading(true)
         if (form.email.length === 0) {
             setErrorMessage('Podaj email');
             throw new Error('Podaj email');
@@ -60,17 +73,22 @@ export const RecruiterRegisterForm = () => {
         })
         const data = await res.json()
 
-        if (data.message === 'Recruiter saved successfully') setErrorMessage('Dodano poprawnie');
+        if (data.message === 'Recruiter saved successfully') {
+            setIsLoading(false)
+            setErrorMessage('Dodano poprawnie');
+        }
 
-        if(data.message === 'Recruiter modified') setErrorMessage('email jest zajęty')
+        if(data.message === 'Recruiter modified') {
+            setIsLoading(false)
+            setErrorMessage('email jest zajęty')
+        }
     }
 
-    const [file, setFile] = useState<any>(null)
-    const [isSuccess, setIsSuccess] = useState<boolean | null>(null)
-    const [message, setMessage] = useState('')
+
 
     const handleImportStudents = async (e: SyntheticEvent) => {
         e.preventDefault();
+        setIsLoading(true)
         const formData = new FormData();
         formData.append('file', file)
         const res = await fetch(`${apiUrl}/admin/import-students`, {
@@ -81,9 +99,11 @@ export const RecruiterRegisterForm = () => {
         const data = await res.json()
         if(data.success){
             setIsSuccess(true)
+            setIsLoading(false)
             setMessage(data.message)
         } else {
             setIsSuccess(false)
+            setIsLoading(false)
             setMessage(data.message)
         }
     }
@@ -147,7 +167,7 @@ export const RecruiterRegisterForm = () => {
             </form>
         </article>
         <article className='register-input'>
-            <div style={{color: isSuccess ? 'green' : 'red'}}>{message.length !== 0 ? message : null}</div>
+
             <form onSubmit={handleImportStudents}>
                 <h3>{labels.adminPage.addStudents}</h3>
 
@@ -159,11 +179,13 @@ export const RecruiterRegisterForm = () => {
                       } }
                     />
                 </label>
-                {/*// <label className='custom-file-upload'>*/}
-                {/*//   <span className='invisible-content'>{labels.aria.chooseFile}</span>*/}
-                {/*//  <input type='file' />*/}
                 <button className='submit-btn red-btn' type='submit'>{labels.buttons.send}</button>
+                <div style={{color: isSuccess ? 'green' : 'red', margin: '10px 0'}}>{message.length !== 0 ? message : null} </div>
             </form>
         </article>
+        <div className='waiting-for-data' style={{display: `${display}`}}>
+            <h1>Trwa przetwarzanie danych...</h1>
+        </div>
+
     </>
 }

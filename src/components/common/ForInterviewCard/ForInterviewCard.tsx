@@ -70,7 +70,7 @@ export const ForInterviewCard: React.FC<Props> = ({ student, setActiveStudentsLi
 
   const showCv = async () => {
     // window.location.href = `http://localhost:3000/recruiter/cv/${id}`
-    window.location.href = `https://megakheadhunters-team20.networkmanager.pl//recruiter/cv/${id}`
+    window.location.href = `https://megakheadhunters-team20.networkmanager.pl/recruiter/cv/${id}`
   }
 
   return (
