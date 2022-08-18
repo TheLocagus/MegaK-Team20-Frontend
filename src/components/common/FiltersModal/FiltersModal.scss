@@ -32,12 +32,12 @@
     }
     &-selector {
         display: flex;
-        align-items: center;
         margin: .4rem 0 1.25rem;
         font-size: 12px;
         label {
             position: relative;
             height: 27px;
+            min-height: unset;
             font-size: .75rem;
             &.active {
                 background-color: $color-red !important;
@@ -79,7 +79,7 @@
         label {
             @include flex;
             background-color: $color-dark-grey;
-            padding: 0 .52rem;
+            padding: .2rem .52rem;
             cursor: pointer;
             transition: all .3s ease-out;
             span {
@@ -155,5 +155,22 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+    }
+}
+
+@media (max-width: 492px) {
+    .filter__main {
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100%;
+        }
+        &-selector {
+            label {
+                height: unset;
+                min-height: 27px;
+            }
+        }
     }
 }

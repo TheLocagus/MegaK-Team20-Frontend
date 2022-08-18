@@ -294,7 +294,14 @@ const CandidatesListPage: React.FC = () => {
             && <GenericSection children={createPageNumbers(numberOfPage as string, activeStudentsList.totalPages)} customClass='pages'/>
         }
       </main>
-      {modalState && <FiltersModal setNumberOfSearchedPage={setNumberOfSearchedPage} setActive={setActiveStudentsList} setForInterview={setForInterviewStudentsList} onClick={modalHandler}/>}
+      {
+        modalState &&
+          <FiltersModal setNumberOfSearchedPage={setNumberOfSearchedPage}
+            setActive={setActiveStudentsList}
+            setForInterview={setForInterviewStudentsList}
+            onClick={modalHandler}
+          />
+      }
     </>
 
   )
