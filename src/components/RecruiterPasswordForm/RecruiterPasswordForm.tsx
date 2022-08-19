@@ -1,10 +1,11 @@
 import React, { SyntheticEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
-import labels from 'utils/labels.json'
+import labels from 'utils/labels.json';
+import { apiUrl } from 'config/api';
 
 import 'components/LoginForm/LoginForm.scss';
-import { apiUrl } from '../../config/api';
+
 
 
 const RecruiterPasswordForm = () => {

@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import Rating from '../Rating/Rating';
-import ButtonLink from '../ButtonLink/ButtonLink';
+import Rating from 'components/common/Rating/Rating';
+import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import labels from 'utils/labels.json'
 import {
     ActiveStudentsData,
     ForInterviewStudentToListResponseInterface
-} from '../../CandidatesListPage/CandidatesListPage';
+} from 'components/CandidatesListPage/CandidatesListPage';
 import { useDispatch, useSelector } from 'react-redux';
-import { DataTypeEnum, setDataType, setSavedFilters} from '../../../actions/students';
-import { RootState } from '../../../store';
+import { DataTypeEnum, setDataType, setSavedFilters} from 'actions/students';
+import { RootState } from 'store';
 import { useSearchParams } from 'react-router-dom';
+import { apiUrl } from 'config/api';
 
 import './FiltersModal.scss';
-import { apiUrl } from '../../../config/api';
 
 //modal pojawiający się po wciśnieciu przycisku Filtrowanie
 

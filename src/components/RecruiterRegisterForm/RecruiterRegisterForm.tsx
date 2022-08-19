@@ -1,9 +1,8 @@
 import React, {useState, SyntheticEvent, useEffect} from 'react';
-import labels from 'utils/labels.json'
+import labels from 'utils/labels.json';
+import { apiUrl } from 'config/api';
 
 import './RecruiterRegisterForm.scss'
-import { apiUrl } from '../../config/api';
-import Generating from "../Generating/Generating";
 
 
 interface CreateRecruiterResponse {

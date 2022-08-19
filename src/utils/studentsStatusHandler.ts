@@ -1,9 +1,10 @@
 import {
   RecruiterActionsOfStatusEnum
-} from "../components/CandidatesListPage/CandidatesListPage";
-import {updateStudentsLists} from "./updateStudentsLists";
-import {DataTypeEnum} from "../actions/students";
-import {apiUrl} from "../config/api";
+} from 'components/CandidatesListPage/CandidatesListPage';
+import { updateStudentsLists } from './updateStudentsLists';
+import { DataTypeEnum } from 'actions/students';
+import { apiUrl } from 'config/api';
+
 
 export const studentsStatusHandler = async (
   action: RecruiterActionsOfStatusEnum,

@@ -11,10 +11,9 @@ import { RecruiterActionsOfStatusEnum } from 'components/CandidatesListPage/Cand
 import { showExpectedContractType, showExpectedTypeWork} from 'utils/displayCorrectPlainInStudentsLists';
 import { ReactComponent as ArrowUp }  from 'icons/arrow-up.svg'
 import labels from 'utils/labels.json'
-
+import { apiUrl } from 'config/api';
 
 import './CandidatePage.scss';
-import {apiUrl} from '../../config/api';
 
 
 //strona profilu kandydata

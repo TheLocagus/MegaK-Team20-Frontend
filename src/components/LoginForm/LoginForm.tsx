@@ -1,9 +1,9 @@
 import React, {SyntheticEvent, useEffect, useState} from 'react';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
-import labels from 'utils/labels.json'
+import labels from 'utils/labels.json';
+import { apiUrl } from 'config/api';
 
 import './LoginForm.scss';
-import {apiUrl} from '../../config/api';
 
 
 interface Props {

@@ -1,9 +1,9 @@
+import React, {SyntheticEvent, useEffect, useState} from 'react';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import labels from 'utils/labels.json'
+import { apiUrl } from 'config/api';
 
 import 'components/LoginForm/LoginForm.scss';
-import React, {SyntheticEvent, useEffect, useState} from "react";
-import {apiUrl} from "../config/api";
 
 
 const RecoverPassword: React.FC = () => {
@@ -59,7 +59,7 @@ const RecoverPassword: React.FC = () => {
   return (
     <section className='login-page'>
       <form className='form-login' onSubmit={handleForm}>
-        <img className='form-login__logo' src={require('../images/logo-mk.png')} alt='' width='124' height='76'/>
+        <img className='form-login__logo' src={require('../../images/logo-mk.png')} alt='' width='124' height='76'/>
         <h2>{labels.form.resetPassLabel}</h2>
         {
           <div style={{

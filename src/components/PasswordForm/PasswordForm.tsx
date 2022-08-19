@@ -1,10 +1,10 @@
+import React, {SyntheticEvent, useEffect, useState} from 'react';
+import { useParams } from 'react-router-dom';
 import ButtonLink from 'components/common/ButtonLink/ButtonLink';
 import labels from 'utils/labels.json'
+import { apiUrl } from 'config/api';
 
 import 'components/LoginForm/LoginForm.scss';
-import React, {SyntheticEvent, useEffect, useState} from "react";
-import {apiUrl} from "../../config/api";
-import {useParams} from "react-router-dom";
 
 
 const PasswordForm: React.FC = () => {

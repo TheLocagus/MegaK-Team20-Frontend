@@ -18,7 +18,7 @@ import { RootState } from 'store';
 import { DataTypeEnum, setActualSearchPhrase, setDataType } from 'actions/students';
 
 import './CandidatesListPage.scss';
-import { apiUrl } from '../../config/api';
+import { apiUrl } from 'config/api';
 
 //strona z listą kandydatów 
 
@@ -294,7 +294,14 @@ const CandidatesListPage: React.FC = () => {
             && <GenericSection children={createPageNumbers(numberOfPage as string, activeStudentsList.totalPages)} customClass='pages'/>
         }
       </main>
-      {modalState && <FiltersModal setNumberOfSearchedPage={setNumberOfSearchedPage} setActive={setActiveStudentsList} setForInterview={setForInterviewStudentsList} onClick={modalHandler}/>}
+      {
+        modalState &&
+          <FiltersModal setNumberOfSearchedPage={setNumberOfSearchedPage}
+            setActive={setActiveStudentsList}
+            setForInterview={setForInterviewStudentsList}
+            onClick={modalHandler}
+          />
+      }
     </>
 
   )
