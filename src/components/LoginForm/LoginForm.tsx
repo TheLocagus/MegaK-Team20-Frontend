@@ -49,7 +49,6 @@ const LoginForm: React.FC<Props> = ({onClick}) => {
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
-    console.log(apiUrl)
     try {
       const res = await fetch(`${apiUrl}/auth/login`, {
         method: 'POST',
